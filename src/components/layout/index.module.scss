@@ -1,19 +1,17 @@
-@import "../../css/base";
+@import '../../css/base';
 
 .root_container {
   width: 100%;
   margin: 0;
 }
 
-
 .header_container {
   @include flex-column-center();
-  background-image: url(../../images/background.jpg);
-  background-size: cover;
-  background-attachment: fixed;
   margin: 0;
-  min-height: 65vh;
+  padding: 12px;
   position: relative;
+  min-height: 40vh;
+  background-color: #333;
 
   // boi用
   & div {
@@ -25,8 +23,8 @@
     -webkit-pointer-events: none;
     -ms-pointer-events: none;
     pointer-events: none;
-    background: linear-gradient(125deg,#8A5E5F,#d8bb93);
-    content: "";
+    background: linear-gradient(125deg, #8a5e5f, #d8bb93);
+    content: '';
     display: block;
     position: absolute;
     height: 100%;
@@ -38,12 +36,12 @@
   }
 
   &__inner {
-    animation: fade-in-down .6s both .5s;
+    animation: fade-in-down 0.6s both 0.5s;
     z-index: 2;
 
     .blog_title_area {
-      font-size: 4em;
-      margin-bottom: .5em;
+      font-size: 3.5em;
+      margin-bottom: 0.5em;
       margin-top: 0;
       font-family: Montserrat;
       line-height: 1.5;
@@ -57,8 +55,6 @@
   }
 }
 
-
-
 @media screen and (max-width: 600px) {
   .header_container {
     background-size: 200%;
@@ -67,7 +63,7 @@
     &__inner {
       .blog_title_area {
         text-align: center;
-    
+
         a {
           font-size: 36px;
         }
@@ -76,10 +72,7 @@
   }
 }
 
-
-
 @media screen and (max-width: 500px) {
-
   .blog_title_area {
     text-align: center;
 
@@ -89,10 +82,9 @@
   }
 
   .header_container {
-    min-height: 30vh;
+    min-height: 45vh;
   }
 }
-
 
 @keyframes show-background {
   0% {

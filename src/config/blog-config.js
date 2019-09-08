@@ -1,19 +1,27 @@
 module.exports = {
-  blogTitle: 'Takumon Blog',
-  blogDescription: "SIer's tech blog powered by Gatsby",
-  blogUrl: 'https://takumon.com',
-  blogRssUrl: 'https://takumon.com/rss.xml',
-  blogImageUrl: 'https://takumon.com/icons/app-sns.png', // gatsby-image経由ではない場合
+  blogTitle: "icchi's blog",
+  blogDescription: '都内で働く高専出身エンジニアのブログ',
+  blogUrl: 'https://b.blog.icchi.me',
+  blogRssUrl: 'https://b.blog.icchi.me/rss.xml',
+  blogImageUrl: 'https://b.blog.icchi.me/icons/sns-icon.png', // gatsby-image経由ではない場合
   defaultThumbnailImagePath: 'thumbnail/default.png', // 記事にサムネイルが指定していない場合のデフォルトサムネイル画像の相対パス
-  blogAuthorTwitterUserName: 'inouetakumon',
-  blogRepositoryUrl: 'https://github.com/Takumon/blog',
-  blogAuthorTwitterUrl: 'https://twitter.com/inouetakumon',
-  blogAuthorQiitaUrl: 'https://qiita.com/Takumon',
-  blogAuthorGitHubUrl: 'https://github.com/Takumon',
-  blogAuthorFacebookUrl: 'https://www.facebook.com/takuto.inoue.54',
-  facebookAppId: '1959327667485352',
-  blogAuthor: 'Takumon',
-  blogAuthorDescription: "SIer's tech blog powered by Gatsby",
-  blogAuthorAvatarUrl: 'https://s.gravatar.com/avatar/37d27f624f8c9c8db6fe6b6581b256f1',
+  defaultThumbnailQiitaImagePath: 'thumbnail/qiita.png',
+
+  blogAuthorUrl: 'https://icchi.me',
+  blogAuthorTwitterUserName: 'icchi_h',
+  blogAuthorQiitaUserName: 'icchi_h',
+  blogRepositoryUrl: 'https://github.com/icchi_h/blog',
+  blogAuthorTwitterUrl: 'https://twitter.com/icchi_h',
+  blogAuthorQiitaUrl: 'htktps://qiita.com/icchi_h',
+  blogAuthorGitHubUrl: 'https://github.com/icchi-h',
+  facebookAppId: '1404924453140940',
+  blogAuthor: 'Haruyuki Ichino',
+  blogAuthorDescription: 'Give shape to ideas',
+  blogAuthorAvatarUrl: 'https://icchi.me/img/profile.svg',
   dateFormat: 'YYYY/MM/DD',
-};
+
+  postType: {
+    original: 'original',
+    qiita: 'qiita',
+  },
+}

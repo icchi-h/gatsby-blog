@@ -1,12 +1,10 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'gatsby'
 
-import PostMetaInfo from '../post-meta-info';
-import Image from '../image';
-import styles from './index.module.scss';
-import * as config from '../../config/blog-config.js';
-
-
+import PostMetaInfo from '../post-meta-info'
+import Image from '../image'
+import styles from './index.module.scss'
+import * as config from '../../config/blog-config.js'
 
 class PostPreview extends React.Component {
   render() {
@@ -17,7 +15,8 @@ class PostPreview extends React.Component {
       date,
       tags,
       thumbnail,
-    } = this.props.postField;
+      src,
+    } = this.props.postField
 
     return (
       <article key={slug} className={styles.content}>
@@ -25,27 +24,27 @@ class PostPreview extends React.Component {
           <div className={styles.content_thumbnail}>
             <Image
               className={styles.content_thumbnail_image}
-              filename={thumbnail || config.defaultThumbnailImagePath}
+              filename={
+                thumbnail ||
+                (src !== 'qiita'
+                  ? config.defaultThumbnailImagePath
+                  : config.defaultThumbnailQiitaImagePath)
+              }
               alt={'thumbnail'}
             />
           </div>
           <div className={styles.content_post_info}>
-            <h3 className={styles.title} >
-                {title}
-            </h3>
+            <h3 className={styles.title}>{title}</h3>
             <p
               className={styles.content_text}
               dangerouslySetInnerHTML={{ __html: excerpt }}
             />
-            <PostMetaInfo
-              tags={tags}
-              date={date}
-              />
+            <PostMetaInfo tags={tags} date={date} />
           </div>
         </Link>
       </article>
-    );
+    )
   }
 }
 
-export default PostPreview;
+export default PostPreview

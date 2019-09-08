@@ -1,18 +1,20 @@
+const SECRET = require('./secret')
+const config = require('./src/config/blog-config')
 require('dotenv').config()
 
 module.exports = {
   siteMetadata: {
-    title: 'Takumon Blog',
-    author: 'Takuto Inoue',
-    description: "SIer's tech blog powered by Gatsby",
-    siteUrl: 'https://takumon.com',
+    title: config.blogTitle,
+    author: config.blogAuthor,
+    description: config.blogDescription,
+    siteUrl: config.blogUrl,
   },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/pages`,
         name: 'pages',
+        path: `${__dirname}/src/pages`,
       },
     },
     {
@@ -44,16 +46,16 @@ module.exports = {
           },
           `gatsby-remark-autolink-headers`,
           {
-            resolve: "gatsby-remark-embed-snippet",
+            resolve: 'gatsby-remark-embed-snippet',
             options: {
-              classPrefix: "language-",
+              classPrefix: 'language-',
               directory: `${__dirname}/examples/`,
             },
           },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              classPrefix: "language-",
+              classPrefix: 'language-',
               inlineCodeMarker: null,
               aliases: {},
               showLineNumbers: true,
@@ -63,17 +65,17 @@ module.exports = {
           {
             resolve: 'gatsby-remark-emojis',
             options: {
-              active : true,
-              size   : 64,
-              styles : {
-                display      : 'inline',
-                margin       : '0',
-                'margin-top' : '1px',
-                position     : 'relative',
-                top          : '5px',
-                width        : '25px'
-              }
-            }
+              active: true,
+              size: 64,
+              styles: {
+                display: 'inline',
+                margin: '0',
+                'margin-top': '1px',
+                position: 'relative',
+                top: '5px',
+                width: '25px',
+              },
+            },
           },
         ],
       },
@@ -81,73 +83,74 @@ module.exports = {
     {
       resolve: `gatsby-source-qiita`,
       options: {
-        accessToken: process.env.ACCESS_TOKEN,
-        userName: process.env.USER_NAME,
-        excludedPostIds: process.env.EXCLUDED_POST_IDS.split(',')
-      }
+        accessToken: SECRET.qiita.accessToken,
+        userName: config.blogAuthorQiitaUserName,
+        excludedPostIds: [],
+      },
     },
     `gatsby-remark-headings-detail`,
     `gatsby-remark-and-qiita`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: `UA-93478785-2`,
-      },
-    },
+    // TODO: rewrite to my id
+    // {
+    //   resolve: `gatsby-plugin-google-analytics`,
+    //   options: {
+    //     trackingId: `UA-93478785-2`,
+    //   },
+    // },
     `gatsby-plugin-feed`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Takumon Blog',
-        short_name: 'Takumon Blog',
+        name: config.blogTitle,
+        short_name: config.blogTitle,
         start_url: '/?utm_source=homescreen',
-        background_color: '#333',
-        theme_color: '#d23d29',
+        background_color: '#252525',
+        theme_color: 'f5f5f5',
         display: 'minimal-ui',
-        "icons": [
+        icons: [
           {
-            "src": "icons/icon-72x72.png",
-            "sizes": "72x72",
-            "type": "image/png"
+            src: 'icons/icon-72x72.png',
+            sizes: '72x72',
+            type: 'image/png',
           },
           {
-            "src": "icons/icon-96x96.png",
-            "sizes": "96x96",
-            "type": "image/png"
+            src: 'icons/icon-96x96.png',
+            sizes: '96x96',
+            type: 'image/png',
           },
           {
-            "src": "icons/icon-128x128.png",
-            "sizes": "128x128",
-            "type": "image/png"
+            src: 'icons/icon-128x128.png',
+            sizes: '128x128',
+            type: 'image/png',
           },
           {
-            "src": "icons/icon-144x144.png",
-            "sizes": "144x144",
-            "type": "image/png"
+            src: 'icons/icon-144x144.png',
+            sizes: '144x144',
+            type: 'image/png',
           },
           {
-            "src": "icons/icon-152x152.png",
-            "sizes": "152x152",
-            "type": "image/png"
+            src: 'icons/icon-152x152.png',
+            sizes: '152x152',
+            type: 'image/png',
           },
           {
-            "src": "icons/icon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
+            src: 'icons/icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
           },
           {
-            "src": "icons/icon-384x384.png",
-            "sizes": "384x384",
-            "type": "image/png"
+            src: 'icons/icon-384x384.png',
+            sizes: '384x384',
+            type: 'image/png',
           },
           {
-            "src": "icons/icon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-          }
+            src: 'icons/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
         ],
       },
     },
@@ -174,8 +177,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-webpack-bundle-analyzer`,
       options: {
-        openAnalyzer: false
-      }
-    }
+        openAnalyzer: false,
+      },
+    },
   ],
 }

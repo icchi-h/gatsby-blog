@@ -1,8 +1,4 @@
-# My blog powered by Gatsby
+# My blog with Gatsby.js
 
-* [https://takumon.com/](https://takumon.com/)
-* [Gatsby Showcase](https://www.gatsbyjs.org/showcase/takumon.com)
-
-![blogimage](./blogimage.png)
-
-
+![blog-image](./thumbnail.png)
+[https://b.blog.icchi.me](https://b.blog.icchi.me/)

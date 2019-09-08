@@ -1,18 +1,18 @@
 import React from 'react'
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 
-import * as config from '../../config/blog-config.js';
+import * as config from '../../config/blog-config.js'
 
 export default function Seo({
   isRoot,
-  title,  // not required
+  title, // not required
   description, // not required
   postUrl, // not required
   postDate, // not required
   largeImage, // not required
 }) {
-  const type = isRoot ? 'website' : 'article';
+  const type = isRoot ? 'website' : 'article'
 
   const JSONLDTag = createJSONLDTag({
     isRoot,
@@ -20,9 +20,9 @@ export default function Seo({
     description,
     postUrl,
     postDate,
-  });
+  })
 
-  return(
+  return (
     <StaticQuery
       query={graphql`
         query {
@@ -41,57 +41,70 @@ export default function Seo({
           }
         }
       `}
-
-      render={(data) => {
+      render={data => {
         const imageNode = data.images.edges.find(n => {
-          return n.node.relativePath.includes(largeImage || config.defaultThumbnailImagePath)
+          return n.node.relativePath.includes(
+            largeImage || config.defaultThumbnailImagePath
+          )
         })
-        
+
         const image = config.blogUrl + imageNode.node.childImageSharp.sizes.src
         const twitterCard = 'summary_large_image'
 
-        return (<Helmet>
-          {/* General tags */}
-          <meta name="description" content={description || config.blogDescription} />
-          <meta name="image" content={image} />
+        return (
+          <Helmet>
+            {/* General tags */}
+            <meta
+              name="description"
+              content={description || config.blogDescription}
+            />
+            <meta name="image" content={image} />
 
-          {/* Schema.org tags */}
-          {JSONLDTag}
+            {/* Schema.org tags */}
+            {JSONLDTag}
 
-          {/* OpenGraph tags */}
-          <meta property="og:title" content={title || config.blogTitle} />
-          <meta property="og:description" content={description || config.blogDescription} />
-          <meta property="og:url" content={config.blogUrl} />
-          <meta property="og:type" content={type} />
-          <meta property="og:site_name" content={config.blogTitle} />
-          <meta property="og:image" content={image} />
+            {/* OpenGraph tags */}
+            <meta property="og:title" content={title || config.blogTitle} />
+            <meta
+              property="og:description"
+              content={description || config.blogDescription}
+            />
+            <meta property="og:url" content={config.blogUrl} />
+            <meta property="og:type" content={type} />
+            <meta property="og:site_name" content={config.blogTitle} />
+            <meta property="og:image" content={image} />
 
-          {/* OpenGraph tags for facebook */}
-          <meta property="fb:app_id" content={config.facebookAppId} />
+            {/* OpenGraph tags for facebook */}
+            <meta property="fb:app_id" content={config.facebookAppId} />
 
-          {/* Twitter Card tags */}
-          <meta name="twitter:card" content={twitterCard} />
-          <meta name="twitter:image" content={image} />
-          <meta name="twitter:title" content={title || config.blogTitle} />
-          <meta name="twitter:description" content={description || config.blogDescription} />
-          <meta name="twitter:site" content={`@${config.blogAuthorTwitterUserName}`} />
+            {/* Twitter Card tags */}
+            <meta name="twitter:card" content={twitterCard} />
+            <meta name="twitter:image" content={image} />
+            <meta name="twitter:title" content={title || config.blogTitle} />
+            <meta
+              name="twitter:description"
+              content={description || config.blogDescription}
+            />
+            <meta
+              name="twitter:site"
+              content={`@${config.blogAuthorTwitterUserName}`}
+            />
 
-          <link rel="canonical" href={postUrl} />
-        </Helmet>)
+            <link rel="canonical" href={postUrl} />
+          </Helmet>
+        )
       }}
     />
   )
 }
 
-
 function createJSONLDTag({
   isRoot,
-  title,  // not required
+  title, // not required
   description, // not required
   postUrl, // not required
   postDate, // not required
 }) {
-
   const author = [
     {
       '@type': 'Person',
@@ -101,13 +114,10 @@ function createJSONLDTag({
         '@type': 'ImageObject',
         url: config.blogAuthorAvatarUrl,
         width: 60,
-        height: 60
+        height: 60,
       },
-      'url': config.blogUrl,
-      "sameAs": [
-        config.blogAuthorFacebookUrl,
-        config.blogAuthorTwitterUrl,
-      ]
+      url: config.blogUrl,
+      sameAs: [config.blogAuthorTwitterUrl, config.blogAuthorGitHubUrl],
     },
     {
       '@type': 'thing',
@@ -118,10 +128,10 @@ function createJSONLDTag({
         '@type': 'ImageObject',
         url: config.blogImageUrl,
         width: 60,
-        height: 60
-      }
-    }
-  ];
+        height: 60,
+      },
+    },
+  ]
 
   const publisher = {
     '@type': 'Organization',
@@ -131,8 +141,8 @@ function createJSONLDTag({
       '@type': 'ImageObject',
       url: config.blogAuthorAvatarUrl,
       width: 60,
-      height: 60
-    }
+      height: 60,
+    },
   }
 
   const result = [
@@ -148,30 +158,30 @@ function createJSONLDTag({
       author,
       publisher,
       potentialAction: {
-        '@type': "SearchAction",
+        '@type': 'SearchAction',
         target: `${config.blogUrl}/search?q={q}`,
-        'query-input': 'required name=q'
-      }
-    }
-  ];
+        'query-input': 'required name=q',
+      },
+    },
+  ]
 
   if (!isRoot) {
     result.push({
-        '@context': 'http://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            item: {
-              '@id': postUrl,
-              name: title,
-              image: config.blogImageUrl,
-            },
+      '@context': 'http://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          item: {
+            '@id': postUrl,
+            name: title,
+            image: config.blogImageUrl,
           },
-        ],
+        },
+      ],
     }),
-    result.push({
+      result.push({
         '@context': 'http://schema.org',
         '@type': 'BlogPosting',
         url: config.blogURL,
@@ -188,12 +198,12 @@ function createJSONLDTag({
         dateModified: postDate,
         mainEntityOfPage: {
           '@type': 'WebPage',
-          '@id': config.blogUrl
+          '@id': config.blogUrl,
         },
         author,
         publisher,
-      });
-  };
+      })
+  }
 
-  return <script type="application/ld+json">{JSON.stringify(result)}</script>;
+  return <script type="application/ld+json">{JSON.stringify(result)}</script>
 }

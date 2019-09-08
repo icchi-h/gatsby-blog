@@ -1,10 +1,10 @@
 {
   "name": "blog",
-  "description": "Takumon Blog",
+  "description": "icchi's blog",
   "version": "1.0.0",
-  "author": "Takuto Inoue <inouetakumon@gmail.com>",
+  "author": "Haruyuki Ichino",
   "bugs": {
-    "url": "https://github.com/takumon/blog/issues"
+    "url": "https://github.com/icchi-h/blog/issues"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.4",
