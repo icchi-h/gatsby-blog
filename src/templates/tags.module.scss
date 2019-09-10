@@ -1,19 +1,28 @@
-@import "../css/base";
+@import '../css/base';
 
 .tag_search_result {
   @include max-content-width();
-  padding: 1em 0 0 1em;
   display: flex;
+  justify-content: center;
   align-items: center;
+  padding: 1em;
+  font-size: 1.1em;
 }
 
 .tag_icon {
   margin-right: 0.5em;
 }
 
+.tag_search_count {
+  margin-left: 0.5em;
+  font-size: 1.3em;
+}
+
 .no_post {
   @include max-content-width();
-  padding: 1em 0 0 1em;
   display: flex;
+  justify-content: center;
   align-items: center;
+  padding: 1em;
+  font-size: 1.1em;
 }
