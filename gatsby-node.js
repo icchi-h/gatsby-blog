@@ -90,20 +90,18 @@ exports.createPages = ({ graphql, actions }) => {
       // オリジナル記事とQiitaの記事を1つのリストにする
       const originalPosts = result.data.allMarkdownRemark.edges.map(p => {
         return {
-          type: POST_TYPE.ORIGINAL,
+          type: POST_TYPE.original,
           date: new Date(p.node.fields.date),
           node: p.node,
         }
       })
-
       const qiitaPosts = result.data.allQiitaPost.edges.map(p => {
         return {
-          type: POST_TYPE.QIITA,
+          type: POST_TYPE.qiita,
           date: new Date(p.node.fields.date),
           node: p.node,
         }
       })
-
       const posts = [...originalPosts, ...qiitaPosts].sort((a, b) => {
         if (a.date < b.date) return 1
         if (a.date > b.date) return -1
