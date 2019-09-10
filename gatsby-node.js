@@ -130,16 +130,16 @@ exports.createPages = ({ graphql, actions }) => {
             },
           })
         } else if (type === POST_TYPE.qiita) {
-          createPage({
-            path: node.fields.slug,
-            component: qiitaPost,
-            context: {
-              slug: node.fields.slug,
-              relatedPosts,
-              latestPosts,
-              ...previouseAndNext(posts, index),
-            },
-          })
+          // createPage({
+          //   path: node.fields.slug,
+          //   component: qiitaPost,
+          //   context: {
+          //     slug: node.fields.slug,
+          //     relatedPosts,
+          //     latestPosts,
+          //     ...previouseAndNext(posts, index),
+          //   },
+          // })
         } else {
           throw new Error(`Unexpected post type = ${type}`)
         }
