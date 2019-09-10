@@ -16,7 +16,7 @@ const { JSDOM } = require('jsdom')
 const kuromoji = require('kuromoji')
 const d3 = require('d3')
 const cloud = require('d3-cloud')
-const fs = require('fs')
+// const fs = require('fs')
 const POST_TYPE = require('./src/config/blog-config').postType
 
 // onCreateNodeより後に実行される
@@ -146,107 +146,123 @@ exports.createPages = ({ graphql, actions }) => {
       })
 
       // 記事関連情報生成
-      const allPostRelations = allPostNodes.map(node => {
-        const conf = Object.assign({}, relatedPost.defaultConfig, {
-          threshold: 50,
-        })
+      // const allPostRelations = allPostNodes.map(node => {
+      //   const conf = Object.assign({}, relatedPost.defaultConfig, {
+      //     threshold: 50,
+      //   })
 
-        return {
-          node,
-          relations: relatedPost.extractRelatedPostRankings(
-            allPostNodes,
-            node,
-            conf
-          ),
-        }
-      })
+      //   return {
+      //     node,
+      //     relations: relatedPost.extractRelatedPostRankings(
+      //       allPostNodes,
+      //       node,
+      //       conf
+      //     ),
+      //   }
+      // })
 
-      // WordCloud用データ加工処理
-      const alltext = posts
-        .map(({ type, node }) => {
-          if (type === POST_TYPE.ORIGINAL) {
-            return rawText(node.html)
-          } else {
-            return rawText(node.rendered_body)
-          }
-        })
-        .join('\n')
+      // // WordCloud用データ加工処理
+      // const alltext = posts
+      //   .map(({ type, node }) => {
+      //     if (type === POST_TYPE.original) {
+      //       return rawText(node.html)
+      //     } else {
+      //       return rawText(node.rendered_body)
+      //     }
+      //   })
+      //   .join('\n')
 
-      const tagDatas = []
+      // const tagDatas = []
 
-      posts.forEach(post => {
-        post.node.fields.tags.forEach(t => {
-          if ('Qiita' === t) {
-            return
-          }
+      // posts.forEach(post => {
+      //   post.node.fields.tags.forEach(t => {
+      //     if ('Qiita' === t) {
+      //       return
+      //     }
 
-          const targetData = tagDatas.find(data => data.text === t)
-          if (targetData) {
-            targetData.size = targetData.size + 1
-          } else {
-            tagDatas.push({
-              text: t,
-              size: 1,
-            })
-          }
-        })
-      })
+      //     const targetData = tagDatas.find(data => data.text === t)
+      //     if (targetData) {
+      //       targetData.size = targetData.size + 1
+      //     } else {
+      //       tagDatas.push({
+      //         text: t,
+      //         size: 1,
+      //       })
+      //     }
+      //   })
+      // })
+      //
+      // // WordCloud生成
+      // const paramForTag = {
+      //   words: tagDatas,
+      //   w: 1200,
+      //   h: 630,
+      //   fontSizePow: 0.8,
+      //   fontSizeZoom: 18,
+      //   padding: 2,
+      // }
 
-      // WordCloud生成
-      const paramForTag = {
-        words: tagDatas,
-        w: 1200,
-        h: 630,
-        fontSizePow: 0.8,
-        fontSizeZoom: 18,
-        padding: 2,
-      }
+      // createWordCloud(paramForTag).then(tagSvg => {
+      //   craeteWordCount(alltext)
+      //     .then(data => {
+      //       const paramForText = {
+      //         words: data,
+      //         w: 1200,
+      //         h: 630,
+      //         fontSizePow: 0.6,
+      //         fontSizeZoom: 3.1,
+      //         padding: 0.2,
+      //       }
 
-      createWordCloud(paramForTag).then(tagSvg => {
-        craeteWordCount(alltext)
-          .then(data => {
-            const paramForText = {
-              words: data,
-              w: 1200,
-              h: 630,
-              fontSizePow: 0.6,
-              fontSizeZoom: 3.1,
-              padding: 0.2,
-            }
+      //       return createWordCloud(paramForText)
+      //     })
+      //     .then(textSvg => {
+      //       // 記事分析ページ生成
+      //       createPage({
+      //         path: '/blog-map/',
+      //         component: postRelationMapPage,
+      //         context: {
+      //           allPostRelations,
+      //           wordCloudText: textSvg,
+      //           wordCloudTag: tagSvg,
+      //         },
+      //       })
 
-            return createWordCloud(paramForText)
+      //       // タグ別一覧ページ生成
+      //       _flow(
+      //         _flatMap(post => post.node.fields.tags),
+      //         _uniq(),
+      //         _forEach(tag => {
+      //           createPage({
+      //             path: `/tags/${_.kebabCase(tag)}/`,
+      //             component: tagPage,
+      //             context: {
+      //               tag,
+      //             },
+      //           })
+      //         })
+      //       )(posts)
+
+      //       resolve('OK')
+      //     })
+      // })
+
+      // タグ別一覧ページ生成
+      _flow(
+        _flatMap(post => post.node.fields.tags),
+        _uniq(),
+        _forEach(tag => {
+          createPage({
+            path: `/tags/${_.kebabCase(tag)}/`,
+            component: tagPage,
+            context: {
+              tag,
+            },
           })
-          .then(textSvg => {
-            // 記事分析ページ生成
-            // createPage({
-            //   path: '/blog-map/',
-            //   component: postRelationMapPage,
-            //   context: {
-            //     allPostRelations,
-            //     wordCloudText: textSvg,
-            //     wordCloudTag: tagSvg,
-            //   },
-            // })
+        })
+      )(posts)
 
-            // タグ別一覧ページ生成
-            _flow(
-              _flatMap(post => post.node.fields.tags),
-              _uniq(),
-              _forEach(tag => {
-                createPage({
-                  path: `/tags/${_.kebabCase(tag)}/`,
-                  component: tagPage,
-                  context: {
-                    tag,
-                  },
-                })
-              })
-            )(posts)
-
-            // 処理終了
-            resolve('OK')
-          })
-      })
+      resolve('OK')
     })
   })
 }

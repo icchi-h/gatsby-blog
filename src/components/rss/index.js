@@ -10,13 +10,13 @@ class Rss extends React.Component {
   render() {
     return (
       <div className={styles.content}>
-        <a
+        {/* <a
           aria-label="blog_map"
           href="/blog-map"
           className={`${styles.button} ${styles.blog_map_link}`}
           target="_blank"
           rel="noopener"
-        />
+        /> */}
         <a
           aria-label="blog_repository"
           href={config.blogRepositoryUrl}
