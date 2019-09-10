@@ -118,7 +118,7 @@ exports.createPages = ({ graphql, actions }) => {
           .slice(0, 5)
         const latestPosts = allPostNodes.slice(0, 5)
 
-        if (type === POST_TYPE.ORIGINAL) {
+        if (type === POST_TYPE.original) {
           createPage({
             path: node.fields.slug,
             component: blogPost,
@@ -129,7 +129,7 @@ exports.createPages = ({ graphql, actions }) => {
               ...previouseAndNext(posts, index),
             },
           })
-        } else if (type === POST_TYPE.QIITA) {
+        } else if (type === POST_TYPE.qiita) {
           createPage({
             path: node.fields.slug,
             component: qiitaPost,
