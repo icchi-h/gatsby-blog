@@ -27,9 +27,9 @@ exports.createPages = ({ graphql, actions }) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
     const qiitaPost = path.resolve('./src/templates/qiita-post.js')
     const tagPage = path.resolve('./src/templates/tags.js')
-    const postRelationMapPage = path.resolve(
-      './src/templates/post-relation-map.js'
-    )
+    // const postRelationMapPage = path.resolve(
+    //   './src/templates/post-relation-map.js'
+    // )
 
     graphql(
       `
@@ -218,15 +218,15 @@ exports.createPages = ({ graphql, actions }) => {
           })
           .then(textSvg => {
             // 記事分析ページ生成
-            createPage({
-              path: '/blog-map/',
-              component: postRelationMapPage,
-              context: {
-                allPostRelations,
-                wordCloudText: textSvg,
-                wordCloudTag: tagSvg,
-              },
-            })
+            // createPage({
+            //   path: '/blog-map/',
+            //   component: postRelationMapPage,
+            //   context: {
+            //     allPostRelations,
+            //     wordCloudText: textSvg,
+            //     wordCloudTag: tagSvg,
+            //   },
+            // })
 
             // タグ別一覧ページ生成
             _flow(
