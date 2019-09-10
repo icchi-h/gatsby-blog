@@ -13,19 +13,21 @@ class BlogIndex extends React.Component {
   render() {
     // gatsby-node.jsで2つのノードに共通のfieldsを追加しているため条件分岐なし
 
-    // 記事ソース情報の追加
-    const blogPosts = get(this, 'props.data.allMarkdownRemark.edges', []).map(
-      item => {
-        item.node.fields.src = config.postType.original
-        return item
-      }
-    )
-    const qiitaPosts = get(this, 'props.data.allQiitaPost.edges', []).map(
-      item => {
-        item.node.fields.src = config.postType.qiita
-        return item
-      }
-    )
+    // // 記事ソース情報の追加
+    // const blogPosts = get(this, 'props.data.allMarkdownRemark.edges', []).map(
+    //   item => {
+    //     item.node.fields.src = config.postType.original
+    //     return item
+    //   }
+    // )
+    // const qiitaPosts = get(this, 'props.data.allQiitaPost.edges', []).map(
+    //   item => {
+    //     item.node.fields.src = config.postType.qiita
+    //     return item
+    //   }
+    // )
+    const blogPosts = get(this, 'props.data.allMarkdownRemark.edges', [])
+    const qiitaPosts = get(this, 'props.data.allQiitaPost.edges', [])
 
     // マージして降順で並び替え
     let posts = [...blogPosts, ...qiitaPosts].sort((a, b) => {

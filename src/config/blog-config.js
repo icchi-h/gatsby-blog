@@ -24,4 +24,5 @@ module.exports = {
     original: 'original',
     qiita: 'qiita',
   },
+  qiitaTag: 'Qiita',
 }

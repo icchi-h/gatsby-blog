@@ -26,7 +26,7 @@ class PostPreview extends React.Component {
               className={styles.content_thumbnail_image}
               filename={
                 thumbnail ||
-                (src !== 'qiita'
+                (!tags.includes(config.qiitaTag)
                   ? config.defaultThumbnailImagePath
                   : config.defaultThumbnailQiitaImagePath)
               }
