@@ -14,12 +14,15 @@ class Rss extends React.Component {
           aria-label="blog_map"
           href="/blog-map"
           className={`${styles.button} ${styles.blog_map_link}`}
+          target="_blank"
+          rel="noopener"
         />
         <a
           aria-label="blog_repository"
           href={config.blogRepositoryUrl}
-          rel="noopener noreferrer"
           className={`${styles.button}`}
+          target="_blank"
+          rel="noopener"
         >
           <FontAwesomeIcon color="#eee" icon={faGithub} />
         </a>
@@ -28,12 +31,14 @@ class Rss extends React.Component {
           className={`${styles.button} ${styles.feedly_link}`}
           href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fblog2.icchi.me%2Frss.xml"
           target="_blank"
+          rel="noopener"
         ></a>
         <a
           aria-label="rss"
           className={styles.button}
           href={config.blogRssUrl}
-          target="blank"
+          target="_blank"
+          rel="noopener"
         >
           <FontAwesomeIcon color="f26522" icon={faRss} />
         </a>
