@@ -101,7 +101,7 @@ module.exports = {
         short_name: config.blogTitle,
         start_url: '/?utm_source=homescreen',
         background_color: '#252525',
-        theme_color: 'f5f5f5',
+        theme_color: '#f5f5f5',
         display: 'minimal-ui',
         icons: [
           {
