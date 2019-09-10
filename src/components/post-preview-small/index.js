@@ -8,15 +8,28 @@ import * as config from '../../config/blog-config.js'
 
 class PostPreviewSmall extends React.Component {
   render() {
-    const { slug, title, excerpt, date, tags, thumbnail } = this.props.postField
+    const {
+      slug,
+      title,
+      excerpt,
+      date,
+      tags,
+      thumbnail,
+      src,
+    } = this.props.postField
 
     return (
       <Link key={slug} className={styles.content_link} to={slug}>
         <div className={styles.content_thumbnail}>
           <Image
             className={styles.content_thumbnail_image}
-            filename={thumbnail || config.defaultThumbnailImagePath}
-            alt="thumbnail"
+            filename={
+              thumbnail ||
+              (src !== 'qiita'
+                ? config.defaultThumbnailImagePath
+                : config.defaultThumbnailQiitaImagePath)
+            }
+            alt={'thumbnail'}
           />
         </div>
         <div className={styles.content_post_info}>

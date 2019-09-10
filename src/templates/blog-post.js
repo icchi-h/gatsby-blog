@@ -2,15 +2,13 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { get } from 'lodash'
 
-import config from '../config/blog-config';
-import Layout from '../components/layout';
-import Post from '../components/post';
+import config from '../config/blog-config'
+import Layout from '../components/layout'
+import Post from '../components/post'
 
-import 'katex/dist/katex.min.css';
+import 'katex/dist/katex.min.css'
 
 class BlogPostTemplate extends React.Component {
-
-
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
