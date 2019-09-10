@@ -25,19 +25,10 @@ class Rss extends React.Component {
         </a>
         <a
           aria-label="feedly"
-          // className={styles.button}
           className={`${styles.button} ${styles.feedly_link}`}
           href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fblog2.icchi.me%2Frss.xml"
           target="_blank"
-        >
-          {/* <img
-            id="feedlyFollow"
-            src="https://s3.feedly.com/img/follows/feedly-follow-logo-green_2x.png"
-            alt="follow us in feedly"
-            width="36"
-            height="36"
-          /> */}
-        </a>
+        ></a>
         <a
           aria-label="rss"
           className={styles.button}

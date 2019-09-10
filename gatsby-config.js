@@ -85,7 +85,6 @@ module.exports = {
     `gatsby-remark-and-qiita`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    // TODO: rewrite to my id
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

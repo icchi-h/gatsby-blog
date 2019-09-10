@@ -37,13 +37,13 @@ class Post extends React.Component {
   //   this.setState({ isShowSnsShare: this.scrollTop() > 400 })
   // }
 
-  scrollTop() {
-    return Math.max(
-      window.pageYOffset,
-      document.documentElement.scrollTop,
-      document.body.scrollTop
-    )
-  }
+  // scrollTop() {
+  //   return Math.max(
+  //     window.pageYOffset,
+  //     document.documentElement.scrollTop,
+  //     document.body.scrollTop
+  //   )
+  // }
 
   render() {
     const {
