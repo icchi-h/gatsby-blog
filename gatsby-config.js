@@ -86,12 +86,12 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     // TODO: rewrite to my id
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     trackingId: `UA-93478785-2`,
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: `UA-47709529-5`,
+      },
+    },
     `gatsby-plugin-feed`,
     `gatsby-plugin-react-helmet`,
     {
