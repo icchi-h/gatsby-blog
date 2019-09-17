@@ -49,6 +49,8 @@ exports.createPages = ({ graphql, actions }) => {
                   tags
                   keywords
                   thumbnail
+                  src
+                  url
                 }
               }
             }
@@ -67,6 +69,8 @@ exports.createPages = ({ graphql, actions }) => {
                   tags
                   keywords
                   thumbnail
+                  src
+                  url
                 }
                 id
                 title
@@ -130,16 +134,17 @@ exports.createPages = ({ graphql, actions }) => {
             },
           })
         } else if (type === POST_TYPE.qiita) {
-          createPage({
-            path: node.fields.slug,
-            component: qiitaPost,
-            context: {
-              slug: node.fields.slug,
-              relatedPosts,
-              latestPosts,
-              ...previouseAndNext(posts, index),
-            },
-          })
+          // Disable: qiita article page
+          // createPage({
+          //   path: node.fields.slug,
+          //   component: qiitaPost,
+          //   context: {
+          //     slug: node.fields.slug,
+          //     relatedPosts,
+          //     latestPosts,
+          //     ...previouseAndNext(posts, index),
+          //   },
+          // })
         } else {
           throw new Error(`Unexpected post type = ${type}`)
         }

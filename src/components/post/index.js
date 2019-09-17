@@ -55,7 +55,6 @@ class Post extends React.Component {
     } = this.props
 
     const postUrl = `${config.blogUrl}${slug}`
-    console.log('props:', this.props.pageContext)
 
     // const classNameSnsShare = ClassNames({
     //   [`${styles.sns_share}`]: true,
