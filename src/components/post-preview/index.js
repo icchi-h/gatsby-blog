@@ -8,8 +8,17 @@ import * as config from '../../config/blog-config.js'
 
 class PostPreview extends React.Component {
   render() {
-    const { slug, title, excerpt, date, tags, thumbnail } = this.props.postField
-    const isQiita = tags.includes(config.qiitaTag)
+    const {
+      slug,
+      title,
+      excerpt,
+      date,
+      tags,
+      thumbnail,
+      url,
+      src,
+    } = this.props.postField
+    const isQiita = src === config.postType.qiita
 
     let article
 
@@ -21,7 +30,7 @@ class PostPreview extends React.Component {
               className={styles.content_thumbnail_image}
               filename={
                 thumbnail ||
-                (!tags.includes(config.qiitaTag)
+                (!isQiita
                   ? config.defaultThumbnailImagePath
                   : config.defaultThumbnailQiitaImagePath)
               }
@@ -42,7 +51,7 @@ class PostPreview extends React.Component {
       article = (
         <a
           className={styles.title_link}
-          href={`${config.blogAuthorQiitaUrl}/items${slug}`}
+          href={url}
           target="_blank"
           rel="noopener"
         >

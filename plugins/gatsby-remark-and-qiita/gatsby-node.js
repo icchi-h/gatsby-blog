@@ -5,8 +5,7 @@ const remarkParse = require('remark-parse')
 const remark2rehype = require('remark-rehype')
 const rehypeStringify = require('rehype-stringify')
 const striptags = require('striptags')
-
-
+const config = require('../../src/config/blog-config.js')
 
 /**
  * Markdown記事とQiita記事のインターフェースを共通化

@@ -16,29 +16,69 @@ class PostPreviewSmall extends React.Component {
       tags,
       thumbnail,
       src,
+      url,
     } = this.props.postField
+    const isQiita = src === config.postType.qiita
+
+    let article
+
+    if (!isQiita) {
+      article = (
+        <Link key={slug} className={styles.content_link} to={slug}>
+          <div className={styles.content_thumbnail}>
+            <Image
+              className={styles.content_thumbnail_image}
+              filename={
+                thumbnail ||
+                (!isQiita
+                  ? config.defaultThumbnailImagePath
+                  : config.defaultThumbnailQiitaImagePath)
+              }
+              alt={'thumbnail'}
+            />
+          </div>
+          <div className={styles.content_post_info}>
+            <h3 className={styles.title}>{title}</h3>
+            <div className={styles.post_meta_info}>
+              <PostMetaInfo tags={tags} date={date} />
+            </div>
+          </div>
+        </Link>
+      )
+    } else {
+      article = (
+        <a
+          className={styles.content_link}
+          href={url}
+          target="_blank"
+          rel="noopener"
+        >
+          <div className={styles.content_thumbnail}>
+            <Image
+              className={styles.content_thumbnail_image}
+              filename={
+                thumbnail ||
+                (!isQiita
+                  ? config.defaultThumbnailImagePath
+                  : config.defaultThumbnailQiitaImagePath)
+              }
+              alt={'thumbnail'}
+            />
+          </div>
+          <div className={styles.content_post_info}>
+            <h3 className={styles.title}>{title}</h3>
+            <div className={styles.post_meta_info}>
+              <PostMetaInfo tags={tags} date={date} />
+            </div>
+          </div>
+        </a>
+      )
+    }
 
     return (
-      <Link key={slug} className={styles.content_link} to={slug}>
-        <div className={styles.content_thumbnail}>
-          <Image
-            className={styles.content_thumbnail_image}
-            filename={
-              thumbnail ||
-              (!tags.includes(config.qiitaTag)
-                ? config.defaultThumbnailImagePath
-                : config.defaultThumbnailQiitaImagePath)
-            }
-            alt={'thumbnail'}
-          />
-        </div>
-        <div className={styles.content_post_info}>
-          <h3 className={styles.title}>{title}</h3>
-          <div className={styles.post_meta_info}>
-            <PostMetaInfo tags={tags} date={date} />
-          </div>
-        </div>
-      </Link>
+      <article key={slug} className={styles.content}>
+        {article}
+      </article>
     )
   }
 }
