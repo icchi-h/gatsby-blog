@@ -134,6 +134,7 @@ exports.createPages = ({ graphql, actions }) => {
             },
           })
         } else if (type === POST_TYPE.qiita) {
+          // Disable: qiita article page
           // createPage({
           //   path: node.fields.slug,
           //   component: qiitaPost,

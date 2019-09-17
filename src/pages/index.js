@@ -23,6 +23,9 @@ class BlogIndex extends React.Component {
     // const qiitaPosts = get(this, 'props.data.allQiitaPost.edges', []).map(
     //   item => {
     //     item.node.fields.src = config.postType.qiita
+    //     item.node.fields.url = item.node.url
+    //     item.node.fields.comments_count = item.node.comments_count
+    //     item.node.fields.likes_count = item.node.likes_count
     //     return item
     //   }
     // )

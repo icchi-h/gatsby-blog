@@ -68,8 +68,10 @@ function _excerptMarkdown(markdown, length) {
 }
 
 function _excerptHtml(html, length) {
-  const postContent = striptags(html).replace(/\r?\n/g, '').trim();
+  const postContent = striptags(html)
+    .replace(/\r?\n/g, '')
+    .trim()
   return postContent.length <= length
     ? postContent
-    : postContent.slice(0, length) + '...';
+    : postContent.slice(0, length) + '...'
 }
