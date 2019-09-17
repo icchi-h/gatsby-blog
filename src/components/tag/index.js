@@ -11,7 +11,7 @@ class Tag extends React.Component {
     if (count) {
       return (
         <div key={value} className={styles.content}>
-          <Link to={`/tags/${kebabCase(value)}`} className={styles.link}>
+          <Link to={`/tag/${kebabCase(value)}`} className={styles.link}>
             <span className={styles.tag_name} style={{ color: color }}>
               {value}
             </span>
@@ -22,7 +22,7 @@ class Tag extends React.Component {
     } else {
       return (
         <div key={value} className={styles.content}>
-          <Link to={`/tags/${kebabCase(value)}`} className={styles.link}>
+          <Link to={`/tag/${kebabCase(value)}`} className={styles.link}>
             <span className={styles.tag_name} style={{ color: color }}>
               {value}
             </span>

@@ -20,7 +20,7 @@ export default class Layout extends React.Component {
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
       rootPath = __PATH_PREFIX__ + rootPath
     }
-    let tagPath = `/tags/`
+    let tagPath = `/tag/`
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
       tagPath = __PATH_PREFIX__ + tagPath
     }

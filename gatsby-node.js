@@ -239,7 +239,7 @@ exports.createPages = ({ graphql, actions }) => {
       //         _uniq(),
       //         _forEach(tag => {
       //           createPage({
-      //             path: `/tags/${_.kebabCase(tag)}/`,
+      //             path: `/tag/${_.kebabCase(tag)}/`,
       //             component: tagPage,
       //             context: {
       //               tag,
@@ -258,7 +258,7 @@ exports.createPages = ({ graphql, actions }) => {
         _uniq(),
         _forEach(tag => {
           createPage({
-            path: `/tags/${_.kebabCase(tag)}/`,
+            path: `/tag/${_.kebabCase(tag)}/`,
             component: tagPage,
             context: {
               tag,
