@@ -70,7 +70,6 @@ export default function SNSShare({ title, link, twitterUserName }) {
           aria-label="share_pocket"
           className={styles.pocket_icon_link}
           href={`https://getpocket.com/edit?url=${link}&title=${title}`}
-          onClick={`window.open(this.href, 'PCwindow', 'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'); return false;`}
         >
           <FontAwesomeIcon
             color="#fff"
