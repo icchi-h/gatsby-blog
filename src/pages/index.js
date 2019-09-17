@@ -63,6 +63,8 @@ export const pageQuery = graphql`
             date
             tags
             thumbnail
+            src
+            url
           }
         }
       }
@@ -76,7 +78,11 @@ export const pageQuery = graphql`
             excerpt
             date
             tags
+            src
+            url
           }
+          comments_count
+          likes_count
         }
       }
     }

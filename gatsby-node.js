@@ -49,6 +49,8 @@ exports.createPages = ({ graphql, actions }) => {
                   tags
                   keywords
                   thumbnail
+                  src
+                  url
                 }
               }
             }
@@ -67,6 +69,8 @@ exports.createPages = ({ graphql, actions }) => {
                   tags
                   keywords
                   thumbnail
+                  src
+                  url
                 }
                 id
                 title
