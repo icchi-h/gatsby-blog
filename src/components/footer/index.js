@@ -1,11 +1,12 @@
-import React, { Fragment } from 'react'
-import { Link } from 'gatsby'
+import React from 'react'
+// import { Link } from 'gatsby'
 
 import Bio from '../bio'
 import config from '../../config/blog-config'
 import styles from './index.module.scss'
 
-export default function Footer({ isRoot }) {
+// export default function Footer({ isRoot }) {
+export default function Footer() {
   return (
     <footer className={styles.content} role="contentinfo">
       <div className={styles.content__inner}>
