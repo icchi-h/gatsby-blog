@@ -2,9 +2,10 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { get } from 'lodash'
 
-import config from '../config/blog-config'
 import Layout from '../components/layout'
 import Post from '../components/post'
+
+// import config from '../config/blog-config'
 
 import 'katex/dist/katex.min.css'
 

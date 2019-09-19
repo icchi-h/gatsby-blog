@@ -1,0 +1,12 @@
+@import '../../css/base';
+
+.pagination {
+  padding: 1em;
+  background-color: #f1f1f1;
+  text-align: center;
+
+  &_pre,
+  &_next {
+    margin: 4px 8px;
+  }
+}

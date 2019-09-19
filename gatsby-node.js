@@ -6,31 +6,38 @@ const _forEach = require('lodash/fp/forEach')
 const _uniq = require('lodash/fp/uniq')
 const _flatMap = require('lodash/fp/flatMap')
 const relatedPost = require('./gatsby-related-post')
+const { paginate } = require('gatsby-awesome-pagination')
+const config = require('./src/config/blog-config')
 
-const striptags = require('striptags')
+// const striptags = require('striptags')
 
-/** 仮想DOM d3.js D3-CloudはDOMがある前提なのでNode.js実行時でも正常動作するように仮想Canvasを使う */
-const { createCanvas } = require('canvas')
-/** 仮想DOM d3.js D3-CloudはDOMがある前提なのでNode.js実行時でも正常動作するように仮想DOMを使う */
-const { JSDOM } = require('jsdom')
-const kuromoji = require('kuromoji')
-const d3 = require('d3')
-const cloud = require('d3-cloud')
-// const fs = require('fs')
-const POST_TYPE = require('./src/config/blog-config').postType
+// /** 仮想DOM d3.js D3-CloudはDOMがある前提なのでNode.js実行時でも正常動作するように仮想Canvasを使う */
+// const { createCanvas } = require('canvas')
+// /** 仮想DOM d3.js D3-CloudはDOMがある前提なのでNode.js実行時でも正常動作するように仮想DOMを使う */
+// const { JSDOM } = require('jsdom')
+// const kuromoji = require('kuromoji')
+// const d3 = require('d3')
+// const cloud = require('d3-cloud')
+// // const fs = require('fs')
 
 // onCreateNodeより後に実行される
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
-    const qiitaPost = path.resolve('./src/templates/qiita-post.js')
-    const tagPage = path.resolve('./src/templates/tags.js')
-    // const postRelationMapPage = path.resolve(
-    //   './src/templates/post-relation-map.js'
-    // )
+  const buildPagination = posts => {
+    paginate({
+      createPage,
+      items: posts,
+      itemsPerPage: config.postNumberPerPage,
+      pathPrefix: ({ pageNumber }) => {
+        return pageNumber === 0 ? '/' : '/page'
+      },
+      // pathPrefix: '/',
+      component: path.resolve('src/templates/index.js'),
+    })
+  }
 
+  return new Promise((resolve, reject) => {
     graphql(
       `
         {
@@ -94,14 +101,14 @@ exports.createPages = ({ graphql, actions }) => {
       // オリジナル記事とQiitaの記事を1つのリストにする
       const originalPosts = result.data.allMarkdownRemark.edges.map(p => {
         return {
-          type: POST_TYPE.original,
+          type: config.postType.original,
           date: new Date(p.node.fields.date),
           node: p.node,
         }
       })
       const qiitaPosts = result.data.allQiitaPost.edges.map(p => {
         return {
-          type: POST_TYPE.qiita,
+          type: config.postType.qiita,
           date: new Date(p.node.fields.date),
           node: p.node,
         }
@@ -122,10 +129,10 @@ exports.createPages = ({ graphql, actions }) => {
           .slice(0, 5)
         const latestPosts = allPostNodes.slice(0, 5)
 
-        if (type === POST_TYPE.original) {
+        if (type === config.postType.original) {
           createPage({
             path: node.fields.slug,
-            component: blogPost,
+            component: path.resolve('./src/templates/blog-post.js'),
             context: {
               slug: node.fields.slug,
               relatedPosts,
@@ -133,11 +140,11 @@ exports.createPages = ({ graphql, actions }) => {
               ...previouseAndNext(posts, index),
             },
           })
-        } else if (type === POST_TYPE.qiita) {
+        } else if (type === config.postType.qiita) {
           // Disable: qiita article page
           // createPage({
           //   path: node.fields.slug,
-          //   component: qiitaPost,
+          //   component: path.resolve('./src/templates/qiita-post.js'),
           //   context: {
           //     slug: node.fields.slug,
           //     relatedPosts,
@@ -146,9 +153,12 @@ exports.createPages = ({ graphql, actions }) => {
           //   },
           // })
         } else {
-          throw new Error(`Unexpected post type = ${type}`)
+          throw new Error(`Unexpected post type: ${type}`)
         }
       })
+
+      //  ページネーション付き記事リスト画面作成
+      buildPagination(posts)
 
       // 記事関連情報生成
       // const allPostRelations = allPostNodes.map(node => {
@@ -169,7 +179,7 @@ exports.createPages = ({ graphql, actions }) => {
       // // WordCloud用データ加工処理
       // const alltext = posts
       //   .map(({ type, node }) => {
-      //     if (type === POST_TYPE.original) {
+      //     if (type === config.postType.original) {
       //       return rawText(node.html)
       //     } else {
       //       return rawText(node.rendered_body)
@@ -225,7 +235,7 @@ exports.createPages = ({ graphql, actions }) => {
       //       // 記事分析ページ生成
       //       createPage({
       //         path: '/blog-map/',
-      //         component: postRelationMapPage,
+      //         component: path.resolve('./src/templates/post-relation-map.js'),
       //         context: {
       //           allPostRelations,
       //           wordCloudText: textSvg,
@@ -259,7 +269,7 @@ exports.createPages = ({ graphql, actions }) => {
         _forEach(tag => {
           createPage({
             path: `/tag/${_.kebabCase(tag)}/`,
-            component: tagPage,
+            component: path.resolve('./src/templates/tags.js'),
             context: {
               tag,
             },
@@ -285,212 +295,212 @@ function previouseAndNext(posts, index) {
   }
 }
 
-function countDiff(a, b) {
-  return a
-    .split('')
-    .map((charA, i) => (charA === b[i] ? 0 : 1))
-    .reduce((a, b) => a + b, 0)
-}
+// function countDiff(a, b) {
+//   return a
+//     .split('')
+//     .map((charA, i) => (charA === b[i] ? 0 : 1))
+//     .reduce((a, b) => a + b, 0)
+// }
+//
+// function craeteWordCount(text, w, h) {
+//   const excludeWords = [
+//     'よう',
+//     'こと',
+//     '指定',
+//     '時',
+//     '追加',
+//     '設定',
+//     '記事',
+//     '用',
+//     '情報',
+//     'ため',
+//     'もの',
+//     'これ',
+//     '/',
+//     '(',
+//     ')',
+//     '&',
+//     '+',
+//     '複数',
+//     '用意',
+//     '構成',
+//     '配下',
+//     '下記',
+//     '今回',
+//     '確認',
+//     '公開',
+//     '関連',
+//     '取得',
+//     '作成',
+//     '場合',
+//     '定義',
+//     '方法',
+//     '生成',
+//     '実行',
+//     '表示',
+//     '紹介',
+//     '資産',
+//     '参考',
+//     '機能',
+//     '以下',
+//     '更新',
+//     '化',
+//     '必要',
+//     '一部',
+//     '側',
+//     '実装',
+//     'ファイル',
+//     'サイト',
+//     'イン',
+//     '自分',
+//     'プラグ',
+//     '的',
+//     'さん',
+//     'とき',
+//     'の',
+//     '系',
+//     '便利',
+//     '簡単',
+//     '使用',
+//     'それ',
+//     'あれ',
+//     '感じ',
+//     '1',
+//     '2',
+//     '3',
+//     '4',
+//     '5',
+//     '6',
+//     '7',
+//     '8',
+//     '9',
+//     '0',
+//     'SETTINGS',
+//     'MS',
+//     'CONFIG',
+//     '://',
+//   ]
 
-function craeteWordCount(text, w, h) {
-  const excludeWords = [
-    'よう',
-    'こと',
-    '指定',
-    '時',
-    '追加',
-    '設定',
-    '記事',
-    '用',
-    '情報',
-    'ため',
-    'もの',
-    'これ',
-    '/',
-    '(',
-    ')',
-    '&',
-    '+',
-    '複数',
-    '用意',
-    '構成',
-    '配下',
-    '下記',
-    '今回',
-    '確認',
-    '公開',
-    '関連',
-    '取得',
-    '作成',
-    '場合',
-    '定義',
-    '方法',
-    '生成',
-    '実行',
-    '表示',
-    '紹介',
-    '資産',
-    '参考',
-    '機能',
-    '以下',
-    '更新',
-    '化',
-    '必要',
-    '一部',
-    '側',
-    '実装',
-    'ファイル',
-    'サイト',
-    'イン',
-    '自分',
-    'プラグ',
-    '的',
-    'さん',
-    'とき',
-    'の',
-    '系',
-    '便利',
-    '簡単',
-    '使用',
-    'それ',
-    'あれ',
-    '感じ',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '0',
-    'SETTINGS',
-    'MS',
-    'CONFIG',
-    '://',
-  ]
+//   /** kuromoji.jsにバンドルされている辞書の格納場所 */
+//   const DIC_URL = 'node_modules/kuromoji/dict'
 
-  /** kuromoji.jsにバンドルされている辞書の格納場所 */
-  const DIC_URL = 'node_modules/kuromoji/dict'
+//   /** WordCloudでカウントする品詞（助詞・助動詞などは省く） */
+//   const TARGET_POS = ['名詞']
 
-  /** WordCloudでカウントする品詞（助詞・助動詞などは省く） */
-  const TARGET_POS = ['名詞']
+//   /** kuromoji.jsで該当プロパティの値が存在しない場合に設定されている値 */
+//   const NO_CONTENT = '*'
 
-  /** kuromoji.jsで該当プロパティの値が存在しない場合に設定されている値 */
-  const NO_CONTENT = '*'
+//   // kuromoji.jsで形態素解析
+//   // 単語ごとの出現回数を出力
+//   return new Promise((resolve, reject) => {
+//     kuromoji.builder({ dicPath: DIC_URL }).build((err, tokenizer) => {
+//       if (err) {
+//         return reject(err)
+//       }
 
-  // kuromoji.jsで形態素解析
-  // 単語ごとの出現回数を出力
-  return new Promise((resolve, reject) => {
-    kuromoji.builder({ dicPath: DIC_URL }).build((err, tokenizer) => {
-      if (err) {
-        return reject(err)
-      }
+//       // 単語ごとの出現回数を出力
+//       const words = tokenizer
+//         .tokenize(text)
+//         .filter(t => TARGET_POS.includes(t.pos))
+//         .map(t => (t.basic_form === NO_CONTENT ? t.surface_form : t.basic_form))
+//         .reduce((data, text) => {
+//           const upperText = text.toUpperCase()
+//           if (excludeWords.includes(upperText)) {
+//             return data
+//           }
 
-      // 単語ごとの出現回数を出力
-      const words = tokenizer
-        .tokenize(text)
-        .filter(t => TARGET_POS.includes(t.pos))
-        .map(t => (t.basic_form === NO_CONTENT ? t.surface_form : t.basic_form))
-        .reduce((data, text) => {
-          const upperText = text.toUpperCase()
-          if (excludeWords.includes(upperText)) {
-            return data
-          }
+//           const target = data.find(c => c.text === upperText)
 
-          const target = data.find(c => c.text === upperText)
+//           if (target) {
+//             target.size = target.size + 1
+//             if (!target.rawTexts.includes(text)) {
+//               target.rawTexts.push(text)
+//             }
+//           } else {
+//             data.push({
+//               text: upperText,
+//               rawTexts: [text],
+//               size: 1,
+//             })
+//           }
+//           return data
+//         }, [])
+//         .map(data => {
+//           const almostSameText = data.rawTexts
+//             .map(text => {
+//               return {
+//                 text,
+//                 diff: countDiff(text, data.text),
+//               }
+//             })
+//             .reduce((a, b) => (a.diff <= b.diff ? a : b)).text // 大文字に近いほうを採用する
 
-          if (target) {
-            target.size = target.size + 1
-            if (!target.rawTexts.includes(text)) {
-              target.rawTexts.push(text)
-            }
-          } else {
-            data.push({
-              text: upperText,
-              rawTexts: [text],
-              size: 1,
-            })
-          }
-          return data
-        }, [])
-        .map(data => {
-          const almostSameText = data.rawTexts
-            .map(text => {
-              return {
-                text,
-                diff: countDiff(text, data.text),
-              }
-            })
-            .reduce((a, b) => (a.diff <= b.diff ? a : b)).text // 大文字に近いほうを採用する
+//           return {
+//             text: almostSameText,
+//             size: data.size,
+//           }
+//         })
 
-          return {
-            text: almostSameText,
-            size: data.size,
-          }
-        })
+//       resolve(words)
+//     })
+//   })
+// }
 
-      resolve(words)
-    })
-  })
-}
+// function createWordCloud({ words, w, h, fontSizePow, fontSizeZoom, padding }) {
+//   // D3-Cloudによる解析
+//   return (
+//     new Promise((resolve, reject) => {
+//       cloud()
+//         .size([w, h])
+//         .canvas(() => createCanvas(w, h))
+//         .words(words)
+//         .rotate(word => (word.size % 2 === 1 ? 0 : 90))
+//         .fontWeight(word => Math.pow(word.size, fontSizePow) * fontSizeZoom)
+//         .fontSize(word => Math.pow(word.size, fontSizePow) * fontSizeZoom)
+//         .font('meiryo')
+//         .padding(padding)
+//         .on('end', wordsForCloud => {
+//           resolve(wordsForCloud)
+//         })
+//         .start()
+//     })
+//       // d3.jsによる解析
+//       .then(wordsForCloud => {
+//         return new Promise((resolve, reject) => {
+//           /** 仮想DOM */
+//           const document = new JSDOM(`<body></body>`).window.document
 
-function createWordCloud({ words, w, h, fontSizePow, fontSizeZoom, padding }) {
-  // D3-Cloudによる解析
-  return (
-    new Promise((resolve, reject) => {
-      cloud()
-        .size([w, h])
-        .canvas(() => createCanvas(w, h))
-        .words(words)
-        .rotate(word => (word.size % 2 === 1 ? 0 : 90))
-        .fontWeight(word => Math.pow(word.size, fontSizePow) * fontSizeZoom)
-        .fontSize(word => Math.pow(word.size, fontSizePow) * fontSizeZoom)
-        .font('meiryo')
-        .padding(padding)
-        .on('end', wordsForCloud => {
-          resolve(wordsForCloud)
-        })
-        .start()
-    })
-      // d3.jsによる解析
-      .then(wordsForCloud => {
-        return new Promise((resolve, reject) => {
-          /** 仮想DOM */
-          const document = new JSDOM(`<body></body>`).window.document
+//           d3.select(document.body)
+//             .append('svg')
+//             .attr('class', 'ui fluid image')
+//             .attr('viewBox', `0 0 ${w} ${h}`)
+//             .attr('width', '100%')
+//             .attr('height', '100%')
+//             .append('g')
+//             .attr('transform', `translate(${w / 2},${h / 2})`)
+//             .selectAll('text')
+//             .data(wordsForCloud)
+//             .enter()
+//             .append('text')
+//             .style('font-size', d => `${d.size}px`)
+//             .style('font-family', d => d.font)
+//             .attr(
+//               'transform',
+//               d => `translate(${d.x}, ${d.y})rotate(${d.rotate})`
+//             )
+//             .style('fill', (d, i) => d3.schemeCategory10[i % 10])
+//             .attr('text-anchor', 'middle')
+//             .text(d => d.text)
 
-          d3.select(document.body)
-            .append('svg')
-            .attr('class', 'ui fluid image')
-            .attr('viewBox', `0 0 ${w} ${h}`)
-            .attr('width', '100%')
-            .attr('height', '100%')
-            .append('g')
-            .attr('transform', `translate(${w / 2},${h / 2})`)
-            .selectAll('text')
-            .data(wordsForCloud)
-            .enter()
-            .append('text')
-            .style('font-size', d => `${d.size}px`)
-            .style('font-family', d => d.font)
-            .attr(
-              'transform',
-              d => `translate(${d.x}, ${d.y})rotate(${d.rotate})`
-            )
-            .style('fill', (d, i) => d3.schemeCategory10[i % 10])
-            .attr('text-anchor', 'middle')
-            .text(d => d.text)
+//           // 最終的にSVGの文字列を返す
+//           resolve(document.body.innerHTML)
+//         })
+//       })
+//   )
+// }
 
-          // 最終的にSVGの文字列を返す
-          resolve(document.body.innerHTML)
-        })
-      })
-  )
-}
-
-function rawText(html) {
-  return striptags(html, '<pre>')
-    .replace(/<pre[\s\S]+?>[\s\S]+?<\/pre>/g, '')
-    .trim()
-}
+// function rawText(html) {
+//   return striptags(html, '<pre>')
+//     .replace(/<pre[\s\S]+?>[\s\S]+?<\/pre>/g, '')
+//     .trim()
+// }

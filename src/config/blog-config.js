@@ -25,4 +25,5 @@ module.exports = {
     qiita: 'qiita',
   },
   qiitaTag: 'Qiita',
+  postNumberPerPage: 6,
 }
