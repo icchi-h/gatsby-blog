@@ -9,8 +9,10 @@ import config from '../../config/blog-config'
 
 class PostMetaInfo extends React.Component {
   render() {
-    const { tags, date, color } = this.props
-    const tagList = tags.map(tag => <Tag key={tag} value={tag} color={color} />)
+    const { tags, date, color, isLink } = this.props
+    const tagList = tags.map(tag => (
+      <Tag key={tag} value={tag} color={color} isLink={isLink} />
+    ))
     const formattedDate = moment(date).format(config.dateFormat)
 
     return (
