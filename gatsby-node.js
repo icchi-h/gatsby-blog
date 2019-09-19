@@ -7,7 +7,7 @@ const _uniq = require('lodash/fp/uniq')
 const _flatMap = require('lodash/fp/flatMap')
 const relatedPost = require('./gatsby-related-post')
 const { paginate } = require('gatsby-awesome-pagination')
-const POST_TYPE = require('./src/config/blog-config').postType
+const config = require('./src/config/blog-config')
 
 // const striptags = require('striptags')
 
@@ -24,14 +24,20 @@ const POST_TYPE = require('./src/config/blog-config').postType
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
-    // const qiitaPost = path.resolve('./src/templates/qiita-post.js')
-    const tagPage = path.resolve('./src/templates/tags.js')
-    // const postRelationMapPage = path.resolve(
-    //   './src/templates/post-relation-map.js'
-    // )
+  const buildPagination = posts => {
+    paginate({
+      createPage,
+      items: posts,
+      itemsPerPage: config.postNumberPerPage,
+      pathPrefix: ({ pageNumber }) => {
+        return pageNumber === 0 ? '/' : '/page'
+      },
+      // pathPrefix: '/',
+      component: path.resolve('src/templates/index.js'),
+    })
+  }
 
+  return new Promise((resolve, reject) => {
     graphql(
       `
         {
@@ -95,14 +101,14 @@ exports.createPages = ({ graphql, actions }) => {
       // オリジナル記事とQiitaの記事を1つのリストにする
       const originalPosts = result.data.allMarkdownRemark.edges.map(p => {
         return {
-          type: POST_TYPE.original,
+          type: config.postType.original,
           date: new Date(p.node.fields.date),
           node: p.node,
         }
       })
       const qiitaPosts = result.data.allQiitaPost.edges.map(p => {
         return {
-          type: POST_TYPE.qiita,
+          type: config.postType.qiita,
           date: new Date(p.node.fields.date),
           node: p.node,
         }
@@ -123,10 +129,10 @@ exports.createPages = ({ graphql, actions }) => {
           .slice(0, 5)
         const latestPosts = allPostNodes.slice(0, 5)
 
-        if (type === POST_TYPE.original) {
+        if (type === config.postType.original) {
           createPage({
             path: node.fields.slug,
-            component: blogPost,
+            component: path.resolve('./src/templates/blog-post.js'),
             context: {
               slug: node.fields.slug,
               relatedPosts,
@@ -134,11 +140,11 @@ exports.createPages = ({ graphql, actions }) => {
               ...previouseAndNext(posts, index),
             },
           })
-        } else if (type === POST_TYPE.qiita) {
+        } else if (type === config.postType.qiita) {
           // Disable: qiita article page
           // createPage({
           //   path: node.fields.slug,
-          //   component: qiitaPost,
+          //   component: path.resolve('./src/templates/qiita-post.js'),
           //   context: {
           //     slug: node.fields.slug,
           //     relatedPosts,
@@ -147,9 +153,12 @@ exports.createPages = ({ graphql, actions }) => {
           //   },
           // })
         } else {
-          throw new Error(`Unexpected post type = ${type}`)
+          throw new Error(`Unexpected post type: ${type}`)
         }
       })
+
+      //  ページネーション付き記事リスト画面作成
+      buildPagination(posts)
 
       // 記事関連情報生成
       // const allPostRelations = allPostNodes.map(node => {
@@ -170,7 +179,7 @@ exports.createPages = ({ graphql, actions }) => {
       // // WordCloud用データ加工処理
       // const alltext = posts
       //   .map(({ type, node }) => {
-      //     if (type === POST_TYPE.original) {
+      //     if (type === config.postType.original) {
       //       return rawText(node.html)
       //     } else {
       //       return rawText(node.rendered_body)
@@ -226,7 +235,7 @@ exports.createPages = ({ graphql, actions }) => {
       //       // 記事分析ページ生成
       //       createPage({
       //         path: '/blog-map/',
-      //         component: postRelationMapPage,
+      //         component: path.resolve('./src/templates/post-relation-map.js'),
       //         context: {
       //           allPostRelations,
       //           wordCloudText: textSvg,
@@ -260,7 +269,7 @@ exports.createPages = ({ graphql, actions }) => {
         _forEach(tag => {
           createPage({
             path: `/tag/${_.kebabCase(tag)}/`,
-            component: tagPage,
+            component: path.resolve('./src/templates/tags.js'),
             context: {
               tag,
             },
