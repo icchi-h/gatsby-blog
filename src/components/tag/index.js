@@ -6,27 +6,26 @@ import styles from './index.module.scss'
 
 class Tag extends React.Component {
   render() {
-    const { value, count, color } = this.props
+    const { value, count, color, isLink } = this.props
 
-    if (count) {
+    if (isLink) {
       return (
         <div key={value} className={styles.content}>
           <Link to={`/tag/${kebabCase(value)}`} className={styles.link}>
             <span className={styles.tag_name} style={{ color: color }}>
               {value}
             </span>
-            <span className={styles.tag_count}>{count}</span>
+            {count ? <span className={styles.tag_count}>{count}</span> : null}
           </Link>
         </div>
       )
     } else {
       return (
         <div key={value} className={styles.content}>
-          <Link to={`/tag/${kebabCase(value)}`} className={styles.link}>
-            <span className={styles.tag_name} style={{ color: color }}>
-              {value}
-            </span>
-          </Link>
+          <span className={styles.tag_name} style={{ color: color }}>
+            {value}
+          </span>
+          {count ? <span className={styles.tag_count}>{count}</span> : null}
         </div>
       )
     }
