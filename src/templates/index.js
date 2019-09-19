@@ -60,7 +60,7 @@ export default class BlogIndex extends React.Component {
     const qiitaPosts = get(this, 'props.data.allQiitaPost.edges', [])
 
     // マージして降順で並び替え
-    let posts = [...blogPosts, ...qiitaPosts].sort((a, b) => {
+    let allPosts = [...blogPosts, ...qiitaPosts].sort((a, b) => {
       const aDate = new Date(a.node.fields.date)
       const bDate = new Date(b.node.fields.date)
 
@@ -70,16 +70,16 @@ export default class BlogIndex extends React.Component {
     })
 
     // Paginationに合わせて記事のフィルタリング
-    const { pageNumber, skip, limit } = this.props.pageContext
+    const { pageNumber, limit } = this.props.pageContext
     const startIdx = pageNumber * limit
-    posts = posts.slice(startIdx, startIdx + limit)
+    const posts = allPosts.slice(startIdx, startIdx + limit)
 
     return (
       <Layout location={false}>
         <Title />
         <PostList postFields={posts.map(post => post.node.fields)} />
         <Pagination props={this.props} />
-        <TagList posts={posts} />
+        <TagList posts={allPosts} />
       </Layout>
     )
   }
