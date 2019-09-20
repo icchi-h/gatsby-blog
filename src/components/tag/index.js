@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { kebabCase } from 'lodash'
 import Chip from '@material-ui/core/Chip'
-import LocalOfferIcon from '@material-ui/icons/LocalOffer'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTags } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './index.module.scss'
 
@@ -15,7 +16,7 @@ class Tag extends React.Component {
       return (
         <Link to={`/tag/${kebabCase(value)}`} className={styles.tag}>
           <Chip
-            icon={<LocalOfferIcon />}
+            icon={<FontAwesomeIcon icon={faTags} />}
             label={
               <span>
                 {value}
@@ -31,7 +32,7 @@ class Tag extends React.Component {
     } else {
       return (
         <Chip
-          icon={<LocalOfferIcon />}
+          icon={<FontAwesomeIcon icon={faTags} />}
           label={
             <span>
               {value}
