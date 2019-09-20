@@ -10,7 +10,7 @@ module.exports = {
   blogAuthorUrl: 'https://icchi.me',
   blogAuthorTwitterUserName: 'icchi_h',
   blogAuthorQiitaUserName: 'icchi_h',
-  blogRepositoryUrl: 'https://github.com/icchi_h/gatsby-blog',
+  blogRepositoryUrl: 'https://github.com/icchi-h/gatsby-blog',
   blogAuthorTwitterUrl: 'https://twitter.com/icchi_h',
   blogAuthorQiitaUrl: 'https://qiita.com/icchi_h',
   blogAuthorGitHubUrl: 'https://github.com/icchi-h',
