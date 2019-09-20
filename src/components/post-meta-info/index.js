@@ -21,10 +21,7 @@ class PostMetaInfo extends React.Component {
           <FontAwesomeIcon color={color} icon={faCalendarAlt} size="sm" />
           {formattedDate}
         </div>
-        <div className={styles.tags}>
-          <FontAwesomeIcon color={color} icon={faTags} size="sm" />
-          {tagList}
-        </div>
+        <div className={styles.tags}>{tagList}</div>
       </small>
     )
   }
