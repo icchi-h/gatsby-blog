@@ -75,21 +75,21 @@ Wordpress2016.overrideThemeStyles = () => ({
   'h1 a,h2 a,h3 a,h4 a,h5 a,h6 a': {
     color: '#444',
   },
-  h2: {
-    fontSize: '1.6rem',
-    borderBottom: '1px solid #ddd',
-  },
+  // h2: {
+  //   fontSize: '1.6rem',
+  //   borderBottom: '1px solid #ddd',
+  // },
   'html, body': {
     fontWeight: '500',
   },
-  a: {
-    boxShadow: 'none',
-    color: '#c85740',
-  },
-  'a:hover': {
-    // opacity: '0.7',
-    // boxShadow: '0 1px 0 0 currentColor',
-  },
+  // a: {
+  //   boxShadow: 'none',
+  //   color: '#c85740',
+  // },
+  // 'a:hover': {
+  // opacity: '0.7',
+  // boxShadow: '0 1px 0 0 currentColor',
+  // },
   'a.gatsby-resp-image-link': {
     boxShadow: 'none',
   },

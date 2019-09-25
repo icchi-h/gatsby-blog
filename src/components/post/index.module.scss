@@ -140,48 +140,51 @@
 
     // セクションのスタイル
     h2 {
+      position: relative;
       margin-top: 3rem;
       margin-bottom: 1.5rem;
       padding-bottom: 0.5rem;
       border-bottom: $section-border solid #ddd;
-      position: relative;
+      font-size: 1.6rem;
     }
-    h2::before {
-      position: absolute;
-      content: ' ';
-      width: 100px;
-      bottom: -$section-border;
-      height: $section-border;
-      background-color: #d32828;
-    }
+    // h2::before {
+    //   position: absolute;
+    //   content: ' ';
+    //   width: 100px;
+    //   bottom: -$section-border;
+    //   height: $section-border;
+    //   background-color: #d32828;
+    // }
     h3 {
+      position: relative;
       margin-top: 2rem;
       padding-bottom: 0.3rem;
       margin-bottom: 1rem;
-      position: relative;
+      border-bottom: 1px solid #ddd;
+      font-size: 1.3rem;
     }
-    h3::before {
-      position: absolute;
-      content: ' ';
-      width: 100px;
-      bottom: -3px;
-      height: 1px;
-      background-color: #dadada;
-    }
+    // h3::before {
+    //   position: absolute;
+    //   content: ' ';
+    //   width: 100px;
+    //   bottom: -3px;
+    //   height: 1px;
+    //   background-color: #dadada;
+    // }
     h4 {
       margin-top: 1rem;
       margin-bottom: 0.8rem;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
     h5 {
       margin-top: 0.8rem;
       margin-bottom: 0.5rem;
-      font-size: 0.8rem;
+      font-size: 1.1rem;
     }
     h6 {
       margin-top: 0.5rem;
       margin-bottom: 0.3rem;
-      font-size: 0.8rem;
+      font-size: 1rem;
     }
   }
 
@@ -460,34 +463,35 @@
       font-size: 1.6rem;
     }
     h2 {
+      position: relative;
       margin-top: 3rem;
       margin-bottom: 1rem;
-      font-size: 1.4rem;
       border-bottom: 3px solid #ddd;
-      position: relative;
+      font-size: 1.4rem;
     }
-    h2::before {
-      position: absolute;
-      content: ' ';
-      width: 100px;
-      bottom: -3px;
-      height: 3px;
-      background-color: rgb(206, 17, 38);
-    }
+    // h2::before {
+    //   position: absolute;
+    //   content: ' ';
+    //   width: 100px;
+    //   bottom: -3px;
+    //   height: 3px;
+    //   background-color: rgb(206, 17, 38);
+    // }
     h3 {
+      position: relative;
       margin-top: 1.2rem;
       margin-bottom: 0.7rem;
+      border-bottom: 1px solid #ddd;
       font-size: 1.2rem;
-      position: relative;
     }
-    h3::before {
-      position: absolute;
-      content: ' ';
-      width: 100px;
-      bottom: -3px;
-      height: 1px;
-      background-color: #dadada;
-    }
+    // h3::before {
+    //   position: absolute;
+    //   content: ' ';
+    //   width: 100px;
+    //   bottom: -3px;
+    //   height: 1px;
+    //   background-color: #dadada;
+    // }
     h4 {
       margin-top: 1rem;
       margin-bottom: 0.5rem;
@@ -501,7 +505,7 @@
     h6 {
       margin-top: 0.5rem;
       margin-bottom: 0.1rem;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
   }
 }
