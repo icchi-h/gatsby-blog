@@ -88,7 +88,7 @@ Wordpress2016.overrideThemeStyles = () => ({
   },
   'a:hover': {
     opacity: '0.7',
-    boxShadow: '0 1px 0 0 currentColor'
+    // boxShadow: '0 1px 0 0 currentColor',
   },
   'a.gatsby-resp-image-link': {
     boxShadow: 'none',
