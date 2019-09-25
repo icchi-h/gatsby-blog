@@ -82,10 +82,10 @@ Wordpress2016.overrideThemeStyles = () => ({
   'html, body': {
     fontWeight: '500',
   },
-  // a: {
-  //   boxShadow: 'none',
-  //   color: '#c85740',
-  // },
+  a: {
+    boxShadow: 'none',
+    color: '#c85740',
+  },
   // 'a:hover': {
   // opacity: '0.7',
   // boxShadow: '0 1px 0 0 currentColor',
