@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTags, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment'
 
 import Tag from '../tag'
@@ -11,7 +11,7 @@ class PostMetaInfo extends React.Component {
   render() {
     const { tags, date, color, isLink } = this.props
     const tagList = tags.map(tag => (
-      <Tag key={tag} value={tag} color={color} isLink={isLink} />
+      <Tag key={tag} value={tag} isLink={isLink} />
     ))
     const formattedDate = moment(date).format(config.dateFormat)
 
@@ -21,10 +21,7 @@ class PostMetaInfo extends React.Component {
           <FontAwesomeIcon color={color} icon={faCalendarAlt} size="sm" />
           {formattedDate}
         </div>
-        <div className={styles.tags}>
-          <FontAwesomeIcon color={color} icon={faTags} size="sm" />
-          {tagList}
-        </div>
+        <div className={styles.tags}>{tagList}</div>
       </small>
     )
   }

@@ -40,7 +40,7 @@ class Rss extends React.Component {
           target="_blank"
           rel="noopener"
         >
-          <FontAwesomeIcon color="f26522" icon={faRss} />
+          <FontAwesomeIcon color="#f26522" icon={faRss} />
         </a>
       </div>
     )

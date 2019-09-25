@@ -1,32 +1,47 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { kebabCase } from 'lodash'
+import Chip from '@material-ui/core/Chip'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTags } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './index.module.scss'
 
 class Tag extends React.Component {
   render() {
-    const { value, count, color, isLink } = this.props
+    const { value, count, isLink } = this.props
+    // const CountTag =
 
     if (isLink) {
       return (
-        <div key={value} className={styles.content}>
-          <Link to={`/tag/${kebabCase(value)}`} className={styles.link}>
-            <span className={styles.tag_name} style={{ color: color }}>
-              {value}
-            </span>
-            {count ? <span className={styles.tag_count}>{count}</span> : null}
-          </Link>
-        </div>
+        <Link to={`/tag/${kebabCase(value)}`} className={styles.tag}>
+          <Chip
+            icon={<FontAwesomeIcon icon={faTags} />}
+            label={
+              <span>
+                {value}
+                {count ? (
+                  <span className={styles.tag_count}>{count}</span>
+                ) : null}
+              </span>
+            }
+            size="small"
+          ></Chip>
+        </Link>
       )
     } else {
       return (
-        <div key={value} className={styles.content}>
-          <span className={styles.tag_name} style={{ color: color }}>
-            {value}
-          </span>
-          {count ? <span className={styles.tag_count}>{count}</span> : null}
-        </div>
+        <Chip
+          icon={<FontAwesomeIcon icon={faTags} />}
+          label={
+            <span>
+              {value}
+              {count ? <span className={styles.tag_count}>{count}</span> : null}
+            </span>
+          }
+          size="small"
+          className={styles.tag}
+        />
       )
     }
   }

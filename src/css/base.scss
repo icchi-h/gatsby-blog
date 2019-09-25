@@ -1,8 +1,11 @@
-@import "node_modules/normalize-scss/sass/normalize";
-@import "./highlight.scss";
-@import "base";
+@import 'node_modules/normalize-scss/sass/normalize';
+@import './highlight.scss';
+@import 'base';
 
-
+body {
+  font-size: 1rem !important;
+  background-color: white !important;
+}
 
 // アンカーリンク（gatsby-remark-autolink-headersカスタム）
 h1 .anchor,
@@ -11,7 +14,7 @@ h3 .anchor,
 h4 .anchor,
 h5 .anchor,
 h6 .anchor {
-  box-shadow: none
+  box-shadow: none;
 }
 
 // 引用
@@ -20,7 +23,11 @@ blockquote {
   margin-right: 0;
   font-size: 1rem;
   padding-left: 1rem;
-  border-left: 0.32813rem solid hsla(0,0%,0%,0.5);
+  border-left: 0.32813rem solid hsla(0, 0%, 0%, 0.5);
+}
+
+a:hover {
+  opacity: 0.7;
 }
 
 // マークダウンプレビューエリアの画像を左寄せする
@@ -37,4 +44,3 @@ blockquote {
 .svg-inline--fa {
   height: 1em;
 }
-

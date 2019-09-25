@@ -15,18 +15,18 @@
         box-shadow: none;
         color: #aaa;
         border-radius: 4px;
-        background-color: white;
+        // background-color: white;
         letter-spacing: 0; // 幅が狭いので詰め詰めにする
 
         &:hover {
-          background: #fee;
-          text-decoration: underline #cbb;
+          background: #f8bbd0 !important;
+          // text-decoration: underline #cbb;
           color: #000;
           transition: background-color 0.2s ease-out;
         }
 
         &.active {
-          background-color: #fffbf0;
+          background-color: #eee;
           color: #888;
           transition: background-color 0.2s ease-out;
         }
