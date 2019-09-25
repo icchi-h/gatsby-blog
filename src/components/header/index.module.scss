@@ -13,25 +13,25 @@
     color: white;
   }
 
-  &:after {
-    -moz-pointer-events: none;
-    -webkit-pointer-events: none;
-    -ms-pointer-events: none;
-    pointer-events: none;
-    background: linear-gradient(125deg, #8a5e5f, #d8bb93);
-    content: '';
-    display: block;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    animation: show-background 1.2s both 1s;
-  }
+  // &:after {
+  //   -moz-pointer-events: none;
+  //   -webkit-pointer-events: none;
+  //   -ms-pointer-events: none;
+  //   pointer-events: none;
+  //   // background: linear-gradient(125deg, #8a5e5f, #d8bb93);
+  //   content: '';
+  //   display: block;
+  //   position: absolute;
+  //   height: 100%;
+  //   width: 100%;
+  //   top: 0;
+  //   left: 0;
+  //   z-index: 1;
+  //   // animation: show-background 0.6s both 0.5s;
+  // }
 
   &__inner {
-    animation: fade-in-down 0.6s both 0.5s;
+    // animation: fade-in-down 0.6s both 0.5s;
     z-index: 2;
 
     .blog_title_area {
