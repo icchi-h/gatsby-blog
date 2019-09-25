@@ -14,75 +14,76 @@
   background-color: #ffffff;
   transition: background-color 0.1s linear, color 0.1s linear;
   &:hover {
-    background-color: #dc3614;
-    color: black;
+    background-color: #e91e63;
+    color: white;
     transition: background-color 0.3s linear, color 0.3s liner;
+    opacity: 1;
   }
 }
 
-@mixin tomato($rotate-deg) {
-  display: inline-block;
-  box-sizing: border-box;
-  vertical-align: bottom;
-  background-image: url(../../images/icon/favicon.svg);
-  width: 1.2rem;
-  height: 1.2rem;
-  background-repeat: no-repeat;
-  margin: 0.5rem;
+// @mixin tomato($rotate-deg) {
+//   display: inline-block;
+//   box-sizing: border-box;
+//   vertical-align: bottom;
+//   background-image: url(../../images/icon/favicon.svg);
+//   width: 1.2rem;
+//   height: 1.2rem;
+//   background-repeat: no-repeat;
+//   margin: 0.5rem;
 
-  -webkit-transform: rotate($rotate-deg);
-}
+//   -webkit-transform: rotate($rotate-deg);
+// }
 
-@mixin rotate-tomato($delay-time) {
-  @include tomato(0deg);
+// @mixin rotate-tomato($delay-time) {
+//   @include tomato(0deg);
 
-  -webkit-animation: spin 2s linear $delay-time infinite;
-  -moz-animation: spin 2s linear $delay-time infinite;
-  -ms-animation: spin 2s linear $delay-time infinite;
-  -o-animation: spin 2s linear $delay-time infinite;
-  animation: spin 2s linear $delay-time infinite;
-}
+//   -webkit-animation: spin 2s linear $delay-time infinite;
+//   -moz-animation: spin 2s linear $delay-time infinite;
+//   -ms-animation: spin 2s linear $delay-time infinite;
+//   -o-animation: spin 2s linear $delay-time infinite;
+//   animation: spin 2s linear $delay-time infinite;
+// }
 
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-@-moz-keyframes spin {
-  0% {
-    -moz-transform: rotate(0deg);
-  }
-  100% {
-    -moz-transform: rotate(360deg);
-  }
-}
-@-ms-keyframes spin {
-  0% {
-    -ms-transform: rotate(0deg);
-  }
-  100% {
-    -ms-transform: rotate(360deg);
-  }
-}
-@-o-keyframes spin {
-  0% {
-    -o-transform: rotate(0deg);
-  }
-  100% {
-    -o-transform: rotate(360deg);
-  }
-}
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+// @-webkit-keyframes spin {
+//   0% {
+//     -webkit-transform: rotate(0deg);
+//   }
+//   100% {
+//     -webkit-transform: rotate(360deg);
+//   }
+// }
+// @-moz-keyframes spin {
+//   0% {
+//     -moz-transform: rotate(0deg);
+//   }
+//   100% {
+//     -moz-transform: rotate(360deg);
+//   }
+// }
+// @-ms-keyframes spin {
+//   0% {
+//     -ms-transform: rotate(0deg);
+//   }
+//   100% {
+//     -ms-transform: rotate(360deg);
+//   }
+// }
+// @-o-keyframes spin {
+//   0% {
+//     -o-transform: rotate(0deg);
+//   }
+//   100% {
+//     -o-transform: rotate(360deg);
+//   }
+// }
+// @keyframes spin {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
 
 .context {
   padding: 2rem 0;
@@ -95,9 +96,9 @@
     margin-top: -1rem;
     text-align: center;
 
-    .context_header_tomato {
-      @include tomato(0deg);
-    }
+    // .context_header_tomato {
+    // @include tomato(0deg);
+    // }
   }
 }
 
@@ -124,24 +125,24 @@
   font-size: 1rem;
   line-height: 2rem;
 
-  .tomato_icon_title {
+  .title {
     letter-spacing: 1rem;
     margin-right: -1rem;
   }
 
-  .tomato_icon_1 {
-    @include rotate-tomato(0.4s);
-  }
+  // .tomato_icon_1 {
+  //   @include rotate-tomato(0.4s);
+  // }
 
-  .tomato_icon_2 {
-    @include rotate-tomato(0.8s);
-  }
+  // .tomato_icon_2 {
+  //   @include rotate-tomato(0.8s);
+  // }
 
-  .tomato_icon_3 {
-    @include rotate-tomato(1.2s);
-  }
+  // .tomato_icon_3 {
+  //   @include rotate-tomato(1.2s);
+  // }
 
-  .tomato_icon_4 {
-    @include rotate-tomato(1.6s);
-  }
+  // .tomato_icon_4 {
+  //   @include rotate-tomato(1.6s);
+  // }
 }
