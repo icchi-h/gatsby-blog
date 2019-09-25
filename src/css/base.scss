@@ -2,6 +2,10 @@
 @import './highlight.scss';
 @import 'base';
 
+body {
+  font-size: 1rem !important;
+}
+
 // アンカーリンク（gatsby-remark-autolink-headersカスタム）
 h1 .anchor,
 h2 .anchor,
