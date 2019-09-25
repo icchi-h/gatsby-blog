@@ -27,16 +27,16 @@ Wordpress2016.overrideThemeStyles = () => ({
     src: 'local("Yu Gothic Bold")',
     fontWeight: 'bold',
   },
-  '@font-face': {
-    fontFamily: '"Helvetica Neue"',
-    src: 'local("Helvetica Neue Regular")',
-    fontWeight: 100,
-  },
-  '@font-face': {
-    fontFamily: '"Helvetica Neue"',
-    src: 'local("Helvetica Neue Regular")',
-    fontWeight: 200,
-  },
+  // '@font-face': {
+  //   fontFamily: '"Helvetica Neue"',
+  //   src: 'local("Helvetica Neue Regular")',
+  //   fontWeight: 100,
+  // },
+  // '@font-face': {
+  //   fontFamily: '"Helvetica Neue"',
+  //   src: 'local("Helvetica Neue Regular")',
+  //   fontWeight: 200,
+  // },
 
   'html,body,h1,h2,h3,h4,h5,h6': {
     color: '#444',

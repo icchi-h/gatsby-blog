@@ -1,5 +1,5 @@
 ---
-title: Gatsbyでブログを始めてみた。
+title: Gatsbyでブログを始めてみた
 date: "2019-09-09T22:00:00.000Z"
 tags:
   - Gatsby
