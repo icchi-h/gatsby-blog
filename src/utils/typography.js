@@ -41,10 +41,10 @@ Wordpress2016.overrideThemeStyles = () => ({
   'html,body,h1,h2,h3,h4,h5,h6': {
     color: '#444',
     fontFamily: [
-      '-apple-system-body',
-      'BlinkMacSystemFont',
-      'Helvetica Neue',
-      'Helvetica Sans',
+      // '-apple-system-body',
+      // 'BlinkMacSystemFont',
+      // 'Helvetica Neue',
+      // 'Helvetica Sans',
       'Hiragino Kaku Gothic ProN',
       '"Noto Sans Japanese"',
       '"游ゴシック  Medium"',
