@@ -2,37 +2,37 @@ import Typography from 'typography'
 import Wordpress2016 from 'typography-theme-wordpress-2016'
 
 Wordpress2016.overrideThemeStyles = () => ({
-  '@font-face' : {
+  '@font-face': {
     fontFamily: '"Yu Gothic"',
     src: 'local("Yu Gothic Medium")',
     fontWeight: 100,
   },
-  '@font-face' : {
+  '@font-face': {
     fontFamily: '"Yu Gothic"',
     src: 'local("Yu Gothic Medium")',
     fontWeight: 200,
   },
-  '@font-face' : {
+  '@font-face': {
     fontFamily: '"Yu Gothic"',
     src: 'local("Yu Gothic Medium")',
     fontWeight: 300,
   },
-  '@font-face' : {
+  '@font-face': {
     fontFamily: '"Yu Gothic"',
     src: 'local("Yu Gothic Medium")',
     fontWeight: 400,
   },
-  '@font-face' : {
+  '@font-face': {
     fontFamily: '"Yu Gothic"',
     src: 'local("Yu Gothic Bold")',
     fontWeight: 'bold',
   },
-  '@font-face' : {
+  '@font-face': {
     fontFamily: '"Helvetica Neue"',
     src: 'local("Helvetica Neue Regular")',
     fontWeight: 100,
   },
-  '@font-face' : {
+  '@font-face': {
     fontFamily: '"Helvetica Neue"',
     src: 'local("Helvetica Neue Regular")',
     fontWeight: 200,
@@ -60,42 +60,40 @@ Wordpress2016.overrideThemeStyles = () => ({
     lineHeight: '1.8',
   },
   '@media all and (-ms-high-contrast: none)': {
-    html : {
-      fontFamily: 'Verdana, Meiryo, sans-serif'
-    }
+    html: {
+      fontFamily: 'Verdana, Meiryo, sans-serif',
+    },
   },
   '@media all and (-ms-high-contrast: active)': {
     html: {
-      fontFamily: 'Verdana, Meiryo, sans-serif'
-    }
+      fontFamily: 'Verdana, Meiryo, sans-serif',
+    },
   },
   'h1,h2,h3,h4,h5,h6': {
-    textTransform: 'none'
+    textTransform: 'none',
   },
   'h1 a,h2 a,h3 a,h4 a,h5 a,h6 a': {
     color: '#444',
   },
-  'h2': {
+  h2: {
     fontSize: '1.6rem',
-    borderBottom: '1px solid #ddd'
+    borderBottom: '1px solid #ddd',
   },
   'html, body': {
-    fontWeight: '500'
+    fontWeight: '500',
   },
-  'a': {
+  a: {
     boxShadow: 'none',
-    color: '#c85740'
+    color: '#c85740',
   },
   'a:hover': {
-    opacity: '0.7',
+    // opacity: '0.7',
     // boxShadow: '0 1px 0 0 currentColor',
   },
   'a.gatsby-resp-image-link': {
     boxShadow: 'none',
   },
 })
-
-
 
 delete Wordpress2016.googleFonts
 
@@ -106,5 +104,5 @@ if (process.env.NODE_ENV !== 'production') {
   typography.injectStyles()
 }
 
-const { rhythm, scale } = typography;
-export { rhythm, scale, typography as default };
+const { rhythm, scale } = typography
+export { rhythm, scale, typography as default }

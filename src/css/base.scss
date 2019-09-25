@@ -21,6 +21,10 @@ blockquote {
   border-left: 0.32813rem solid hsla(0, 0%, 0%, 0.5);
 }
 
+a:hover {
+  opacity: 0.7;
+}
+
 // マークダウンプレビューエリアの画像を左寄せする
 .gatsby-resp-image-wrapper {
   margin-left: 0 !important;
