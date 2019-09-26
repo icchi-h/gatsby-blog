@@ -5,6 +5,7 @@ import Seo from '../seo'
 import Bio from '../bio'
 import Rss from '../rss'
 import config from '../../config/blog-config'
+import Fab from '@material-ui/core/Fab'
 
 export default class Header extends React.Component {
   render() {
@@ -43,6 +44,23 @@ export default class Header extends React.Component {
             <Bio />
           </div>
           <Rss />
+          <Fab
+            color="primary"
+            aria-label="current-blog"
+            // className={classes.fab}
+            href="https://blog.icchi.me"
+            style={{
+              fontSize: '0.8em',
+              lineHeight: '1.2',
+              position: 'absolute',
+              right: '1em',
+              top: '1em',
+            }}
+          >
+            現行版
+            <br />
+            ブログ
+          </Fab>
         </div>
       )
     }
