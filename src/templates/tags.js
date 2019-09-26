@@ -29,12 +29,13 @@ class TagsTemplate extends React.Component {
 
     const totalCount = posts && posts.length ? posts.length : 0
 
-    const targetTag = <Tag value={this.props.pageContext.tag} />
+    // const targetTag = <Tag value={this.props.pageContext.tag} />
 
     const tagSearchResult = (
       <div className={styles.tag_search_result}>
         <FontAwesomeIcon icon={faTags} className={styles.tag_icon} />
-        {targetTag}
+        <span>{this.props.pageContext.tag}</span>
+        {/* {targetTag} */}
         <div className={styles.tag_search_count}>{totalCount}件</div>
       </div>
     )
