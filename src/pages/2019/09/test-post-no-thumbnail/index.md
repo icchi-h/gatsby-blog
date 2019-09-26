@@ -1,6 +1,6 @@
 ---
-title: サムネイルがない場合のテスト
-date: "2019-09-04T22:00:00.000Z"
+title: テスト投稿 (No thumbnail)
+date: 2019-09-04T22:00:00.000Z
 tags:
   - Gatsby
 keywords:
