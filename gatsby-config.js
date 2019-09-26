@@ -1,4 +1,3 @@
-const SECRET = require('./secret')
 const config = require('./src/config/blog-config')
 require('dotenv').config()
 
@@ -76,7 +75,7 @@ module.exports = {
     {
       resolve: `gatsby-source-qiita`,
       options: {
-        accessToken: SECRET.qiita.accessToken,
+        accessToken: process.env.QIITA_ACCESS_TOKEN,
         userName: config.blogAuthorQiitaUserName,
         excludedPostIds: [],
       },
