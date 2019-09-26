@@ -34,7 +34,7 @@
     &_qiita {
       @extend #{$parent};
       overflow: hidden;
-      height: 0.9em;
+      height: 0.9em !important;
       width: 0.9em !important; // SVNのstyle属性を上書きするため
       background-color: #4cb10d;
       border-radius: 2px;
