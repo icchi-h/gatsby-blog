@@ -172,9 +172,18 @@
     //   background-color: #dadada;
     // }
     h4 {
+      position: relative;
       margin-top: 1rem;
       margin-bottom: 0.8rem;
       font-size: 1.1rem;
+    }
+    h4::before {
+      position: absolute;
+      content: ' ';
+      width: 160px;
+      bottom: -4px;
+      height: 1px;
+      background-color: #ddd;
     }
     h5 {
       margin-top: 0.8rem;
@@ -185,6 +194,11 @@
       margin-top: 0.5rem;
       margin-bottom: 0.3rem;
       font-size: 1rem;
+      opacity: 0.75;
+    }
+
+    strong {
+      border-bottom: 3px solid #f48fb1;
     }
   }
 

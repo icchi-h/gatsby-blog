@@ -1,26 +1,26 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import { throttle } from 'lodash'
-import ClassNames from 'classnames'
-import 'katex/dist/katex.min.css'
+import React from 'react';
+import { Link } from 'gatsby';
+import { throttle } from 'lodash';
+import ClassNames from 'classnames';
+import 'katex/dist/katex.min.css';
 
-import config from '../../config/blog-config'
-import Title from '../title'
-import SNSShare from '../sns-share'
-import PostMetaInfo from '../post-meta-info'
-import Seo from '../seo'
-import Iframely from '../iframely'
-import ScrollSyncToc from '../toc/scroll-sync-toc'
-import Image from '../image'
-import Paging from '../paging'
-import styles from './index.module.scss'
+import config from '../../config/blog-config';
+import Title from '../title';
+import SNSShare from '../sns-share';
+import PostMetaInfo from '../post-meta-info';
+import Seo from '../seo';
+import Iframely from '../iframely';
+import ScrollSyncToc from '../toc/scroll-sync-toc';
+import Image from '../image';
+import Paging from '../paging';
+import styles from './index.module.scss';
 
 class Post extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       // isShowSnsShare: false,
-    }
+    };
   }
 
   // componentDidMount() {
@@ -52,9 +52,9 @@ class Post extends React.Component {
       html,
       pageContext: { previous, next, slug, relatedPosts, latestPosts },
       siteTitle,
-    } = this.props
+    } = this.props;
 
-    const postUrl = `${config.blogUrl}${slug}`
+    const postUrl = `${config.blogUrl}${slug}`;
 
     // const classNameSnsShare = ClassNames({
     //   [`${styles.sns_share}`]: true,
@@ -63,11 +63,11 @@ class Post extends React.Component {
     //   // [`${styles.sns_share_hide}`]: !this.state.isShowSnsShare,
     // })
 
-    const thumbnail = fields.thumbnail ? (
-      <Image filename={fields.thumbnail} alt={'thumbnail'} />
-    ) : (
-      ''
-    )
+    // const thumbnail = fields.thumbnail ? (
+    //   <Image filename={fields.thumbnail} alt={'thumbnail'} />
+    // ) : (
+    //   ''
+    // )
 
     return (
       <article>
@@ -108,7 +108,7 @@ class Post extends React.Component {
 
         <div className={styles.container}>
           <div className={styles.post}>
-            <div className={styles.post_thumbnail}>{thumbnail}</div>
+            {/* <div className={styles.post_thumbnail}>{thumbnail}</div> */}
             <div dangerouslySetInnerHTML={{ __html: html }} />
           </div>
           <div className={styles.toc}>
@@ -132,8 +132,8 @@ class Post extends React.Component {
           </div>
         </div>
       </article>
-    )
+    );
   }
 }
 
-export default Post
+export default Post;
