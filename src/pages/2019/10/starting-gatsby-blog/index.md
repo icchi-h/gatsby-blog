@@ -1,11 +1,18 @@
 ---
-title: Gatsbyでブログを始めてみた
+title: Gatsby、Netlify、IFTTTでCI、Qiita連携対応なブログを作ってみた
 date: "2019-10-02T22:00:00.000Z"
 tags:
   - Gatsby
+  - Netlify
+  - IFTTT
+  - Qiita
   - ブログ
 keywords:
   - Gatsby
+  - Netlify
+  - IFTTT
+  - Qiita
+  - ブログ
 slug: /2019/starting-gatsby-blog
 thumbnail: architecture.jpg
 ---
@@ -32,11 +39,13 @@ thumbnail: architecture.jpg
 
 加えて特に惹かれたのは、ブログの[ソースコード](https://github.com/Takumon/blog)がGitHubで**MITライセンスで公開**されていることです。コードを自分用にカスタマイズして公開することが可能です。このレベルのコードを利用させてもらえるのは大変ありがたかったです。
 
+Takumonさんとのブログとの出会いに後押しされ、静的サイトジェネレーターでブログを作ってみました。
+
 ## 構成
 
 ![](./architecture.jpg)
 
-オリジナルから見た目少しとホスティングサービスを変更したことに加え、インフラ面も多少改良しました。
+オリジナルから少し見た目とホスティングサービスを変更したことに加え、CI/CDを強化するためインフラ面も多少改良しました。
 
 ### Qiitaとの連携
 
@@ -61,28 +70,43 @@ Qiitaと連携しQiita記事をブログで表示するのであれば、常に�
 
 ## 感想
 
-comming soon...
+実際に作ってみた感想をまとめます。
+比較対象はこれまで運用していたWordPressです。
 
 ### パフォーマンス
 
-* 読み込み速度
-* lighthouseスコア
+* ⭕: 読み込み速度
+  * NetlifyはフリープランでのCDNから配信
+  * 静的配信によるサーバ側の計算コスト削減
+  * lighthouseスコアも向上
+
+![](./lighthouse-score.jpg)
 
 ### カスタマイズ性
 
-* ブログ全体をコードレベルで把握できる
-* Nodeによるパッケージ導入の容易さ
-* Gatsbyのプラグインやテーマが豊富
+* ⭕: ブログ全体をコードレベルで把握できる
+  * 変更が容易
+* ⭕: Nodeによるパッケージ導入の容易さ
+  * Material UIの導入もスムーズ
+* ⭕: Gatsbyのプラグインやテーマが豊富
+  * 導入後の調整作業は多少必要
+* ❌: テーマの豊富さ、反映までの速度感ではWordPressに軍配
+
+### 機能面
+
+* ❌: プラグインの充実度ではWordPressに軍配
+* ❌: WordPressの方がPHPの動的処理で記事ランキングの実装が容易
+  * Gatsbyでも実現はできなくないが、別途アクセス管理サービスが必要
 
 ### 開発環境
 
-* CI
-* GitHubによるコード管理
-* ローカル環境でのコーディング、デバッグ
+* ⭕: CI/CD
+* ⭕: GitHubによるコード管理
+* ⭕: ローカル環境でのコーディング、デバッグ
 
 ### セキュリティ
 
-* WordPressのような動的サイト故のセキュリティホールが無い
+* ⭕: WordPressのような動的サイト故のセキュリティホールが無い
 
 ## Reference
 
