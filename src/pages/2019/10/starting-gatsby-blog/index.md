@@ -14,7 +14,7 @@ keywords:
   - Qiita
   - ブログ
 slug: /2019/starting-gatsby-blog
-thumbnail: architecture.jpg
+thumbnail: 2019/10/starting-gatsby-blog/architecture.jpg
 ---
 
 ![](./thumbnail.png)
