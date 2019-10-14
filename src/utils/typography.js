@@ -51,6 +51,8 @@ Wordpress2016.overrideThemeStyles = () => ({
       '"Yu Gothic Medium"',
       '"メイリオ"',
       'meiryo',
+      'Arial',
+      'Helvetica',
       'sans-serif',
     ].join(','),
     '-webkit-font-smoothing': 'antialiased',
