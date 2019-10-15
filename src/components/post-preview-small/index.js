@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from 'react';
+import { Link } from 'gatsby';
 
-import PostMetaInfo from '../post-meta-info'
-import Image from '../image'
-import styles from './index.module.scss'
-import * as config from '../../config/blog-config.js'
+import PostMetaInfo from '../post-meta-info';
+import Image from '../image';
+import styles from './index.module.scss';
+import * as config from '../../config/blog-config.js';
 
 class PostPreviewSmall extends React.Component {
   render() {
@@ -17,10 +17,11 @@ class PostPreviewSmall extends React.Component {
       thumbnail,
       src,
       url,
-    } = this.props.postField
-    const isQiita = src === config.postType.qiita
+    } = this.props.postField;
+    const isQiita =
+      src === config.postType.qiita || tags.includes(config.qiitaTag);
 
-    let article
+    let article;
 
     if (!isQiita) {
       article = (
@@ -44,7 +45,7 @@ class PostPreviewSmall extends React.Component {
             </div>
           </div>
         </Link>
-      )
+      );
     } else {
       article = (
         <a
@@ -72,15 +73,15 @@ class PostPreviewSmall extends React.Component {
             </div>
           </div>
         </a>
-      )
+      );
     }
 
     return (
       <article key={slug} className={styles.content}>
         {article}
       </article>
-    )
+    );
   }
 }
 
-export default PostPreviewSmall
+export default PostPreviewSmall;
