@@ -18,8 +18,7 @@ class PostPreviewSmall extends React.Component {
       src,
       url,
     } = this.props.postField;
-    const isQiita =
-      src === config.postType.qiita || tags.includes(config.qiitaTag);
+    const isQiita = src === config.postType.qiita;
 
     let article;
 

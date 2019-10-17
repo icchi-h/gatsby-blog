@@ -19,7 +19,7 @@ class PostPreview extends React.Component {
       src,
     } = this.props.postField;
     const isQiita =
-      src === config.postType.qiita || tags.includes(config.qiitaTag);
+      src === config.postType.qiita;
 
     let article;
 
