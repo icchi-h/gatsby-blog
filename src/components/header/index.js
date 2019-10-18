@@ -50,21 +50,19 @@ export default class Header extends React.Component {
             // className={classes.fab}
             href="https://blog.icchi.me"
             style={{
-              fontSize: '0.8em',
+              fontSize: '0.9em',
               lineHeight: '1.2',
               position: 'absolute',
               right: '1em',
               top: '1em',
             }}
           >
-            現行版
-            <br />
-            ブログ
+            旧版
           </Fab>
         </div>
-      )
+      );
     }
 
-    return header
+    return header;
   }
 }
