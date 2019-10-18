@@ -1,35 +1,35 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import styles from './index.module.scss'
-import Seo from '../seo'
-import Bio from '../bio'
-import Rss from '../rss'
-import config from '../../config/blog-config'
-import Fab from '@material-ui/core/Fab'
+import React from 'react';
+import { Link } from 'gatsby';
+import styles from './index.module.scss';
+import Seo from '../seo';
+import Bio from '../bio';
+import Rss from '../rss';
+import config from '../../config/blog-config';
+import Fab from '@material-ui/core/Fab';
 
 export default class Header extends React.Component {
   render() {
     // const { location, children } = this.props
-    const { location } = this.props
+    const { location } = this.props;
 
-    let rootPath = `/`
+    let rootPath = `/`;
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
-      rootPath = __PATH_PREFIX__ + rootPath
+      rootPath = __PATH_PREFIX__ + rootPath;
     }
-    let tagPath = `/tag/`
+    let tagPath = `/tag/`;
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
-      tagPath = __PATH_PREFIX__ + tagPath
+      tagPath = __PATH_PREFIX__ + tagPath;
     }
-    let mapPath = `/map`
+    let mapPath = `/map`;
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
-      mapPath = __PATH_PREFIX__ + mapPath
+      mapPath = __PATH_PREFIX__ + mapPath;
     }
 
-    const isRoot = location ? location.pathname === rootPath : true
-    const isTag = location ? location.pathname.startsWith(tagPath) : false
-    const isMap = location ? location.pathname.startsWith(mapPath) : false
+    const isRoot = location ? location.pathname === rootPath : true;
+    const isTag = location ? location.pathname.startsWith(tagPath) : false;
+    const isMap = location ? location.pathname.startsWith(mapPath) : false;
 
-    let header = null
+    let header = null;
 
     if (isRoot || isTag || isMap) {
       header = (

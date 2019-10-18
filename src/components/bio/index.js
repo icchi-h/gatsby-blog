@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGithubSquare,
   faTwitterSquare,
-} from '@fortawesome/free-brands-svg-icons'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import config from '../../config/blog-config.js'
-import styles from './index.module.scss'
+} from '@fortawesome/free-brands-svg-icons';
+import { faSearch, faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import config from '../../config/blog-config.js';
+import styles from './index.module.scss';
 /* highlight-range{1-3} */
 class Bio extends React.Component {
   render() {
@@ -87,8 +87,8 @@ class Bio extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Bio
+export default Bio;
