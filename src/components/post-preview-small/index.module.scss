@@ -1,9 +1,6 @@
-$img_height: 80px;
-
 .content_link {
   display: flex;
   align-items: center;
-  padding: 12px;
   margin-bottom: 1.5rem;
   border-radius: 4px;
   // box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px rgba(63, 63, 68, 0.1),
@@ -18,53 +15,62 @@ $img_height: 80px;
   background-size: auto 200%;
   transition: all 0.5s ease 0s;
 
-  .content_thumbnail {
-    width: calc(#{$img_height} * (16 / 9));
-    // height: $img_height;
+  .content_inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 
-    .content_thumbnail_image {
-      border-radius: 4px;
-      object-fit: contain;
-      width: 100%;
-      height: 100%;
-    }
-  }
+    .content_thumbnail {
+      // width: calc((#{$img_height} + 40px) * (16 / 9));
+      width: calc(100% * (16 / 9));
+      max-width: 24%;
+      // height: $img_height;
 
-  .content_post_info {
-    width: calc(100% - #{$img_height});
-    padding: 0 0.75rem;
-
-    .title {
-      font-size: 1rem;
-      margin-bottom: 0.7rem;
-      margin-top: 0rem;
-      transition: color 0.1s linear;
-    }
-
-    .post_meta_info {
-      font-size: 14px;
-      // * {
-      // color: rgb(151, 151, 151);
-      // }
-    }
-
-    // &:hover {
-    // background-color: #fcfcfc;
-    // transition: background-color 0.3s linear;
-    //
-    // .title {
-    // transition: color 0.3s liner;
-    // }
-    // }
-
-    @media screen and (max-width: 680px) {
-      .title {
-        font-size: 0.85rem;
+      .content_thumbnail_image {
+        border-radius: 4px;
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
       }
     }
 
-    p {
-      font-size: 1rem;
+    .content_post_info {
+      // padding: 0 0.75rem;
+      padding: 12px;
+
+      .title {
+        font-size: 1rem;
+        margin-bottom: 0.7rem;
+        margin-top: 0rem;
+        transition: color 0.1s linear;
+      }
+
+      .post_meta_info {
+        font-size: 14px;
+        // * {
+        // color: rgb(151, 151, 151);
+        // }
+      }
+
+      // &:hover {
+      // background-color: #fcfcfc;
+      // transition: background-color 0.3s linear;
+      //
+      // .title {
+      // transition: color 0.3s liner;
+      // }
+      // }
+
+      @media screen and (max-width: 680px) {
+        .title {
+          font-size: 0.85rem;
+        }
+      }
+
+      p {
+        font-size: 1rem;
+      }
     }
   }
 }
@@ -102,9 +108,7 @@ $img_height: 80px;
 }
 
 @media screen and (max-width: 480px) {
-  .content_link {
-    .content_thumbnail {
-      width: $img_height;
-    }
+  .content_thumbnail {
+    max-width: 30% !important;
   }
 }
