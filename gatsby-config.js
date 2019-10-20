@@ -1,9 +1,9 @@
-const config = require('./src/config/blog-config')
-require('dotenv').config()
+const config = require('./src/config/blog-config');
+require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
-    title: config.blogTitle,
+    title: `${config.blogTitle} | ${config.blogDescription}`,
     author: config.blogAuthor,
     description: config.blogDescription,
     siteUrl: config.blogUrl,
@@ -182,4 +182,4 @@ module.exports = {
       },
     },
   ],
-}
+};
