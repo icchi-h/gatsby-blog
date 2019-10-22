@@ -1,8 +1,9 @@
 @import '../../css/base';
+@import '../../css/color';
 
 .pagination {
   padding: 1em;
-  background-color: #f1f1f1;
+  background-color: $bg_light_gray;
   text-align: center;
 
   &_pre,

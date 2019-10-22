@@ -1,21 +1,16 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from 'react';
+import { Link } from 'gatsby';
 
-import styles from './index.module.scss'
-import PostPreviewSmall from '../post-preview-small'
+import styles from './index.module.scss';
+import PostPreviewSmall from '../post-preview-small';
 
 class Paging extends React.Component {
   render() {
-    const { previous, next, relatedPosts, latestPosts } = this.props
+    const { previous, next, relatedPosts, latestPosts } = this.props;
 
     return (
       <div className={styles.context}>
-        <div className={styles.context_header}>
-          <i className={styles.context_header_tomato}></i>
-          <i className={styles.context_header_tomato}></i>
-          <i className={styles.context_header_tomato}></i>
-          <i className={styles.context_header_tomato}></i>
-        </div>
+        <div className={styles.context_header}></div>
 
         {previous && (
           <div className={styles.posts_context}>
@@ -64,8 +59,8 @@ class Paging extends React.Component {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Paging
+export default Paging;

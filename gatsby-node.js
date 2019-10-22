@@ -1,13 +1,13 @@
-const _ = require('lodash')
-const Promise = require('bluebird')
-const path = require('path')
-const _flow = require('lodash/fp/flow')
-const _forEach = require('lodash/fp/forEach')
-const _uniq = require('lodash/fp/uniq')
-const _flatMap = require('lodash/fp/flatMap')
-const relatedPost = require('./gatsby-related-post')
-const { paginate } = require('gatsby-awesome-pagination')
-const config = require('./src/config/blog-config')
+const _ = require('lodash');
+const Promise = require('bluebird');
+const path = require('path');
+const _flow = require('lodash/fp/flow');
+const _forEach = require('lodash/fp/forEach');
+const _uniq = require('lodash/fp/uniq');
+const _flatMap = require('lodash/fp/flatMap');
+const relatedPost = require('./gatsby-related-post');
+const { paginate } = require('gatsby-awesome-pagination');
+const config = require('./src/config/blog-config');
 
 // const striptags = require('striptags')
 
@@ -22,20 +22,7 @@ const config = require('./src/config/blog-config')
 
 // onCreateNodeより後に実行される
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
-
-  const buildPagination = posts => {
-    paginate({
-      createPage,
-      items: posts,
-      itemsPerPage: config.postNumberPerPage,
-      pathPrefix: ({ pageNumber }) => {
-        return pageNumber === 0 ? '/' : '/page'
-      },
-      // pathPrefix: '/',
-      component: path.resolve('src/templates/index.js'),
-    })
-  }
+  const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
     graphql(
@@ -94,8 +81,8 @@ exports.createPages = ({ graphql, actions }) => {
       `
     ).then(result => {
       if (result.errors) {
-        console.error(result.errors)
-        reject(result.errors)
+        console.error(result.errors);
+        reject(result.errors);
       }
 
       // オリジナル記事とQiitaの記事を1つのリストにする
@@ -104,30 +91,30 @@ exports.createPages = ({ graphql, actions }) => {
           type: config.postType.original,
           date: new Date(p.node.fields.date),
           node: p.node,
-        }
-      })
+        };
+      });
       const qiitaPosts = result.data.allQiitaPost.edges.map(p => {
         return {
           type: config.postType.qiita,
           date: new Date(p.node.fields.date),
           node: p.node,
-        }
-      })
+        };
+      });
       const posts = [...originalPosts, ...qiitaPosts].sort((a, b) => {
-        if (a.date < b.date) return 1
-        if (a.date > b.date) return -1
-        return 0
-      })
+        if (a.date < b.date) return 1;
+        if (a.date > b.date) return -1;
+        return 0;
+      });
 
-      const allPostNodes = _.map(posts, ({ node }) => node)
+      const allPostNodes = _.map(posts, ({ node }) => node);
 
       // 記事詳細ページ生成
       _.each(posts, ({ type, node }, index) => {
         // 最大5つ関連記事を取得
         const relatedPosts = relatedPost
           .extractRelatedPosts(allPostNodes, node, relatedPost.defaultConfig)
-          .slice(0, 5)
-        const latestPosts = allPostNodes.slice(0, 5)
+          .slice(0, 5);
+        const latestPosts = allPostNodes.slice(0, 5);
 
         if (type === config.postType.original) {
           createPage({
@@ -139,7 +126,7 @@ exports.createPages = ({ graphql, actions }) => {
               latestPosts,
               ...previouseAndNext(posts, index),
             },
-          })
+          });
         } else if (type === config.postType.qiita) {
           // Disable: qiita article page
           // createPage({
@@ -153,12 +140,21 @@ exports.createPages = ({ graphql, actions }) => {
           //   },
           // })
         } else {
-          throw new Error(`Unexpected post type: ${type}`)
+          throw new Error(`Unexpected post type: ${type}`);
         }
-      })
+      });
 
       //  ページネーション付き記事リスト画面作成
-      buildPagination(posts)
+      paginate({
+        createPage,
+        items: posts,
+        itemsPerPage: config.postNumberPerPage,
+        pathPrefix: ({ pageNumber }) => {
+          return pageNumber === 0 ? '/' : '/page';
+        },
+        // pathPrefix: '/',
+        component: path.resolve('src/templates/index.js'),
+      });
 
       // 記事関連情報生成
       // const allPostRelations = allPostNodes.map(node => {
@@ -262,25 +258,41 @@ exports.createPages = ({ graphql, actions }) => {
       //     })
       // })
 
-      // タグ別一覧ページ生成
-      _flow(
-        _flatMap(post => post.node.fields.tags),
-        _uniq(),
-        _forEach(tag => {
-          createPage({
-            path: `/tag/${_.kebabCase(tag)}/`,
-            component: path.resolve('./src/templates/tags.js'),
-            context: {
-              tag,
-            },
-          })
-        })
-      )(posts)
+      // タグと対応する記事のセットを生成
+      let articles = {};
+      for (let post of posts) {
+        const tags = post.node.fields.tags;
+        for (let tag of tags) {
+          if (articles.hasOwnProperty(tag)) {
+            articles[tag].push(post);
+          } else {
+            articles[tag] = [post];
+          }
+        }
+      }
 
-      resolve('OK')
-    })
-  })
-}
+      // 各タグ別にタグ一覧ページ生成
+      for (let tag in articles) {
+        paginate({
+          createPage,
+          items: articles[tag],
+          itemsPerPage: config.postNumberPerPage,
+          pathPrefix: ({ pageNumber }) => {
+            return pageNumber === 0
+              ? `/tag/${_.kebabCase(tag)}/`
+              : `/tag/${_.kebabCase(tag)}/page`;
+          },
+          component: path.resolve('./src/templates/tags.js'),
+          context: {
+            tag,
+          },
+        });
+      }
+
+      resolve('OK');
+    });
+  });
+};
 
 /**
  * 指定したインデックスの記事の前後の記事を取得する.
@@ -292,7 +304,7 @@ function previouseAndNext(posts, index) {
   return {
     previous: index === posts.length - 1 ? null : posts[index + 1].node,
     next: index === 0 ? null : posts[index - 1].node,
-  }
+  };
 }
 
 // function countDiff(a, b) {
