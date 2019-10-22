@@ -262,25 +262,41 @@ exports.createPages = ({ graphql, actions }) => {
       //     })
       // })
 
-      // タグ別一覧ページ生成
-      _flow(
-        _flatMap(post => post.node.fields.tags),
-        _uniq(),
-        _forEach(tag => {
-          createPage({
-            path: `/tag/${_.kebabCase(tag)}/`,
-            component: path.resolve('./src/templates/tags.js'),
-            context: {
-              tag,
-            },
-          })
-        })
-      )(posts)
+      // タグと対応する記事のセットを生成
+      let articles = {};
+      for (let post of posts) {
+        const tags = post.node.fields.tags;
+        for (let tag of tags) {
+          if (articles.hasOwnProperty(tag)) {
+            articles[tag].push(post);
+          } else {
+            articles[tag] = [post];
+          }
+        }
+      }
 
-      resolve('OK')
-    })
-  })
-}
+      // 各タグ別にタグ一覧ページ生成
+      for (let tag in articles) {
+        paginate({
+          createPage,
+          items: articles[tag],
+          itemsPerPage: config.postNumberPerPage,
+          pathPrefix: ({ pageNumber }) => {
+            return pageNumber === 0
+              ? `/tag/${_.kebabCase(tag)}/`
+              : `/tag/${_.kebabCase(tag)}/page`;
+          },
+          component: path.resolve('./src/templates/tags.js'),
+          context: {
+            tag,
+          },
+        });
+      }
+
+      resolve('OK');
+    });
+  });
+};
 
 /**
  * 指定したインデックスの記事の前後の記事を取得する.

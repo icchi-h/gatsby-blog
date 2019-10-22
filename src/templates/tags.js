@@ -10,12 +10,13 @@ import PostList from '../components/post-list';
 import Tag from '../components/tag';
 import styles from './tags.module.scss';
 import TagList from '../components/tag-list';
+import Pagination from '../components/pagination';
 
 class TagsTemplate extends React.Component {
   render() {
     // マージして降順で並び替え
     // gatsby-node.jsで2つのノードに共通のfieldsを追加しているため条件分岐なし
-    const posts = [
+    const allPosts = [
       ...get(this, 'props.data.filteredRemarkPosts.edges', []),
       ...get(this, 'props.data.filteredQiitaPosts.edges', []),
     ].sort((a, b) => {
@@ -27,7 +28,8 @@ class TagsTemplate extends React.Component {
       return 0;
     });
 
-    const totalCount = posts && posts.length ? posts.length : 0;
+    // const totalCount = allPosts && allPosts.length ? posts.length : 0;
+    const totalCount = allPosts.length || 0;
 
     // const targetTag = <Tag value={this.props.pageContext.tag} />
 
@@ -39,6 +41,11 @@ class TagsTemplate extends React.Component {
         <div className={styles.tag_search_count}>{totalCount}件</div>
       </div>
     );
+
+    // Paginationに合わせて記事のフィルタリング
+    const { pageNumber, limit } = this.props.pageContext;
+    const startIdx = pageNumber * limit;
+    const posts = allPosts.slice(startIdx, startIdx + limit);
 
     const postList =
       totalCount > 0 ? (
@@ -58,6 +65,7 @@ class TagsTemplate extends React.Component {
           <Title tag={this.props.pageContext.tag} />
           {tagSearchResult}
           {postList}
+          <Pagination props={this.props} />
           <TagList posts={allTags} />
         </div>
       </Layout>
