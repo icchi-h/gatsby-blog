@@ -24,17 +24,17 @@
 //   )
 // }
 
-import React from 'react'
-import { graphql } from 'gatsby'
-import { get } from 'lodash'
+import React from 'react';
+import { graphql } from 'gatsby';
+import { get } from 'lodash';
 
-import Layout from '../components/layout'
-import PostList from '../components/post-list'
-import TagList from '../components/tag-list'
-import Title from '../components/title'
-import Pagination from '../components/pagination'
+import Layout from '../components/layout';
+import PostList from '../components/post-list';
+import TagList from '../components/tag-list';
+import Title from '../components/title';
+import Pagination from '../components/pagination';
 
-import config from '../config/blog-config'
+import config from '../config/blog-config';
 
 export default class BlogIndex extends React.Component {
   render() {
@@ -56,23 +56,23 @@ export default class BlogIndex extends React.Component {
     //     return item
     //   }
     // )
-    const blogPosts = get(this, 'props.data.allMarkdownRemark.edges', [])
-    const qiitaPosts = get(this, 'props.data.allQiitaPost.edges', [])
+    const blogPosts = get(this, 'props.data.allMarkdownRemark.edges', []);
+    const qiitaPosts = get(this, 'props.data.allQiitaPost.edges', []);
 
     // マージして降順で並び替え
     let allPosts = [...blogPosts, ...qiitaPosts].sort((a, b) => {
-      const aDate = new Date(a.node.fields.date)
-      const bDate = new Date(b.node.fields.date)
+      const aDate = new Date(a.node.fields.date);
+      const bDate = new Date(b.node.fields.date);
 
-      if (aDate < bDate) return 1
-      if (aDate > bDate) return -1
-      return 0
-    })
+      if (aDate < bDate) return 1;
+      if (aDate > bDate) return -1;
+      return 0;
+    });
 
     // Paginationに合わせて記事のフィルタリング
-    const { pageNumber, limit } = this.props.pageContext
-    const startIdx = pageNumber * limit
-    const posts = allPosts.slice(startIdx, startIdx + limit)
+    const { pageNumber, limit } = this.props.pageContext;
+    const startIdx = pageNumber * limit;
+    const posts = allPosts.slice(startIdx, startIdx + limit);
 
     return (
       <Layout location={false}>
@@ -81,7 +81,7 @@ export default class BlogIndex extends React.Component {
         <Pagination props={this.props} />
         <TagList posts={allPosts} />
       </Layout>
-    )
+    );
   }
 }
 
@@ -112,6 +112,7 @@ export const pageQuery = graphql`
             excerpt
             date
             tags
+            thumbnail
             src
             url
           }
@@ -121,4 +122,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

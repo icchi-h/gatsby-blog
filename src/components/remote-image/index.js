@@ -7,7 +7,7 @@ export default ({ url }) => (
   <StaticQuery
     query={graphql`
       query {
-        images: allFile(filter: { fields: { RemoteImage: { eq: "true" } } }) {
+        images: allFile(filter: { fields: { RemoteImage: { eq: true } } }) {
           edges {
             node {
               childImageSharp {

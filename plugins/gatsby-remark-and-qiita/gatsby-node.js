@@ -13,7 +13,7 @@ const config = require('../../src/config/blog-config.js');
 /**
  * Markdown記事とQiita記事のインターフェースを共通化
  */
-exports.onCreateNode = ({
+exports.onCreateNode = async ({
   node,
   actions,
   getNode,
@@ -29,6 +29,12 @@ exports.onCreateNode = ({
     node.internal.type !== `QiitaPost`
   )
     return;
+
+  // extract qiita thumbnail url from body (not ogp)
+  const qiitaThumbnailUrl =
+    node.internal.type !== `QiitaPost`
+      ? ''
+      : getQiitaThumbnail(node.rendered_body);
 
   const [slug, title, date, excerpt, tags, keywords, thumbnail, src, url] =
     node.internal.type === `MarkdownRemark`
@@ -51,7 +57,7 @@ exports.onCreateNode = ({
           _excerptHtml(node.rendered_body, 120),
           [...(node.tags.map(tag => tag.name) || []), 'Qiita'], // Qiitaタグを追加
           [node.tags[0].name],
-          '',
+          qiitaThumbnailUrl,
           config.postType.qiita,
           node.url,
         ];
@@ -66,34 +72,35 @@ exports.onCreateNode = ({
   createNodeField({ name: `src`, node, value: src });
   createNodeField({ name: `url`, node, value: url });
 
-  // 外部ファイルノードの作成
-  const sampleImageUrl =
-    'https://takumon.com/static/ee3b59e2bc38cfac28b9ce67a21c4225/35bb1/gatsby-image-of-remote-in-building-by-using-create-remote-file-node.png';
-  // createRemoteFileNodeで外部の画像のファイルノードを作成する
-  createRemoteFileNode({
-    url: sampleImageUrl,
-    cache,
-    store,
-    createNode: actions.createNode,
-    createNodeId: createNodeId,
-  })
-    .then(fileNode => {
-      // 他ファイルノードと区別するための識別子を付与
-      createNodeField({
+  if (
+    node.internal.type === `QiitaPost` &&
+    !!qiitaThumbnailUrl &&
+    qiitaThumbnailUrl !== ''
+  ) {
+    // 外部ファイルノードの作成
+    let fileNode;
+    try {
+      fileNode = await createRemoteFileNode({
+        url: qiitaThumbnailUrl,
+        cache,
+        store,
+        createNode: actions.createNode,
+        createNodeId: createNodeId,
+      });
+      await createNodeField({
         node: fileNode,
         name: 'RemoteImage',
-        value: 'true',
+        value: true,
       });
-      // メタ情報として画像のURLを付与
-      createNodeField({
+      await createNodeField({
         node: fileNode,
         name: 'link',
-        value: sampleImageUrl,
+        value: qiitaThumbnailUrl,
       });
-    })
-    .catch(err => {
-      console.error('error!!');
-    });
+    } catch (err) {
+      console.error(err);
+    }
+  }
 };
 
 function _excerptMarkdown(markdown, length) {
@@ -113,4 +120,37 @@ function _excerptHtml(html, length) {
   return postContent.length <= length
     ? postContent
     : postContent.slice(0, length) + '...';
+}
+
+function getQiitaThumbnail(articleBody) {
+  const getImgs = imgTags => {
+    return imgTags.map(imgTag => {
+      let srcs = imgTag.match(/data-canonical-src=".*?"/);
+      if (srcs)
+        srcs = srcs.map(item =>
+          item.replace('data-canonical-src=', '').replace(/"/g, '')
+        );
+      let alts = imgTag.match(/alt=".*?"/);
+      if (alts)
+        alts = alts.map(item => item.replace('alt=', '').replace(/"/g, ''));
+
+      return {
+        src: srcs ? srcs[0] : null,
+        alt: alts ? alts[0] : null,
+      };
+    });
+  };
+
+  const regex = /<img(?: .+?)?>/gi;
+  const imgTags = articleBody.match(regex);
+  const imgs = imgTags ? getImgs(imgTags) : null;
+  // console.log(imgs);
+
+  if (imgs) {
+    // get first image
+    const thumbnail = imgs[0];
+    return thumbnail.src && thumbnail.alt && thumbnail.alt === 'thumbnail'
+      ? thumbnail.src
+      : null;
+  }
 }
