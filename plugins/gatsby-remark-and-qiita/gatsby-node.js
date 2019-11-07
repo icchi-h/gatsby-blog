@@ -147,10 +147,14 @@ function getQiitaThumbnail(articleBody) {
   // console.log(imgs);
 
   if (imgs) {
-    // get first image
-    const thumbnail = imgs[0];
-    return thumbnail.src && thumbnail.alt && thumbnail.alt === 'thumbnail'
-      ? thumbnail.src
-      : null;
+    // filtering image has 'thumbnail' value
+    const thumbnails = imgs.filter(img => img.alt === 'thumbnail');
+    if (thumbnails.length > 0) {
+      // get first image
+      const thumbnail = thumbnails[0];
+      return thumbnail.src ? thumbnail.src : null;
+    } else {
+      return null;
+    }
   }
 }
