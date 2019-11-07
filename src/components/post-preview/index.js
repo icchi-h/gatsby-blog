@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 
 import PostMetaInfo from '../post-meta-info';
 import Image from '../image';
+import RemoteImage from '../remote-image';
 import styles from './index.module.scss';
 import * as config from '../../config/blog-config.js';
 
@@ -23,7 +24,7 @@ class PostPreview extends React.Component {
     const content = (
       <div>
         <div className={styles.content_thumbnail}>
-          <Image
+          {/* <Image
             className={styles.content_thumbnail_image}
             filename={
               thumbnail ||
@@ -32,6 +33,11 @@ class PostPreview extends React.Component {
                 : config.defaultThumbnailQiitaImagePath)
             }
             alt={'thumbnail'}
+          /> */}
+          <RemoteImage
+            url={
+              'https://takumon.com/static/ee3b59e2bc38cfac28b9ce67a21c4225/35bb1/gatsby-image-of-remote-in-building-by-using-create-remote-file-node.png'
+            }
           />
         </div>
         <div className={styles.content_post_info}>
