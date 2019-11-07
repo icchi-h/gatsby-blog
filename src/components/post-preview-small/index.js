@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 
 import PostMetaInfo from '../post-meta-info';
 import Image from '../image';
+import RemoteImage from '../remote-image';
 import styles from './index.module.scss';
 import * as config from '../../config/blog-config.js';
 
@@ -20,20 +21,25 @@ class PostPreviewSmall extends React.Component {
     } = this.props.postField;
     const isQiita = src === config.postType.qiita;
 
+    const postImage =
+      isQiita && thumbnail ? (
+        <RemoteImage url={thumbnail} alt={'thumbnail'} />
+      ) : (
+        <Image
+          className={styles.content_thumbnail_image}
+          filename={
+            thumbnail ||
+            (!isQiita
+              ? config.defaultThumbnailImagePath
+              : config.defaultThumbnailQiitaImagePath)
+          }
+          alt={'thumbnail'}
+        />
+      );
+
     const content = (
       <div className={styles.content_inner}>
-        <div className={styles.content_thumbnail}>
-          <Image
-            className={styles.content_thumbnail_image}
-            filename={
-              thumbnail ||
-              (!isQiita
-                ? config.defaultThumbnailImagePath
-                : config.defaultThumbnailQiitaImagePath)
-            }
-            alt={'thumbnail'}
-          />
-        </div>
+        <div className={styles.content_thumbnail}>{postImage}</div>
         <div className={styles.content_post_info}>
           <h3 className={styles.title}>{title}</h3>
           <div className={styles.post_meta_info}>
