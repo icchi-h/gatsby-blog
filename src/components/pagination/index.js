@@ -4,7 +4,12 @@ import styles from './index.module.scss';
 
 const Pagination = ({ props }) => {
   const { pageContext } = props;
-  const { previousPagePath, nextPagePath, numberOfPages } = pageContext;
+  const {
+    previousPagePath,
+    nextPagePath,
+    numberOfPages,
+    humanPageNumber,
+  } = pageContext;
 
   let basePath;
   if (previousPagePath) {
@@ -22,20 +27,29 @@ const Pagination = ({ props }) => {
     for (let i = 1; i <= lastPageNum; i++) {
       let pagePath = basePath + (i !== 1 ? `/page/${i}` : '');
       pageNumButton.push(
-        <Link to={pagePath} className={styles.pagination_num}>
-          {i}
-        </Link>
+        i !== humanPageNumber ? (
+          <Link to={pagePath} className={styles.pagination_num}>
+            {i}
+          </Link>
+        ) : (
+          <span className={styles.pagination_num}>{i}</span>
+        )
       );
     }
 
     if (ellipsisFlag) {
       pageNumButton.push(<span>...</span>);
+      // draw page link after ...
       for (let i = numberOfPages - 1; i <= numberOfPages; i++) {
         let pagePath = basePath + `/page/${i}`;
         pageNumButton.push(
-          <Link to={pagePath} className={styles.pagination_num}>
-            {i}
-          </Link>
+          i !== humanPageNumber ? (
+            <Link to={pagePath} className={styles.pagination_num}>
+              {i}
+            </Link>
+          ) : (
+            <span className={styles.pagination_num}>{i}</span>
+          )
         );
       }
     }
