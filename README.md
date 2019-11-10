@@ -5,3 +5,10 @@
 [https://b.blog.icchi.me](https://b.blog.icchi.me/)
 
 ![blog-image](./thumbnail.png)
+
+## Reference
+
+Powered by Takumon Blog
+
+* <https://github.com/Takumon/blog>
+* <https://takumon.com/>
