@@ -2,13 +2,14 @@ const {
   createFilePath,
   createRemoteFileNode,
 } = require('gatsby-source-filesystem');
-
 const unified = require('unified');
 const remarkParse = require('remark-parse');
 const remark2rehype = require('remark-rehype');
 const rehypeStringify = require('rehype-stringify');
 const striptags = require('striptags');
 const config = require('../../src/config/blog-config.js');
+const axios = require('axios');
+const cheerio = require('cheerio');
 
 const isMarkdownPost = type => type === 'MarkdownRemark';
 const isQiitaPost = type => type === 'QiitaPost';
@@ -88,6 +89,23 @@ const getQiitaThumbnail = articleBody => {
   return thumbnail.src ? thumbnail.src : null;
 };
 
+const getOgpUrl = async postUrl => {
+  let ogpUrl = null;
+  const res = await axios.get(postUrl);
+
+  // extract ogp url from html with cheerio
+  const $ = cheerio.load(res.data);
+  $('head meta').each((i, el) => {
+    const property = $(el).attr('property');
+    const content = $(el).attr('content');
+    if (property === 'og:image') {
+      ogpUrl = content;
+    }
+  });
+
+  return ogpUrl;
+};
+
 /**
  * Markdown記事とQiita記事のインターフェースを共通化
  */
@@ -156,7 +174,15 @@ exports.onCreateNode = async ({
 
   // Create remote file node of thumbnail image
   if (isQiitaPost(node.internal.type)) {
-    // TODO: qiita article ogp
+    // qiita article ogp
+    const qiitaOgpUrl = await getOgpUrl(url);
+    if (qiitaOgpUrl) {
+      await createRemoteFile(qiitaOgpUrl, cache, store, actions, createNodeId);
+    } else {
+      console.error(
+        'Error: failed to extract qiita ogp image url from qiita article url'
+      );
+    }
 
     // qiita thumbnail (in body image, not ogp)
     if (!!qiitaThumbnailUrl && qiitaThumbnailUrl !== '') {
