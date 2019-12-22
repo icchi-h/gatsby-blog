@@ -13,6 +13,25 @@ const config = require('../../src/config/blog-config.js');
 const isMarkdownPost = type => type === 'MarkdownRemark';
 const isQiitaPost = type => type === 'QiitaPost';
 
+const _excerptMarkdown = (markdown, length) => {
+  const { contents: html } = unified()
+    .use(remarkParse)
+    .use(remark2rehype)
+    .use(rehypeStringify)
+    .processSync(markdown);
+
+  return _excerptHtml(html, length);
+};
+
+const _excerptHtml = (html, length) => {
+  const postContent = striptags(html)
+    .replace(/\r?\n/g, '')
+    .trim();
+  return postContent.length <= length
+    ? postContent
+    : postContent.slice(0, length) + '...';
+};
+
 const createRemoteFile = async (url, cache, store, actions, createNodeId) => {
   try {
     const fileNode = await createRemoteFileNode({
@@ -35,6 +54,38 @@ const createRemoteFile = async (url, cache, store, actions, createNodeId) => {
   } catch (err) {
     console.error(err);
   }
+};
+
+const getQiitaThumbnail = articleBody => {
+  const getImgs = imgTags => {
+    return imgTags.map(imgTag => {
+      let srcs = imgTag.match(/data-canonical-src=".*?"/);
+      if (srcs)
+        srcs = srcs.map(item =>
+          item.replace('data-canonical-src=', '').replace(/"/g, '')
+        );
+      let alts = imgTag.match(/alt=".*?"/);
+      if (alts)
+        alts = alts.map(item => item.replace('alt=', '').replace(/"/g, ''));
+
+      return {
+        src: srcs ? srcs[0] : null,
+        alt: alts ? alts[0] : null,
+      };
+    });
+  };
+
+  const regex = /<img(?: .+?)?>/gi;
+  const imgTags = articleBody.match(regex);
+  const imgs = imgTags ? getImgs(imgTags) : null;
+  if (!imgs) return null;
+  // filtering image has 'thumbnail' value
+  const thumbnails = imgs.filter(img => img.alt === 'thumbnail');
+  if (thumbnails.length < 1) return null;
+
+  // get first image
+  const thumbnail = thumbnails[0];
+  return thumbnail.src ? thumbnail.src : null;
 };
 
 /**
@@ -105,7 +156,7 @@ exports.onCreateNode = async ({
 
   // Create remote file node of thumbnail image
   if (isQiitaPost(node.internal.type)) {
-    // qiita article ogp
+    // TODO: qiita article ogp
 
     // qiita thumbnail (in body image, not ogp)
     if (!!qiitaThumbnailUrl && qiitaThumbnailUrl !== '') {
@@ -119,59 +170,3 @@ exports.onCreateNode = async ({
     }
   }
 };
-
-function _excerptMarkdown(markdown, length) {
-  const { contents: html } = unified()
-    .use(remarkParse)
-    .use(remark2rehype)
-    .use(rehypeStringify)
-    .processSync(markdown);
-
-  return _excerptHtml(html, length);
-}
-
-function _excerptHtml(html, length) {
-  const postContent = striptags(html)
-    .replace(/\r?\n/g, '')
-    .trim();
-  return postContent.length <= length
-    ? postContent
-    : postContent.slice(0, length) + '...';
-}
-
-function getQiitaThumbnail(articleBody) {
-  const getImgs = imgTags => {
-    return imgTags.map(imgTag => {
-      let srcs = imgTag.match(/data-canonical-src=".*?"/);
-      if (srcs)
-        srcs = srcs.map(item =>
-          item.replace('data-canonical-src=', '').replace(/"/g, '')
-        );
-      let alts = imgTag.match(/alt=".*?"/);
-      if (alts)
-        alts = alts.map(item => item.replace('alt=', '').replace(/"/g, ''));
-
-      return {
-        src: srcs ? srcs[0] : null,
-        alt: alts ? alts[0] : null,
-      };
-    });
-  };
-
-  const regex = /<img(?: .+?)?>/gi;
-  const imgTags = articleBody.match(regex);
-  const imgs = imgTags ? getImgs(imgTags) : null;
-  // console.log(imgs);
-
-  if (imgs) {
-    // filtering image has 'thumbnail' value
-    const thumbnails = imgs.filter(img => img.alt === 'thumbnail');
-    if (thumbnails.length > 0) {
-      // get first image
-      const thumbnail = thumbnails[0];
-      return thumbnail.src ? thumbnail.src : null;
-    } else {
-      return null;
-    }
-  }
-}
