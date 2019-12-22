@@ -3,8 +3,30 @@
   "description": "icchi's blog",
   "version": "1.0.0",
   "author": "Haruyuki Ichino",
+  "license": "MIT",
+  "main": "n/a",
+  "scripts": {
+    "postinstall": "cd plugins/gatsby-remark-and-qiita && npm install && cd ../..",
+    "dev": "gatsby develop",
+    "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "deploy": "gatsby build && gh-pages -d public",
+    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js",
+    "rm": "rm -rf ./.cache && rm -rf ./public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icchi-h/gatsby-blog.git"
+  },
+  "keywords": [
+    "gatsby",
+    "blog"
+  ],
   "bugs": {
-    "url": "https://github.com/icchi-h/blog/issues"
+    "url": "https://github.com/icchi-h/gatsby-blog/issues"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.24",
@@ -80,28 +102,5 @@
     "eslint-plugin-react": "^7.11.1",
     "gh-pages": "^1.2.0",
     "prettier": "^1.14.2"
-  },
-  "homepage": "https://github.com/takumon/blog#readme",
-  "keywords": [
-    "gatsby",
-    "blog"
-  ],
-  "license": "MIT",
-  "main": "n/a",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/takumon/blog.git"
-  },
-  "scripts": {
-    "postinstall": "cd plugins/gatsby-remark-and-qiita && npm install && cd ../..",
-    "dev": "gatsby develop",
-    "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
-    "develop": "gatsby develop",
-    "build": "gatsby build",
-    "deploy": "gatsby build && gh-pages -d public",
-    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js",
-    "rm": "rm -rf ./.cache && rm -rf ./public"
   }
 }
