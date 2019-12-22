@@ -125,7 +125,7 @@ exports.onCreateNode = async ({
   // extract qiita thumbnail url from body (not ogp)
   const qiitaThumbnailUrl = !isQiitaPost(node.internal.type)
     ? ''
-    : getQiitaThumbnail(node.rendered_body);
+    : getQiitaThumbnail(node.rendered_body) || (await getOgpUrl(node.url));
 
   const [
     slug,
@@ -173,26 +173,17 @@ exports.onCreateNode = async ({
   actions.createNodeField({ name: `url`, node, value: url });
 
   // Create remote file node of thumbnail image
-  if (isQiitaPost(node.internal.type)) {
-    // qiita article ogp
-    const qiitaOgpUrl = await getOgpUrl(url);
-    if (qiitaOgpUrl) {
-      await createRemoteFile(qiitaOgpUrl, cache, store, actions, createNodeId);
-    } else {
-      console.error(
-        'Error: failed to extract qiita ogp image url from qiita article url'
-      );
-    }
-
+  if (
+    isQiitaPost(node.internal.type) &&
+    (!!qiitaThumbnailUrl && qiitaThumbnailUrl !== '')
+  ) {
     // qiita thumbnail (in body image, not ogp)
-    if (!!qiitaThumbnailUrl && qiitaThumbnailUrl !== '') {
-      await createRemoteFile(
-        qiitaThumbnailUrl,
-        cache,
-        store,
-        actions,
-        createNodeId
-      );
-    }
+    await createRemoteFile(
+      qiitaThumbnailUrl,
+      cache,
+      store,
+      actions,
+      createNodeId
+    );
   }
 };

@@ -21,21 +21,15 @@ class PostPreview extends React.Component {
     } = this.props.postField;
     const isQiita = src === config.postType.qiita;
 
-    const postImage =
-      isQiita && thumbnail ? (
-        <RemoteImage url={thumbnail} alt={'thumbnail'} />
-      ) : (
-        <Image
-          className={styles.content_thumbnail_image}
-          filename={
-            thumbnail ||
-            (!isQiita
-              ? config.defaultThumbnailImagePath
-              : config.defaultThumbnailQiitaImagePath)
-          }
-          alt={'thumbnail'}
-        />
-      );
+    const postImage = isQiita ? (
+      <RemoteImage url={thumbnail} alt={'thumbnail'} />
+    ) : (
+      <Image
+        className={styles.content_thumbnail_image}
+        filename={thumbnail || config.defaultThumbnailImagePath}
+        alt={'thumbnail'}
+      />
+    );
 
     const content = (
       <div>
