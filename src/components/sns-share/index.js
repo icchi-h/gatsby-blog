@@ -1,18 +1,16 @@
-import React from 'react'
-import Helmet from 'react-helmet'
+import React from 'react';
+import Helmet from 'react-helmet';
 import {
   FacebookShareButton,
   FacebookIcon,
-  GooglePlusShareButton,
-  GooglePlusIcon,
   LinkedinShareButton,
   LinkedinIcon,
   TwitterShareButton,
   TwitterIcon,
-} from 'react-share'
-import styles from './index.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGetPocket } from '@fortawesome/free-brands-svg-icons'
+} from 'react-share';
+import styles from './index.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGetPocket } from '@fortawesome/free-brands-svg-icons';
 
 export default function SNSShare({ title, link, twitterUserName }) {
   return (
@@ -48,14 +46,6 @@ export default function SNSShare({ title, link, twitterUserName }) {
         >
           <FacebookIcon size={32} round />
         </FacebookShareButton>
-      </li>
-      <li className={styles.share_button}>
-        <GooglePlusShareButton
-          additionalProps={{ 'aria-label': 'share_googleplus' }}
-          url={link}
-        >
-          <GooglePlusIcon size={32} round />
-        </GooglePlusShareButton>
       </li>
       <li className={styles.share_button}>
         <LinkedinShareButton
@@ -97,5 +87,5 @@ export default function SNSShare({ title, link, twitterUserName }) {
         </a>
       </li>
     </ul>
-  )
+  );
 }
