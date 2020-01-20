@@ -282,7 +282,7 @@ exports.createPages = ({ graphql, actions }) => {
               ? `/tag/${_.kebabCase(tag)}/`
               : `/tag/${_.kebabCase(tag)}/page`;
           },
-          component: path.resolve('./src/templates/tags.js'),
+          component: path.resolve('./src/templates/tag.js'),
           context: {
             tag,
           },
