@@ -23,7 +23,7 @@ thumbnail: 2019/10/starting-gatsby-blog/architecture.jpg
 
 以前から興味があった静的サイトジェネレーター「[**Gatsby.js**](https://www.gatsbyjs.org/)」でお試し的にブログを作ってみました。
 
-<div class="iframely-embed"><div class="iframely-responsive" style="height: 140px; padding-bottom: 0;"><a href="https://b.blog.icchi.me" data-iframely-url="//cdn.iframe.ly/kqjT36m?iframe=card-small"></a></div></div><script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script><br/>
+<div class="iframely-embed"><div class="iframely-responsive" style="height: 140px; padding-bottom: 0;"><a href="https://blog.icchi.me" data-iframely-url="//cdn.iframe.ly/kqjT36m?iframe=card-small"></a></div></div><script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script><br/>
 
 ## 高品質なGatsby製サイトとの出会い
 

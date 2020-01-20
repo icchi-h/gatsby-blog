@@ -1,9 +1,9 @@
 module.exports = {
   blogTitle: "icchi's blog",
   blogDescription: '都内で働く高専出身エンジニアのブログ',
-  blogUrl: 'https://b.blog.icchi.me',
-  blogRssUrl: 'https://b.blog.icchi.me/rss.xml',
-  blogImageUrl: 'https://b.blog.icchi.me/icons/sns-icon.png', // gatsby-image経由ではない場合
+  blogUrl: 'https://blog.icchi.me',
+  blogRssUrl: 'https://blog.icchi.me/rss.xml',
+  blogImageUrl: 'https://blog.icchi.me/icons/sns-icon.png', // gatsby-image経由ではない場合
   defaultThumbnailImagePath: 'thumbnail/default.png', // 記事にサムネイルが指定していない場合のデフォルトサムネイル画像の相対パス
   defaultThumbnailQiitaImagePath: 'thumbnail/qiita.png',
 
@@ -26,4 +26,4 @@ module.exports = {
   },
   qiitaTag: 'Qiita',
   postNumberPerPage: 6,
-}
+};
