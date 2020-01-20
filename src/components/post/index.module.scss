@@ -34,7 +34,7 @@
 
   h1 {
     color: white;
-    font-weight: 200;
+    font-weight: 300;
     font-size: 2.5em;
     line-height: 1.4;
     margin: 0;
@@ -147,6 +147,7 @@
       padding-bottom: 0.5rem;
       border-bottom: $section-border solid #ddd;
       font-size: 1.6rem;
+      font-weight: bold;
     }
     // h2::before {
     //   position: absolute;
@@ -163,6 +164,7 @@
       margin-bottom: 1rem;
       border-bottom: 1px solid #ddd;
       font-size: 1.3rem;
+      font-weight: bold;
     }
     // h3::before {
     //   position: absolute;
@@ -177,6 +179,7 @@
       margin-top: 1rem;
       margin-bottom: 0.8rem;
       font-size: 1.1rem;
+      font-weight: bold;
     }
     h4::before {
       position: absolute;
@@ -190,11 +193,13 @@
       margin-top: 0.8rem;
       margin-bottom: 0.5rem;
       font-size: 1.1rem;
+      font-weight: bold;
     }
     h6 {
       margin-top: 0.5rem;
       margin-bottom: 0.3rem;
       font-size: 1rem;
+      font-weight: bold;
       opacity: 0.75;
     }
 
