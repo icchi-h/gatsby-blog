@@ -5,7 +5,7 @@ tags:
   - Gatsby
 keywords:
   - Gatsby
-slug: /2019/test-post-no-thumbnail
+slug: /test-post-no-thumbnail
 thumbnail:
 ---
 

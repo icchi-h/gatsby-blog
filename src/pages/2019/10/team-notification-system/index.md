@@ -9,7 +9,7 @@ keywords:
   - GoogleAppsScript
   - Slack
   - WeatherHacks
-slug: /2019/team-notification-system
+slug: /team-notification-system
 thumbnail: 2019/10/team-notification-system/architecture.jpg
 ---
 

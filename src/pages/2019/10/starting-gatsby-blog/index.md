@@ -13,7 +13,7 @@ keywords:
   - IFTTT
   - Qiita
   - ブログ
-slug: /2019/starting-gatsby-blog
+slug: /starting-gatsby-blog
 thumbnail: 2019/10/starting-gatsby-blog/architecture.jpg
 ---
 
