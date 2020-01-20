@@ -48,7 +48,7 @@ export default class Header extends React.Component {
             color="primary"
             aria-label="current-blog"
             // className={classes.fab}
-            href="https://blog.icchi.me"
+            href={config.blogUrl}
             style={{
               fontSize: '0.9em',
               lineHeight: '1.2',
