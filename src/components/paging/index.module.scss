@@ -28,32 +28,3 @@
   padding: 12px;
   margin: 0;
 }
-
-.link_to_list {
-  width: 100%;
-  text-align: center;
-  @include paging_link();
-  font-size: 1rem;
-  line-height: 2rem;
-
-  .title {
-    letter-spacing: 1rem;
-    margin-right: -1rem;
-  }
-
-  // .tomato_icon_1 {
-  //   @include rotate-tomato(0.4s);
-  // }
-
-  // .tomato_icon_2 {
-  //   @include rotate-tomato(0.8s);
-  // }
-
-  // .tomato_icon_3 {
-  //   @include rotate-tomato(1.2s);
-  // }
-
-  // .tomato_icon_4 {
-  //   @include rotate-tomato(1.6s);
-  // }
-}
