@@ -9,6 +9,7 @@
 
 .date {
   margin-right: 2em;
+  margin-bottom: 0.6em;
   font-size: 1.1em;
 
   & > svg {
@@ -20,6 +21,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  margin-bottom: 0.6em;
+
   & > svg {
     margin-right: 0.5em;
   }

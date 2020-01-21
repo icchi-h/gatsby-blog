@@ -4,6 +4,7 @@
 .blog_title {
   text-transform: none;
   margin: 0 0 1em;
+  font-size: 1.4rem;
   text-align: left;
 
   &__link {
@@ -449,6 +450,9 @@
 }
 
 @media screen and (max-width: 580px) {
+  .blog_title {
+    font-size: 1rem;
+  }
   .post_title {
     h1 {
       font-size: 1.7em;

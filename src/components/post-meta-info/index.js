@@ -1,19 +1,19 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
-import moment from 'moment'
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import moment from 'moment';
 
-import Tag from '../tag'
-import styles from './index.module.scss'
-import config from '../../config/blog-config'
+import Tag from '../tag';
+import styles from './index.module.scss';
+import config from '../../config/blog-config';
 
 class PostMetaInfo extends React.Component {
   render() {
-    const { tags, date, color, isLink } = this.props
+    const { tags, date, color, isLink } = this.props;
     const tagList = tags.map(tag => (
       <Tag key={tag} value={tag} isLink={isLink} />
-    ))
-    const formattedDate = moment(date).format(config.dateFormat)
+    ));
+    const formattedDate = moment(date).format(config.dateFormat);
 
     return (
       <small className={styles.content}>
@@ -23,8 +23,8 @@ class PostMetaInfo extends React.Component {
         </div>
         <div className={styles.tags}>{tagList}</div>
       </small>
-    )
+    );
   }
 }
 
-export default PostMetaInfo
+export default PostMetaInfo;
