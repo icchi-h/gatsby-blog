@@ -48,3 +48,9 @@
 .gatsby-highlight pre[class*='language-'].line-numbers {
   padding-left: 2.8em;
 }
+
+// single line highlight on post
+:not(pre) > code[class*='language-'] {
+  margin: 0.1em;
+  border-radius: 0.2em;
+}
