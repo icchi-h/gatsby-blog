@@ -44,7 +44,7 @@
 
 .header {
   position: relative;
-  min-height: 50vh;
+  min-height: 40vh;
   display: flex;
   align-items: center;
 
@@ -460,7 +460,7 @@
   }
 
   .header {
-    min-height: 32vh;
+    min-height: 30vh;
   }
 
   .post {
@@ -481,9 +481,10 @@
     }
   }
 
-  // .header {
-  //   min-height: 30vh;
-  // }
+  .header {
+    min-height: 30vh;
+    padding: 2em 0;
+  }
 
   .container .post {
     h1 {
