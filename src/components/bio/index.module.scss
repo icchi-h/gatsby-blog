@@ -14,9 +14,14 @@
 .main {
   display: flex;
   flex-direction: column;
+
+  .description {
+    margin-bottom: 0.2em;
+  }
 }
 
 .profile {
+  padding-left: 2px;
   display: flex;
   font-size: 1.6em;
 
