@@ -6,7 +6,12 @@ import PostPreviewSmall from '../post-preview-small';
 
 class Paging extends React.Component {
   render() {
-    const { previous, next, relatedPosts, latestPosts } = this.props;
+    const {
+      // previous,
+      // next,
+      relatedPosts,
+      latestPosts,
+    } = this.props;
 
     return (
       <div className={styles.context}>
@@ -34,7 +39,9 @@ class Paging extends React.Component {
             <h2 className={styles.posts_category}>関連記事</h2>
 
             {relatedPosts.map(p => (
-              <PostPreviewSmall key={p.fields.slug} postField={p.fields} />
+              <div className={styles.post_wrap}>
+                <PostPreviewSmall key={p.fields.slug} postField={p.fields} />
+              </div>
             ))}
           </div>
         )}
@@ -44,7 +51,9 @@ class Paging extends React.Component {
             <h2 className={styles.posts_category}>最近の記事</h2>
 
             {latestPosts.map(p => (
-              <PostPreviewSmall key={p.fields.slug} postField={p.fields} />
+              <div className={styles.post_wrap}>
+                <PostPreviewSmall key={p.fields.slug} postField={p.fields} />
+              </div>
             ))}
           </div>
         )}

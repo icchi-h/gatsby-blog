@@ -121,8 +121,8 @@ class Post extends React.Component {
               twitterUserName={config.blogAuthorTwitterUserName}
             />
           </div>
-
           <div className={styles.paging}>
+            <hr />
             <Paging
               previous={previous}
               next={next}

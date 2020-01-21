@@ -213,13 +213,14 @@
     grid-row: 1 / 2;
     position: sticky;
     position: -webkit-sticky;
-    top: 12px;
+    top: 0;
+    height: fit-content;
     max-height: 100vh;
-    // padding: 12px;
-    padding: 1em 2em;
-    margin-top: 64px;
+    margin-top: 12px;
+    padding: 1em;
     overflow-y: auto;
     will-change: transform;
+    z-index: 2;
   }
 
   .sns_share {
@@ -253,9 +254,12 @@
   }
 
   .paging {
-    grid-column: 2 / 3;
+    grid-column: 1 / 4;
     grid-row: 2 / 3;
-    margin: 0 0 64px 0;
+    margin-top: 32px;
+    // padding: 24px;
+    z-index: 2;
+    background-color: white;
   }
 }
 
@@ -339,7 +343,7 @@
     }
 
     .paging {
-      grid-column: 1 / 2;
+      grid-column: 1 / 4;
       grid-row: 3 / 4;
     }
   }
@@ -411,7 +415,7 @@
     }
 
     .paging {
-      grid-column: 1 / 2;
+      grid-column: 1 / 4;
       grid-row: 3 / 4;
     }
   }
