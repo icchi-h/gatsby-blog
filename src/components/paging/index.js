@@ -12,7 +12,7 @@ class Paging extends React.Component {
       <div className={styles.context}>
         <div className={styles.context_header}></div>
 
-        {previous && (
+        {/* {previous && (
           <div className={styles.posts_context}>
             <h2 className={styles.posts_category}>←前の記事</h2>
             <PostPreviewSmall
@@ -27,7 +27,7 @@ class Paging extends React.Component {
             <h2 className={styles.posts_category}>次の記事→</h2>
             <PostPreviewSmall key={next.fields.slug} postField={next.fields} />
           </div>
-        )}
+        )} */}
 
         {relatedPosts && relatedPosts.length > 0 && (
           <div className={styles.posts_context}>
