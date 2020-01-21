@@ -8,7 +8,7 @@ import Layout from '../components/layout';
 import Title from '../components/title';
 import PostList from '../components/post-list';
 import Tag from '../components/tag';
-import styles from './tags.module.scss';
+import styles from './tag.module.scss';
 import TagList from '../components/tag-list';
 import Pagination from '../components/pagination';
 
