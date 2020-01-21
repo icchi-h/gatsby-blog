@@ -13,21 +13,21 @@
         display: block;
         padding-left: 2px;
         box-shadow: none;
-        color: #aaa;
+        color: #888;
         border-radius: 4px;
         // background-color: white;
         letter-spacing: 0; // 幅が狭いので詰め詰めにする
 
         &:hover {
-          background: #f8bbd0 !important;
-          // text-decoration: underline #cbb;
-          color: #000;
+          // background: #eee;
+          color: #333;
+          text-decoration: underline #333;
           transition: background-color 0.2s ease-out;
         }
 
         &.active {
-          background-color: #eee;
-          color: #888;
+          background-color: #ddd;
+          color: #333;
           transition: background-color 0.2s ease-out;
         }
       }
