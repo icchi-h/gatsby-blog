@@ -152,6 +152,12 @@ jobs:
 [![Actions Status](https://github.com/icchi-h/icchi-h.github.io/workflows/CI/CD/badge.svg)](https://github.com/icchi-h/icchi-h.github.io/actions)
 ```
 
+## デモ
+
+GitHubリポジトリのActionタブから設定したアクションの状態が確認できます。
+
+![demo](./demo_github-actions.gif)
+
 ## 感想
 
 ### 簡単
@@ -168,10 +174,7 @@ jobs:
     * ブラウザのタブ間を行き来不要
     * Lintを設定していればPR上のコードにインラインで結果を表示
       * 機能はCircleCIにはなかったような...?
-
-![](./mov/demo_github-actions.gif)
-
-公開アクションが多く、メジャーな処理であれば自分ですべてのワークフローをyamlを書く必要はないかもしれません。
+* 公開されているアクションを利用可能
 
 ### 安い
 
