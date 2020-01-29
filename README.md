@@ -6,6 +6,17 @@
 
 ![blog-image](./thumbnail.png)
 
+## Install
+
+
+```
+$ git clone <this repository>
+$ npm run install
+$ npm run postinstall
+```
+
+and, set `.env` inluded some env params on repository root directory.
+
 ## Reference
 
 Powered by Takumon Blog
