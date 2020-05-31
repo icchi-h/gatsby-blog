@@ -1,18 +1,18 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { get } from 'lodash'
+import React from 'react';
+import { graphql } from 'gatsby';
+import { get } from 'lodash';
 
-import Layout from '../components/layout'
-import Post from '../components/post'
+import Layout from '../components/layout';
+import Post from '../components/post';
 
 // import config from '../config/blog-config'
 
-import 'katex/dist/katex.min.css'
+import 'katex/dist/katex.min.css';
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
+    const post = this.props.data.markdownRemark;
+    const siteTitle = get(this.props, 'data.site.siteMetadata.title');
 
     return (
       <Layout location={this.props.location}>
@@ -24,11 +24,11 @@ class BlogPostTemplate extends React.Component {
           siteTitle={siteTitle}
         />
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -59,4 +59,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
