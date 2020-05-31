@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 // import { Link } from 'gatsby'
 
-import Bio from '../bio'
-import config from '../../config/blog-config'
-import styles from './index.module.scss'
+import Bio from '../bio';
+import config from '../../config/blog-config';
+import styles from './index.module.scss';
 
 // export default function Footer({ isRoot }) {
 export default function Footer() {
@@ -23,5 +23,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
