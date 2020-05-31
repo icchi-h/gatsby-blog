@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  plugins: ['react'],
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
   globals: {
     graphql: false,
   },
