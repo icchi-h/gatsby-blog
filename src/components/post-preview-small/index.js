@@ -12,7 +12,7 @@ class PostPreviewSmall extends React.Component {
     const {
       slug,
       title,
-      excerpt,
+      // excerpt,
       date,
       tags,
       thumbnail,
