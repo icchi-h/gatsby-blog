@@ -5,7 +5,7 @@
   "author": "Haruyuki Ichino",
   "main": "n/a",
   "scripts": {
-    "setup:plubins": "cd plugins/gatsby-remark-and-qiita && npm install && cd ../..",
+    "setup:plugin": "cd plugins/gatsby-remark-and-qiita && npm install && cd ../..",
     "dev": "gatsby clean && gatsby develop",
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
     "lint:semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js",
