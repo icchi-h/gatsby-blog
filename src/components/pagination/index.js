@@ -36,7 +36,9 @@ const Pagination = ({ props }) => {
             {i}
           </Link>
         ) : (
-          <span className={styles.pagination_num}>{i}</span>
+          <span className={styles.pagination_num} key={`pn-${i}`}>
+            {i}
+          </span>
         )
       );
     }
@@ -57,7 +59,9 @@ const Pagination = ({ props }) => {
               {i}
             </Link>
           ) : (
-            <span className={styles.pagination_num}>{i}</span>
+            <span className={styles.pagination_num} key={`pn-${i}`}>
+              {i}
+            </span>
           )
         );
       }
