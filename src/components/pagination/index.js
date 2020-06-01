@@ -2,6 +2,9 @@ import { Link } from 'gatsby';
 import React from 'react';
 import styles from './index.module.scss';
 
+// 数字のページボタンの最大数
+const MAX_PAGE_NUM = 5;
+
 const Pagination = ({ props }) => {
   const { pageContext } = props;
   const {
@@ -18,13 +21,11 @@ const Pagination = ({ props }) => {
     basePath = nextPagePath.replace(/\/page\/\d$/g, '');
   }
 
-  // 数字のページボタン
-  const maxPageNum = 5;
   let pageNumButton = [];
   if (numberOfPages >= 3) {
-    const ellipsisFlag = numberOfPages > maxPageNum;
+    const ellipsisFlag = numberOfPages > MAX_PAGE_NUM;
     const lastPageNum = ellipsisFlag ? numberOfPages - 2 : numberOfPages;
-    for (let i = 1; i <= lastPageNum; i++) {
+    for (let i = 1; i < lastPageNum; i++) {
       let pagePath = basePath + (i !== 1 ? `/page/${i}` : '');
       pageNumButton.push(
         i !== humanPageNumber ? (
