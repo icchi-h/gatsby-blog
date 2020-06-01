@@ -31,11 +31,45 @@ class PostPreview extends React.Component {
       />
     );
 
-    const content = (
+    const article = !isQiita ? (
       <div>
-        <div className={styles.content_thumbnail}>{postImage}</div>
+        <div className={styles.content_thumbnail}>
+          <Link className={styles.title_link} to={slug}>
+            {postImage}
+          </Link>
+        </div>
         <div className={styles.content_post_info}>
-          <h3 className={styles.title}>{title}</h3>
+          <Link className={styles.title_link} to={slug}>
+            <h3 className={styles.title}>{title}</h3>
+          </Link>
+          <p
+            className={styles.content_text}
+            dangerouslySetInnerHTML={{ __html: excerpt }}
+          />
+          <PostMetaInfo tags={tags} date={date} />
+        </div>
+      </div>
+    ) : (
+      <div>
+        <div className={styles.content_thumbnail}>
+          <a
+            className={styles.title_link}
+            href={url}
+            target="_blank"
+            rel="noopener"
+          >
+            {postImage}
+          </a>
+        </div>
+        <div className={styles.content_post_info}>
+          <a
+            className={styles.title_link}
+            href={url}
+            target="_blank"
+            rel="noopener"
+          >
+            <h3 className={styles.title}>{title}</h3>
+          </a>
           <p
             className={styles.content_text}
             dangerouslySetInnerHTML={{ __html: excerpt }}
@@ -44,26 +78,6 @@ class PostPreview extends React.Component {
         </div>
       </div>
     );
-
-    let article;
-    if (!isQiita) {
-      article = (
-        <Link className={styles.title_link} to={slug}>
-          {content}
-        </Link>
-      );
-    } else {
-      article = (
-        <a
-          className={styles.title_link}
-          href={url}
-          target="_blank"
-          rel="noopener"
-        >
-          {content}
-        </a>
-      );
-    }
 
     return (
       <article key={slug} className={styles.content}>
