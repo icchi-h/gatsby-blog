@@ -2,6 +2,9 @@ import { Link } from 'gatsby';
 import React from 'react';
 import styles from './index.module.scss';
 
+// 数字のページボタンの最大数
+const MAX_PAGE_NUM = 5;
+
 const Pagination = ({ props }) => {
   const { pageContext } = props;
   const {
@@ -18,37 +21,47 @@ const Pagination = ({ props }) => {
     basePath = nextPagePath.replace(/\/page\/\d$/g, '');
   }
 
-  // 数字のページボタン
-  const maxPageNum = 5;
   let pageNumButton = [];
   if (numberOfPages >= 3) {
-    const ellipsisFlag = numberOfPages > maxPageNum;
+    // 要素数省略判定
+    const ellipsisFlag = numberOfPages > MAX_PAGE_NUM;
+
+    // 要素描画の共通処理
     const lastPageNum = ellipsisFlag ? numberOfPages - 2 : numberOfPages;
-    for (let i = 1; i <= lastPageNum; i++) {
+    for (let i = 1; i < lastPageNum; i++) {
       let pagePath = basePath + (i !== 1 ? `/page/${i}` : '');
       pageNumButton.push(
         i !== humanPageNumber ? (
-          <Link to={pagePath} className={styles.pagination_num}>
+          <Link to={pagePath} className={styles.pagination_num} key={`pn-${i}`}>
             {i}
           </Link>
         ) : (
-          <span className={styles.pagination_num}>{i}</span>
+          <span className={styles.pagination_num} key={`pn-${i}`}>
+            {i}
+          </span>
         )
       );
     }
 
+    // 要素数省略が有効なら省略記号(...)と最後尾のリンクを追加する
     if (ellipsisFlag) {
-      pageNumButton.push(<span>...</span>);
+      pageNumButton.push(<span key="np-elps">...</span>);
       // draw page link after ...
       for (let i = numberOfPages - 1; i <= numberOfPages; i++) {
         let pagePath = basePath + `/page/${i}`;
         pageNumButton.push(
           i !== humanPageNumber ? (
-            <Link to={pagePath} className={styles.pagination_num}>
+            <Link
+              to={pagePath}
+              className={styles.pagination_num}
+              key={`pn-${i}`}
+            >
               {i}
             </Link>
           ) : (
-            <span className={styles.pagination_num}>{i}</span>
+            <span className={styles.pagination_num} key={`pn-${i}`}>
+              {i}
+            </span>
           )
         );
       }

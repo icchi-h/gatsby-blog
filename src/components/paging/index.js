@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+// import { Link } from 'gatsby';
 
 import styles from './index.module.scss';
 import PostPreviewSmall from '../post-preview-small';
@@ -38,8 +38,8 @@ class Paging extends React.Component {
           <div className={styles.posts_context}>
             <h2 className={styles.posts_category}>関連記事</h2>
 
-            {relatedPosts.map(p => (
-              <div className={styles.post_wrap}>
+            {relatedPosts.map((p) => (
+              <div className={styles.post_wrap} key={p.fields.slug}>
                 <PostPreviewSmall key={p.fields.slug} postField={p.fields} />
               </div>
             ))}
@@ -50,8 +50,8 @@ class Paging extends React.Component {
           <div className={styles.posts_context}>
             <h2 className={styles.posts_category}>最近の記事</h2>
 
-            {latestPosts.map(p => (
-              <div className={styles.post_wrap}>
+            {latestPosts.map((p) => (
+              <div className={styles.post_wrap} key={p.fields.slug}>
                 <PostPreviewSmall key={p.fields.slug} postField={p.fields} />
               </div>
             ))}

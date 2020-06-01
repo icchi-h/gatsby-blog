@@ -1,8 +1,8 @@
-import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
-import Helmet from 'react-helmet'
+import React from 'react';
+import { StaticQuery, graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
 
-import * as config from '../../config/blog-config.js'
+import * as config from '../../config/blog-config.js';
 
 export default function Seo({
   isRoot,
@@ -12,7 +12,7 @@ export default function Seo({
   postDate, // not required
   largeImage, // not required
 }) {
-  const type = isRoot ? 'website' : 'article'
+  const type = isRoot ? 'website' : 'article';
 
   const JSONLDTag = createJSONLDTag({
     isRoot,
@@ -20,7 +20,7 @@ export default function Seo({
     description,
     postUrl,
     postDate,
-  })
+  });
 
   return (
     <StaticQuery
@@ -41,15 +41,15 @@ export default function Seo({
           }
         }
       `}
-      render={data => {
-        const imageNode = data.images.edges.find(n => {
+      render={(data) => {
+        const imageNode = data.images.edges.find((n) => {
           return n.node.relativePath.includes(
             largeImage || config.defaultThumbnailImagePath
-          )
-        })
+          );
+        });
 
-        const image = config.blogUrl + imageNode.node.childImageSharp.sizes.src
-        const twitterCard = 'summary_large_image'
+        const image = config.blogUrl + imageNode.node.childImageSharp.sizes.src;
+        const twitterCard = 'summary_large_image';
 
         return (
           <Helmet>
@@ -92,10 +92,10 @@ export default function Seo({
 
             <link rel="canonical" href={postUrl} />
           </Helmet>
-        )
+        );
       }}
     />
-  )
+  );
 }
 
 function createJSONLDTag({
@@ -131,7 +131,7 @@ function createJSONLDTag({
         height: 60,
       },
     },
-  ]
+  ];
 
   const publisher = {
     '@type': 'Organization',
@@ -143,7 +143,7 @@ function createJSONLDTag({
       width: 60,
       height: 60,
     },
-  }
+  };
 
   const result = [
     {
@@ -163,7 +163,7 @@ function createJSONLDTag({
         'query-input': 'required name=q',
       },
     },
-  ]
+  ];
 
   if (!isRoot) {
     result.push({
@@ -202,8 +202,8 @@ function createJSONLDTag({
         },
         author,
         publisher,
-      })
+      });
   }
 
-  return <script type="application/ld+json">{JSON.stringify(result)}</script>
+  return <script type="application/ld+json">{JSON.stringify(result)}</script>;
 }

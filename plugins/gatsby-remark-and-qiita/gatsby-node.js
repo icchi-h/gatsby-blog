@@ -11,8 +11,8 @@ const config = require('../../src/config/blog-config.js');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const isMarkdownPost = type => type === 'MarkdownRemark';
-const isQiitaPost = type => type === 'QiitaPost';
+const isMarkdownPost = (type) => type === 'MarkdownRemark';
+const isQiitaPost = (type) => type === 'QiitaPost';
 
 const _excerptMarkdown = (markdown, length) => {
   const { contents: html } = unified()
@@ -25,9 +25,7 @@ const _excerptMarkdown = (markdown, length) => {
 };
 
 const _excerptHtml = (html, length) => {
-  const postContent = striptags(html)
-    .replace(/\r?\n/g, '')
-    .trim();
+  const postContent = striptags(html).replace(/\r?\n/g, '').trim();
   return postContent.length <= length
     ? postContent
     : postContent.slice(0, length) + '...';
@@ -57,17 +55,17 @@ const createRemoteFile = async (url, cache, store, actions, createNodeId) => {
   }
 };
 
-const getQiitaThumbnail = articleBody => {
-  const getImgs = imgTags => {
-    return imgTags.map(imgTag => {
+const getQiitaThumbnail = (articleBody) => {
+  const getImgs = (imgTags) => {
+    return imgTags.map((imgTag) => {
       let srcs = imgTag.match(/data-canonical-src=".*?"/);
       if (srcs)
-        srcs = srcs.map(item =>
+        srcs = srcs.map((item) =>
           item.replace('data-canonical-src=', '').replace(/"/g, '')
         );
       let alts = imgTag.match(/alt=".*?"/);
       if (alts)
-        alts = alts.map(item => item.replace('alt=', '').replace(/"/g, ''));
+        alts = alts.map((item) => item.replace('alt=', '').replace(/"/g, ''));
 
       return {
         src: srcs ? srcs[0] : null,
@@ -81,7 +79,7 @@ const getQiitaThumbnail = articleBody => {
   const imgs = imgTags ? getImgs(imgTags) : null;
   if (!imgs) return null;
   // filtering image has 'thumbnail' value
-  const thumbnails = imgs.filter(img => img.alt === 'thumbnail');
+  const thumbnails = imgs.filter((img) => img.alt === 'thumbnail');
   if (thumbnails.length < 1) return null;
 
   // get first image
@@ -89,7 +87,7 @@ const getQiitaThumbnail = articleBody => {
   return thumbnail.src ? thumbnail.src : null;
 };
 
-const getOgpUrl = async postUrl => {
+const getOgpUrl = async (postUrl) => {
   let ogpUrl = null;
   const res = await axios.get(postUrl);
 
@@ -155,7 +153,12 @@ exports.onCreateNode = async ({
         node.title,
         node.created_at,
         _excerptHtml(node.rendered_body, 120),
-        [...(node.tags.map(tag => tag.name) || []), 'Qiita'], // Qiitaタグを追加
+        [
+          ...(node.tags
+            .map((tag) => tag.name)
+            .filter((tag) => tag !== 'Qiita') || []), // すでにQiitaタグがセットされている場合は削除
+          'Qiita',
+        ], // Qiitaタグを追加
         [node.tags[0].name],
         qiitaThumbnailUrl,
         config.postType.qiita,
@@ -175,7 +178,8 @@ exports.onCreateNode = async ({
   // Create remote file node of thumbnail image
   if (
     isQiitaPost(node.internal.type) &&
-    (!!qiitaThumbnailUrl && qiitaThumbnailUrl !== '')
+    !!qiitaThumbnailUrl &&
+    qiitaThumbnailUrl !== ''
   ) {
     // qiita thumbnail (in body image, not ogp)
     await createRemoteFile(

@@ -1,5 +1,5 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -30,28 +30,17 @@ export default function SNSShare({ title, link, twitterUserName }) {
         />
       </Helmet>
       <li className={styles.share_button}>
-        <TwitterShareButton
-          additionalProps={{ 'aria-label': 'share_twitter' }}
-          title={title}
-          via={twitterUserName}
-          url={link}
-        >
+        <TwitterShareButton title={title} via={twitterUserName} url={link}>
           <TwitterIcon size={32} round />
         </TwitterShareButton>
       </li>
       <li className={styles.share_button}>
-        <FacebookShareButton
-          additionalProps={{ 'aria-label': 'share_facebook' }}
-          url={link}
-        >
+        <FacebookShareButton url={link}>
           <FacebookIcon size={32} round />
         </FacebookShareButton>
       </li>
       <li className={styles.share_button}>
-        <LinkedinShareButton
-          additionalProps={{ 'aria-label': 'share_linkedin' }}
-          url={link}
-        >
+        <LinkedinShareButton url={link}>
           <LinkedinIcon title={title} size={32} round />
         </LinkedinShareButton>
       </li>

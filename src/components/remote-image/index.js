@@ -27,10 +27,10 @@ export default ({ url }) => (
         }
       }
     `}
-    render={data => {
+    render={(data) => {
       // OGP画像リストの中から、コンポーネント引数で指定したURLの画像を抽出する
       const image = data.images.edges.find(
-        edge => edge.node.fields.link === url
+        (edge) => edge.node.fields.link === url
       );
 
       if (!image) return null;

@@ -12,7 +12,7 @@ class PostPreviewSmall extends React.Component {
     const {
       slug,
       title,
-      excerpt,
+      // excerpt,
       date,
       tags,
       thumbnail,
@@ -37,37 +37,40 @@ class PostPreviewSmall extends React.Component {
         />
       );
 
-    const content = (
+    const article = !isQiita ? (
       <div className={styles.content_inner}>
-        <div className={styles.content_thumbnail}>{postImage}</div>
+        <Link className={styles.content_thumbnail} key={slug} to={slug}>
+          {postImage}
+        </Link>
         <div className={styles.content_post_info}>
-          <h3 className={styles.title}>{title}</h3>
+          <Link key={slug} to={slug}>
+            <h3 className={styles.title}>{title}</h3>
+          </Link>
+          <div className={styles.post_meta_info}>
+            <PostMetaInfo tags={tags} date={date} />
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div className={styles.content_inner}>
+        <a
+          className={styles.content_thumbnail}
+          href={url}
+          target="_blank"
+          rel="noopener"
+        >
+          {postImage}
+        </a>
+        <div className={styles.content_post_info}>
+          <a href={url} target="_blank" rel="noopener">
+            <h3 className={styles.title}>{title}</h3>
+          </a>
           <div className={styles.post_meta_info}>
             <PostMetaInfo tags={tags} date={date} />
           </div>
         </div>
       </div>
     );
-
-    let article;
-    if (!isQiita) {
-      article = (
-        <Link key={slug} className={styles.content_link} to={slug}>
-          {content}
-        </Link>
-      );
-    } else {
-      article = (
-        <a
-          className={styles.content_link}
-          href={url}
-          target="_blank"
-          rel="noopener"
-        >
-          {content}
-        </a>
-      );
-    }
 
     return (
       <article key={slug} className={styles.content}>

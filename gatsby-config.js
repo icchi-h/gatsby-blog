@@ -83,7 +83,12 @@ module.exports = {
     `gatsby-remark-headings-detail`,
     `gatsby-remark-and-qiita`,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-transformer-sharp`,
+      options: {
+        checkSupportedExtensions: false,
+      },
+    },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

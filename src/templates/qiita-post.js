@@ -1,19 +1,16 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { get } from 'lodash'
+import React from 'react';
+import { graphql } from 'gatsby';
+import { get } from 'lodash';
 
-import config from '../config/blog-config';
 import Layout from '../components/layout';
 import Post from '../components/post';
 
 import '../css/qiita-code-block.css';
 
-
 class QiitaPostTemplate extends React.Component {
-
   render() {
-    const post = this.props.data.qiitaPost
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
+    const post = this.props.data.qiitaPost;
+    const siteTitle = get(this.props, 'data.site.siteMetadata.title');
 
     return (
       <Layout location={this.props.location}>
@@ -25,11 +22,11 @@ class QiitaPostTemplate extends React.Component {
           siteTitle={siteTitle}
         />
       </Layout>
-    )
+    );
   }
 }
 
-export default QiitaPostTemplate
+export default QiitaPostTemplate;
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -64,4 +61,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
