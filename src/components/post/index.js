@@ -100,7 +100,6 @@ class Post extends React.Component {
                 tags={fields.tags}
                 date={fields.date}
                 color={`#fff`}
-                isLink
               />
             </div>
           </div>

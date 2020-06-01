@@ -1,15 +1,15 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import { kebabCase } from 'lodash'
-import Chip from '@material-ui/core/Chip'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTags } from '@fortawesome/free-solid-svg-icons'
+import React from 'react';
+import { Link } from 'gatsby';
+import { kebabCase } from 'lodash';
+import Chip from '@material-ui/core/Chip';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTags } from '@fortawesome/free-solid-svg-icons';
 
-import styles from './index.module.scss'
+import styles from './index.module.scss';
 
 class Tag extends React.Component {
   render() {
-    const { value, count, isLink } = this.props
+    const { value, count, isLink = true } = this.props;
     // const CountTag =
 
     if (isLink) {
@@ -28,7 +28,7 @@ class Tag extends React.Component {
             size="small"
           ></Chip>
         </Link>
-      )
+      );
     } else {
       return (
         <Chip
@@ -42,9 +42,9 @@ class Tag extends React.Component {
           size="small"
           className={styles.tag}
         />
-      )
+      );
     }
   }
 }
 
-export default Tag
+export default Tag;
