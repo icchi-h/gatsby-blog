@@ -153,7 +153,12 @@ exports.onCreateNode = async ({
         node.title,
         node.created_at,
         _excerptHtml(node.rendered_body, 120),
-        [...(node.tags.map((tag) => tag.name) || []), 'Qiita'], // Qiitaタグを追加
+        [
+          ...(node.tags
+            .map((tag) => tag.name)
+            .filter((tag) => tag !== 'Qiita') || []), // すでにQiitaタグがセットされている場合は削除
+          'Qiita',
+        ], // Qiitaタグを追加
         [node.tags[0].name],
         qiitaThumbnailUrl,
         config.postType.qiita,
