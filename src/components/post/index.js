@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { throttle } from 'lodash';
-import ClassNames from 'classnames';
 import 'katex/dist/katex.min.css';
 
 import config from '../../config/blog-config';
@@ -18,32 +16,8 @@ import styles from './index.module.scss';
 class Post extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // isShowSnsShare: false,
-    };
+    // this.state = {};
   }
-
-  // componentDidMount() {
-  //   this.stock = this.watchCurrentPosition.bind(this)
-  //   window.addEventListener('scroll', throttle(this.stock, 500), true) // 負荷軽減のため50msecごとにまびく
-  // }
-
-  // componentWillUnmount() {
-  //   this.stock && window.removeEventListener('scroll', this.stock, true)
-  //   this.stock = null
-  // }
-
-  // watchCurrentPosition() {
-  //   this.setState({ isShowSnsShare: this.scrollTop() > 400 })
-  // }
-
-  // scrollTop() {
-  //   return Math.max(
-  //     window.pageYOffset,
-  //     document.documentElement.scrollTop,
-  //     document.body.scrollTop
-  //   )
-  // }
 
   render() {
     const {
@@ -55,19 +29,6 @@ class Post extends React.Component {
     } = this.props;
 
     const postUrl = `${config.blogUrl}${slug}`;
-
-    // const classNameSnsShare = ClassNames({
-    //   [`${styles.sns_share}`]: true,
-    //   [`${styles.sns_share_show}`]: true,
-    //   // [`${styles.sns_share_show}`]: this.state.isShowSnsShare,
-    //   // [`${styles.sns_share_hide}`]: !this.state.isShowSnsShare,
-    // })
-
-    // const thumbnail = fields.thumbnail ? (
-    //   <Image filename={fields.thumbnail} alt={'thumbnail'} />
-    // ) : (
-    //   ''
-    // )
 
     return (
       <article>
