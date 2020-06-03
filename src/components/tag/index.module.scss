@@ -10,9 +10,10 @@
   right: -8px;
   top: 0;
   display: inline-block;
-  background: #c5c5c5;
+  border: 1px solid #e6e6e6;
+  background: #e6e6e6;
   min-width: 2em; // 二桁対応
   padding: 0.1em;
-  border-radius: 24px;
+  border-radius: 2px;
   text-align: center;
 }
