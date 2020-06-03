@@ -15,7 +15,7 @@ class TagList extends React.Component {
   render() {
     const { posts } = this.props;
 
-    let tagCounts = _flatMap(posts, p => _get(p, 'node.fields.tags', []));
+    let tagCounts = _flatMap(posts, (p) => _get(p, 'node.fields.tags', []));
     (tagCounts = _map(_countBy(tagCounts), (value, key) => {
       return {
         name: key,
@@ -32,7 +32,7 @@ class TagList extends React.Component {
             タグ一覧
           </h4>
           <div className={styles.list}>
-            {tagCounts.map(t => (
+            {tagCounts.map((t) => (
               <Tag key={t.name} value={t.name} count={t.count} isLink />
             ))}
           </div>

@@ -7,6 +7,14 @@ import { faTags } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './index.module.scss';
 
+const forceTagStyle = {
+  backgroundColor: 'white',
+  border: '1px solid #e6e6e6',
+  borderRadius: '4px',
+  padding: '4px',
+  height: '110%',
+};
+
 class Tag extends React.Component {
   render() {
     const { value, count, isLink = true } = this.props;
@@ -26,6 +34,7 @@ class Tag extends React.Component {
               </span>
             }
             size="small"
+            style={forceTagStyle}
           ></Chip>
         </Link>
       );
@@ -41,6 +50,7 @@ class Tag extends React.Component {
           }
           size="small"
           className={styles.tag}
+          style={forceTagStyle}
         />
       );
     }

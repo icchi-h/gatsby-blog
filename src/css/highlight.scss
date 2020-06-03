@@ -1,10 +1,22 @@
+// Prismデフォルト設定の上書き
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  background-color: #eeeeee;
+}
+// シングルラインハイライト
+:not(pre) > code[class*='language-'] {
+  margin: 2px;
+  padding: 2px 4px;
+  border-radius: 0.2em;
+}
+
+// Prismパーツ周辺のCSS調整
+
 .gatsby-code-title {
   position: relative;
   bottom: -2px;
   left: 0;
-  // background: #f3e3b9;
-  background-color: #272822;
-  color: #eee;
+  background-color: #eeeeee;
   margin-bottom: -0.65em;
   padding: 0.4rem 1.05rem;
   font-size: 0.8em;
@@ -23,12 +35,10 @@
   margin-left: -1em;
   padding-right: 1em;
   padding-left: 0.75em;
-  // border-left: 0.25em solid #f99;
 }
 
 .gatsby-highlight {
-  // background-color: #fdf6e3;
-  background-color: #272822;
+  background-color: #eeeeee;
   border-radius: 0.2em;
   margin: 0.5em 0;
   padding: 1em;
@@ -47,10 +57,4 @@
 
 .gatsby-highlight pre[class*='language-'].line-numbers {
   padding-left: 2.8em;
-}
-
-// single line highlight on post
-:not(pre) > code[class*='language-'] {
-  margin: 0.1em;
-  border-radius: 0.2em;
 }

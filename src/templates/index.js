@@ -77,8 +77,9 @@ export default class BlogIndex extends React.Component {
     return (
       <Layout location={false}>
         <Title />
-        <PostList postFields={posts.map(post => post.node.fields)} />
+        <PostList postFields={posts.map((post) => post.node.fields)} />
         <Pagination props={this.props} />
+        <hr style={{ marginTop: '48px' }} />
         <TagList posts={allPosts} />
       </Layout>
     );
