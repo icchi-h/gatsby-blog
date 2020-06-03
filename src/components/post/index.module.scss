@@ -81,6 +81,8 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  font-size: 1.03rem;
+  line-height: 1.8;
 
   .post {
     grid-column: 2 / 3;
@@ -417,7 +419,7 @@
 @media screen and (max-width: 400px) {
   .post_title {
     h1 {
-      font-size: 1.4em;
+      font-size: 2em;
       line-height: 1.3;
     }
   }

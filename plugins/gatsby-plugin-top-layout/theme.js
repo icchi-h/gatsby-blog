@@ -1,5 +1,5 @@
-import { pink, indigo, red } from '@material-ui/core/colors'
-import { createMuiTheme } from '@material-ui/core/styles'
+import { pink, indigo, red } from '@material-ui/core/colors';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   palette: {
@@ -16,6 +16,9 @@ const theme = createMuiTheme({
       default: '#fff',
     },
   },
-})
+  typography: {
+    fontFamily: `'-apple-system','BlinkMacSystemFont','ヒラギノ角ゴシック','Hiragino Kaku Gothic ProN','Hiragino Sans','ヒラギノ角ゴ ProN W3',Arial,'メイリオ',Meiryo,sans-serif`,
+  },
+});
 
-export default theme
+export default theme;
