@@ -18,6 +18,7 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: `'-apple-system','BlinkMacSystemFont','ヒラギノ角ゴシック','Hiragino Kaku Gothic ProN','Hiragino Sans','ヒラギノ角ゴ ProN W3',Arial,'メイリオ',Meiryo,sans-serif`,
+    fontSize: '1.05rem',
   },
 });
 
