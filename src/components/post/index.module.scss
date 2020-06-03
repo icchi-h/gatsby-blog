@@ -407,11 +407,9 @@
   }
 
   .post {
-    ul > li {
-      margin-left: 0.75rem;
-    }
-    ol li {
-      margin-left: 0.75rem;
+    ul,
+    ol {
+      margin-left: 0;
     }
   }
 }
