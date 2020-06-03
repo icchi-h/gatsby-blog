@@ -32,7 +32,8 @@
   .title {
     margin-top: 0;
     margin-bottom: 0.3em;
-    font-size: 17px;
+    font-size: 1.2rem;
+    line-height: 1.5;
     font-weight: bold;
     word-break: break-all;
 
@@ -46,7 +47,7 @@
 
   .content_text {
     color: #414141;
-    font-size: 13px;
+    font-size: 0.9rem;
     word-break: break-all;
   }
 
@@ -88,16 +89,13 @@
       margin-right: -0.75rem;
       margin-top: -0.75rem;
 
-      .content_thumbnail_image {
-      }
+      // .content_thumbnail_image {}
     }
 
     .content_post_info {
       padding: 0 0.1rem;
 
       .title {
-        line-height: 1.1;
-
         &_link {
           font-size: 0.8em;
         }
