@@ -2,13 +2,12 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { get } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHashtag } from '@fortawesome/free-solid-svg-icons';
+import { faFolder } from '@fortawesome/free-solid-svg-icons';
 
 import Layout from '../components/layout';
 import Title from '../components/title';
 import PostList from '../components/post-list';
 import styles from './search.module.scss';
-import TagList from '../components/tag-list';
 import Pagination from '../components/pagination';
 
 class TagsTemplate extends React.Component {
@@ -34,9 +33,8 @@ class TagsTemplate extends React.Component {
 
     const searchResult = (
       <div className={styles.search_result}>
-        <FontAwesomeIcon icon={faHashtag} className={styles.icon} />
-        <span>{this.props.pageContext.tag}</span>
-        {/* {targetTag} */}
+        <FontAwesomeIcon icon={faFolder} className={styles.icon} />
+        <span>{this.props.pageContext.category}</span>
         <div className={styles.search_count}>{totalCount}件</div>
       </div>
     );
@@ -50,22 +48,18 @@ class TagsTemplate extends React.Component {
       totalCount > 0 ? (
         <PostList postFields={posts.map((post) => post.node.fields)} />
       ) : (
-        <div className={styles.no_post}>指定したタグの記事はありません。</div>
+        <div className={styles.no_post}>
+          指定したカテゴリーの記事はありません。
+        </div>
       );
-
-    const allTags = [
-      ...get(this, 'props.data.allRemarkTags.edges'),
-      ...get(this, 'props.data.allQiitaTags.edges'),
-    ];
 
     return (
       <Layout location={this.props.location}>
         <div>
-          <Title tag={this.props.pageContext.tag} />
+          <Title postTitle={this.props.pageContext.category} />
           {searchResult}
           {postList}
           <Pagination props={this.props} />
-          <TagList posts={allTags} />
         </div>
       </Layout>
     );
@@ -75,10 +69,10 @@ class TagsTemplate extends React.Component {
 export default TagsTemplate;
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query($category: String) {
     filteredRemarkPosts: allMarkdownRemark(
       limit: 1000
-      filter: { fields: { tags: { in: [$tag] } } }
+      filter: { fields: { category: { eq: $category } } }
       sort: { fields: [fields___date], order: DESC }
     ) {
       edges {
@@ -100,7 +94,7 @@ export const pageQuery = graphql`
 
     filteredQiitaPosts: allQiitaPost(
       limit: 1000
-      filter: { fields: { tags: { in: [$tag] } } }
+      filter: { fields: { category: { eq: $category } } }
       sort: { fields: [fields___date], order: DESC }
     ) {
       edges {
