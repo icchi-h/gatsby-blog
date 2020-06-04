@@ -1,6 +1,6 @@
 @import '../css/base';
 
-.tag_search_result {
+.search_result {
   @include max-content-width();
   display: flex;
   justify-content: center;
@@ -10,11 +10,11 @@
   font-size: 1.5rem;
 }
 
-.tag_icon {
+.icon {
   margin-right: 0.5em;
 }
 
-.tag_search_count {
+.search_count {
   margin-left: 0.5em;
   font-size: 1.3em;
 }

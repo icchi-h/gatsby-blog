@@ -40,6 +40,7 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   date
                   excerpt
+                  category
                   tags
                   keywords
                   thumbnail
@@ -60,6 +61,7 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   date
                   excerpt
+                  category
                   tags
                   keywords
                   thumbnail
@@ -79,21 +81,21 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       `
-    ).then(result => {
+    ).then((result) => {
       if (result.errors) {
         console.error(result.errors);
         reject(result.errors);
       }
 
       // オリジナル記事とQiitaの記事を1つのリストにする
-      const originalPosts = result.data.allMarkdownRemark.edges.map(p => {
+      const originalPosts = result.data.allMarkdownRemark.edges.map((p) => {
         return {
           type: config.postType.original,
           date: new Date(p.node.fields.date),
           node: p.node,
         };
       });
-      const qiitaPosts = result.data.allQiitaPost.edges.map(p => {
+      const qiitaPosts = result.data.allQiitaPost.edges.map((p) => {
         return {
           type: config.postType.qiita,
           date: new Date(p.node.fields.date),
@@ -259,23 +261,23 @@ exports.createPages = ({ graphql, actions }) => {
       // })
 
       // タグと対応する記事のセットを生成
-      let articles = {};
+      let tagArticles = {};
       for (let post of posts) {
         const tags = post.node.fields.tags;
         for (let tag of tags) {
-          if (articles.hasOwnProperty(tag)) {
-            articles[tag].push(post);
+          if (tagArticles.hasOwnProperty(tag)) {
+            tagArticles[tag].push(post);
           } else {
-            articles[tag] = [post];
+            tagArticles[tag] = [post];
           }
         }
       }
 
-      // 各タグ別にタグ一覧ページ生成
-      for (let tag in articles) {
+      // 各タグ別に一覧ページ生成
+      for (let tag in tagArticles) {
         paginate({
           createPage,
-          items: articles[tag],
+          items: tagArticles[tag],
           itemsPerPage: config.postNumberPerPage,
           pathPrefix: ({ pageNumber }) => {
             return pageNumber === 0
@@ -285,6 +287,35 @@ exports.createPages = ({ graphql, actions }) => {
           component: path.resolve('./src/templates/tag.js'),
           context: {
             tag,
+          },
+        });
+      }
+
+      // カテゴリと対応する記事のセットを生成
+      let categoryArticles = {};
+      for (let post of posts) {
+        const category = post.node.fields.category;
+        if (categoryArticles.hasOwnProperty(category)) {
+          categoryArticles[category].push(post);
+        } else {
+          categoryArticles[category] = [post];
+        }
+      }
+
+      // 各カテゴリ別に一覧ページ生成
+      for (let category in categoryArticles) {
+        paginate({
+          createPage,
+          items: categoryArticles[category],
+          itemsPerPage: config.postNumberPerPage,
+          pathPrefix: ({ pageNumber }) => {
+            return pageNumber === 0
+              ? `/category/${_.kebabCase(category)}/`
+              : `/category/${_.kebabCase(category)}/page`;
+          },
+          component: path.resolve('./src/templates/category.js'),
+          context: {
+            category,
           },
         });
       }

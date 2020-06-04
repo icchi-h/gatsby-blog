@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { kebabCase } from 'lodash';
 import Chip from '@material-ui/core/Chip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTags } from '@fortawesome/free-solid-svg-icons';
+import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './index.module.scss';
 
@@ -24,7 +24,7 @@ class Tag extends React.Component {
       return (
         <Link to={`/tag/${kebabCase(value)}`} className={styles.tag}>
           <Chip
-            icon={<FontAwesomeIcon icon={faTags} />}
+            icon={<FontAwesomeIcon icon={faHashtag} />}
             label={
               <span>
                 {value}
