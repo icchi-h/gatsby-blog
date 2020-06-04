@@ -40,6 +40,7 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   date
                   excerpt
+                  category
                   tags
                   keywords
                   thumbnail
@@ -60,6 +61,7 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   date
                   excerpt
+                  category
                   tags
                   keywords
                   thumbnail

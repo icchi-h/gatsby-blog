@@ -14,6 +14,7 @@ class PostPreviewSmall extends React.Component {
       title,
       // excerpt,
       date,
+      category,
       tags,
       thumbnail,
       src,
@@ -47,7 +48,12 @@ class PostPreviewSmall extends React.Component {
             <h3 className={styles.title}>{title}</h3>
           </Link>
           <div className={styles.post_meta_info}>
-            <PostMetaInfo tags={tags} date={date} />
+            <PostMetaInfo
+              category={category}
+              tags={tags}
+              date={date}
+              color="#414141"
+            />
           </div>
         </div>
       </div>
@@ -66,7 +72,12 @@ class PostPreviewSmall extends React.Component {
             <h3 className={styles.title}>{title}</h3>
           </a>
           <div className={styles.post_meta_info}>
-            <PostMetaInfo tags={tags} date={date} />
+            <PostMetaInfo
+              category={category}
+              tags={tags}
+              date={date}
+              color="#414141"
+            />
           </div>
         </div>
       </div>

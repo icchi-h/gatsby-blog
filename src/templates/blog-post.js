@@ -54,6 +54,7 @@ export const pageQuery = graphql`
         title
         excerpt
         date
+        category
         tags
         thumbnail
       }

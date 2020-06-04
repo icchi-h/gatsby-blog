@@ -1,6 +1,7 @@
 ---
 title: Vue製サイトのCI/CD環境をCircleCIからGitHub Actionsに移行してみた
 date: '2020-01-26T19:28:00.000Z'
+category: Development
 tags:
   - CI/CD
   - GitHub Actions

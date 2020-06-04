@@ -1,5 +1,4 @@
 .content {
-  color: #4a4a4a;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex-wrap: wrap;
@@ -7,7 +6,8 @@
   margin: -0.5em 0 1em;
 }
 
-.date {
+.date,
+.category {
   margin-right: 2em;
   margin-bottom: 0.6em;
   font-size: 0.9rem;

@@ -14,6 +14,7 @@ class PostPreview extends React.Component {
       title,
       excerpt,
       date,
+      category,
       tags,
       thumbnail,
       url,
@@ -46,7 +47,12 @@ class PostPreview extends React.Component {
             className={styles.content_text}
             dangerouslySetInnerHTML={{ __html: excerpt }}
           />
-          <PostMetaInfo tags={tags} date={date} />
+          <PostMetaInfo
+            category={category}
+            tags={tags}
+            date={date}
+            color="#414141"
+          />
         </div>
       </div>
     ) : (
@@ -74,7 +80,12 @@ class PostPreview extends React.Component {
             className={styles.content_text}
             dangerouslySetInnerHTML={{ __html: excerpt }}
           />
-          <PostMetaInfo tags={tags} date={date} />
+          <PostMetaInfo
+            category={category}
+            tags={tags}
+            date={date}
+            color="#414141"
+          />
         </div>
       </div>
     );

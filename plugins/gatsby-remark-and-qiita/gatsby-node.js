@@ -130,6 +130,7 @@ exports.onCreateNode = async ({
     title,
     date,
     excerpt,
+    category,
     tags,
     keywords,
     thumbnail,
@@ -141,6 +142,7 @@ exports.onCreateNode = async ({
         node.frontmatter.title,
         node.frontmatter.date,
         _excerptMarkdown(node.rawMarkdownBody, 120),
+        node.frontmatter.category || 'Others',
         node.frontmatter.tags,
         // キーワード指定がない場合は、タグの一番目が一番重要とみなし、それをキーワードとする
         node.frontmatter.keywords || [node.frontmatter.tags[0]],
@@ -153,11 +155,9 @@ exports.onCreateNode = async ({
         node.title,
         node.created_at,
         _excerptHtml(node.rendered_body, 120),
+        'Qiita',
         [
-          ...(node.tags
-            .map((tag) => tag.name)
-            .filter((tag) => tag !== 'Qiita') || []), // すでにQiitaタグがセットされている場合は削除
-          'Qiita',
+          ...(node.tags.map((tag) => tag.name) || []), // すでにQiitaタグがセットされている場合は削除
         ], // Qiitaタグを追加
         [node.tags[0].name],
         qiitaThumbnailUrl,
@@ -169,6 +169,7 @@ exports.onCreateNode = async ({
   actions.createNodeField({ name: `title`, node, value: title });
   actions.createNodeField({ name: `date`, node, value: date });
   actions.createNodeField({ name: `excerpt`, node, value: excerpt });
+  actions.createNodeField({ name: `category`, node, value: category });
   actions.createNodeField({ name: `tags`, node, value: tags });
   actions.createNodeField({ name: `keywords`, node, value: keywords });
   actions.createNodeField({ name: `thumbnail`, node, value: thumbnail });

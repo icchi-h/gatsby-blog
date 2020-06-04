@@ -58,6 +58,7 @@ class Post extends React.Component {
               </a>
 
               <PostMetaInfo
+                category={fields.category}
                 tags={fields.tags}
                 date={fields.date}
                 color={`#fff`}
