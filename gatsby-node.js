@@ -81,21 +81,21 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       `
-    ).then(result => {
+    ).then((result) => {
       if (result.errors) {
         console.error(result.errors);
         reject(result.errors);
       }
 
       // オリジナル記事とQiitaの記事を1つのリストにする
-      const originalPosts = result.data.allMarkdownRemark.edges.map(p => {
+      const originalPosts = result.data.allMarkdownRemark.edges.map((p) => {
         return {
           type: config.postType.original,
           date: new Date(p.node.fields.date),
           node: p.node,
         };
       });
-      const qiitaPosts = result.data.allQiitaPost.edges.map(p => {
+      const qiitaPosts = result.data.allQiitaPost.edges.map((p) => {
         return {
           type: config.postType.qiita,
           date: new Date(p.node.fields.date),

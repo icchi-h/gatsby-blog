@@ -34,7 +34,7 @@ import TagList from '../components/tag-list';
 import Title from '../components/title';
 import Pagination from '../components/pagination';
 
-import config from '../config/blog-config';
+// import config from '../config/blog-config';
 
 export default class BlogIndex extends React.Component {
   render() {

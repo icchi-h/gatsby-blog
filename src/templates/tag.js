@@ -49,7 +49,7 @@ class TagsTemplate extends React.Component {
 
     const postList =
       totalCount > 0 ? (
-        <PostList postFields={posts.map(post => post.node.fields)} />
+        <PostList postFields={posts.map((post) => post.node.fields)} />
       ) : (
         <div className={styles.no_post}>指摘したタグの記事はありません。</div>
       );
