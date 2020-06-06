@@ -10,7 +10,7 @@ import PostList from '../components/post-list';
 import styles from './search.module.scss';
 import Pagination from '../components/pagination';
 
-class TagsTemplate extends React.Component {
+class CategoryTemplate extends React.Component {
   render() {
     // マージして降順で並び替え
     // gatsby-node.jsで2つのノードに共通のfieldsを追加しているため条件分岐なし
@@ -26,10 +26,7 @@ class TagsTemplate extends React.Component {
       return 0;
     });
 
-    // const totalCount = allPosts && allPosts.length ? posts.length : 0;
     const totalCount = allPosts.length || 0;
-
-    // const targetTag = <Tag value={this.props.pageContext.tag} />
 
     const searchResult = (
       <div className={styles.search_result}>
@@ -66,7 +63,7 @@ class TagsTemplate extends React.Component {
   }
 }
 
-export default TagsTemplate;
+export default CategoryTemplate;
 
 export const pageQuery = graphql`
   query($category: String) {
@@ -109,26 +106,6 @@ export const pageQuery = graphql`
             thumbnail
             src
             url
-          }
-        }
-      }
-    }
-
-    allRemarkTags: allMarkdownRemark {
-      edges {
-        node {
-          fields {
-            tags
-          }
-        }
-      }
-    }
-
-    allQiitaTags: allQiitaPost {
-      edges {
-        node {
-          fields {
-            tags
           }
         }
       }

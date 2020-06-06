@@ -1,25 +1,10 @@
 const _ = require('lodash');
 const Promise = require('bluebird');
 const path = require('path');
-const _flow = require('lodash/fp/flow');
-const _forEach = require('lodash/fp/forEach');
-const _uniq = require('lodash/fp/uniq');
-const _flatMap = require('lodash/fp/flatMap');
 const relatedPost = require('./gatsby-related-post');
 const { paginate } = require('gatsby-awesome-pagination');
 const moment = require('moment');
 const config = require('./src/config/blog-config');
-
-// const striptags = require('striptags')
-
-// /** 仮想DOM d3.js D3-CloudはDOMがある前提なのでNode.js実行時でも正常動作するように仮想Canvasを使う */
-// const { createCanvas } = require('canvas')
-// /** 仮想DOM d3.js D3-CloudはDOMがある前提なのでNode.js実行時でも正常動作するように仮想DOMを使う */
-// const { JSDOM } = require('jsdom')
-// const kuromoji = require('kuromoji')
-// const d3 = require('d3')
-// const cloud = require('d3-cloud')
-// // const fs = require('fs')
 
 // onCreateNodeより後に実行される
 exports.createPages = ({ graphql, actions }) => {
@@ -173,92 +158,6 @@ exports.createPages = ({ graphql, actions }) => {
       //       conf
       //     ),
       //   }
-      // })
-
-      // // WordCloud用データ加工処理
-      // const alltext = posts
-      //   .map(({ type, node }) => {
-      //     if (type === config.postType.original) {
-      //       return rawText(node.html)
-      //     } else {
-      //       return rawText(node.rendered_body)
-      //     }
-      //   })
-      //   .join('\n')
-
-      // const tagDatas = []
-
-      // posts.forEach(post => {
-      //   post.node.fields.tags.forEach(t => {
-      //     if ('Qiita' === t) {
-      //       return
-      //     }
-
-      //     const targetData = tagDatas.find(data => data.text === t)
-      //     if (targetData) {
-      //       targetData.size = targetData.size + 1
-      //     } else {
-      //       tagDatas.push({
-      //         text: t,
-      //         size: 1,
-      //       })
-      //     }
-      //   })
-      // })
-      //
-      // // WordCloud生成
-      // const paramForTag = {
-      //   words: tagDatas,
-      //   w: 1200,
-      //   h: 630,
-      //   fontSizePow: 0.8,
-      //   fontSizeZoom: 18,
-      //   padding: 2,
-      // }
-
-      // createWordCloud(paramForTag).then(tagSvg => {
-      //   craeteWordCount(alltext)
-      //     .then(data => {
-      //       const paramForText = {
-      //         words: data,
-      //         w: 1200,
-      //         h: 630,
-      //         fontSizePow: 0.6,
-      //         fontSizeZoom: 3.1,
-      //         padding: 0.2,
-      //       }
-
-      //       return createWordCloud(paramForText)
-      //     })
-      //     .then(textSvg => {
-      //       // 記事分析ページ生成
-      //       createPage({
-      //         path: '/blog-map/',
-      //         component: path.resolve('./src/templates/post-relation-map.js'),
-      //         context: {
-      //           allPostRelations,
-      //           wordCloudText: textSvg,
-      //           wordCloudTag: tagSvg,
-      //         },
-      //       })
-
-      //       // タグ別一覧ページ生成
-      //       _flow(
-      //         _flatMap(post => post.node.fields.tags),
-      //         _uniq(),
-      //         _forEach(tag => {
-      //           createPage({
-      //             path: `/tag/${_.kebabCase(tag)}/`,
-      //             component: tagPage,
-      //             context: {
-      //               tag,
-      //             },
-      //           })
-      //         })
-      //       )(posts)
-
-      //       resolve('OK')
-      //     })
       // })
 
       // タグと対応する記事のセットを生成
