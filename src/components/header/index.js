@@ -24,6 +24,10 @@ export default class Header extends React.Component {
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
       tagPath = __PATH_PREFIX__ + tagPath;
     }
+    let archivePath = `/archive/`;
+    if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
+      tagPath = __PATH_PREFIX__ + tagPath;
+    }
     let mapPath = `/map`;
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
       mapPath = __PATH_PREFIX__ + mapPath;
@@ -34,11 +38,14 @@ export default class Header extends React.Component {
     const isCategory = location
       ? location.pathname.startsWith(categoryPath)
       : false;
+    const isArchive = location
+      ? location.pathname.startsWith(archivePath)
+      : false;
     const isMap = location ? location.pathname.startsWith(mapPath) : false;
 
     let header = null;
 
-    if (isRoot || isTag || isCategory || isMap) {
+    if (isRoot || isTag || isCategory || isArchive || isMap) {
       header = (
         <div className={styles.header_container}>
           <Seo isRoot={true} />

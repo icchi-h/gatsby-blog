@@ -7,6 +7,7 @@ const _uniq = require('lodash/fp/uniq');
 const _flatMap = require('lodash/fp/flatMap');
 const relatedPost = require('./gatsby-related-post');
 const { paginate } = require('gatsby-awesome-pagination');
+const moment = require('moment');
 const config = require('./src/config/blog-config');
 
 // const striptags = require('striptags')
@@ -318,6 +319,51 @@ exports.createPages = ({ graphql, actions }) => {
             category,
           },
         });
+      }
+
+      // アーカイブ(年月)と対応する記事のセットを生成
+      let archiveArticles = {};
+      for (let post of posts) {
+        // 年、月情報を抜き出し
+        const date = moment(post.node.fields.date);
+        const year = date.format('YYYY');
+        const month = date.format('MM');
+
+        // まだ記録されていなければオブジェクトにセット
+        // {<year>: {<month>: [...posts]}}
+        if (archiveArticles.hasOwnProperty(year)) {
+          if (archiveArticles[year].hasOwnProperty(month)) {
+            archiveArticles[year][month].push(post);
+          } else {
+            archiveArticles[year][month] = [post];
+          }
+        } else {
+          archiveArticles[year] = {};
+          archiveArticles[year][month] = [post];
+        }
+      }
+
+      // 各アーカイブ別(年月)に一覧ページ生成
+      for (let year in archiveArticles) {
+        for (let month in archiveArticles[year]) {
+          paginate({
+            createPage,
+            items: archiveArticles[year][month],
+            itemsPerPage: config.postNumberPerPage,
+            pathPrefix: ({ pageNumber }) => {
+              return pageNumber === 0
+                ? `/archive/${year}/${month}/`
+                : `/archive/${year}/${month}/page`;
+            },
+            component: path.resolve('./src/templates/archive.js'),
+            context: {
+              year: parseInt(year),
+              month: parseInt(month),
+              from: `${year}-${month}-01T00:00:00.000Z`,
+              to: `${year}-${month + 1}-01T00:00:00.000Z`,
+            },
+          });
+        }
       }
 
       resolve('OK');
