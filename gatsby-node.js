@@ -265,6 +265,13 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
 
+      // タグ一覧ページの生成
+      createPage({
+        path: '/tag-list',
+        component: path.resolve('./src/templates/tag-list.js'),
+        // context: {},
+      });
+
       resolve('OK');
     });
   });
