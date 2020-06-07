@@ -38,24 +38,6 @@ import Pagination from '../components/pagination';
 
 export default class BlogIndex extends React.Component {
   render() {
-    // gatsby-node.jsで2つのノードに共通のfieldsを追加しているため条件分岐なし
-
-    // // 記事ソース情報の追加
-    // const blogPosts = get(this, 'props.data.allMarkdownRemark.edges', []).map(
-    //   item => {
-    //     item.node.fields.src = config.postType.original
-    //     return item
-    //   }
-    // )
-    // const qiitaPosts = get(this, 'props.data.allQiitaPost.edges', []).map(
-    //   item => {
-    //     item.node.fields.src = config.postType.qiita
-    //     item.node.fields.url = item.node.url
-    //     item.node.fields.comments_count = item.node.comments_count
-    //     item.node.fields.likes_count = item.node.likes_count
-    //     return item
-    //   }
-    // )
     const blogPosts = get(this, 'props.data.allMarkdownRemark.edges', []);
     const qiitaPosts = get(this, 'props.data.allQiitaPost.edges', []);
 
@@ -75,12 +57,10 @@ export default class BlogIndex extends React.Component {
     const posts = allPosts.slice(startIdx, startIdx + limit);
 
     return (
-      <Layout location={false}>
+      <Layout location={false} posts={allPosts}>
         <Title />
         <PostList postFields={posts.map((post) => post.node.fields)} />
         <Pagination props={this.props} />
-        <hr style={{ marginTop: '48px' }} />
-        <TagList posts={allPosts} />
       </Layout>
     );
   }

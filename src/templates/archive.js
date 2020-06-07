@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { get } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFolder } from '@fortawesome/free-solid-svg-icons';
+import { faArchive } from '@fortawesome/free-solid-svg-icons';
 
 import Layout from '../components/layout';
 import Title from '../components/title';
@@ -10,7 +10,7 @@ import PostList from '../components/post-list';
 import styles from './search.module.scss';
 import Pagination from '../components/pagination';
 
-class CategoryTemplate extends React.Component {
+class ArchiveTemplate extends React.Component {
   render() {
     // 全記事配列
     const allPosts = [
@@ -25,7 +25,7 @@ class CategoryTemplate extends React.Component {
       return 0;
     });
 
-    // 特定カテゴリー要素でフィルタリングされた記事配列
+    // 特定アーカイブ要素でフィルタリングされた記事配列
     const filteredPosts = [
       ...get(this, 'props.data.filteredRemarkPosts.edges', []),
       ...get(this, 'props.data.filteredQiitaPosts.edges', []),
@@ -42,8 +42,10 @@ class CategoryTemplate extends React.Component {
 
     const searchResult = (
       <div className={styles.search_result}>
-        <FontAwesomeIcon icon={faFolder} className={styles.icon} />
-        <span>{this.props.pageContext.category}</span>
+        <FontAwesomeIcon icon={faArchive} className={styles.icon} />
+        <span>
+          {this.props.pageContext.year}年{this.props.pageContext.month}月
+        </span>
         <div className={styles.search_count}>{totalCount}件</div>
       </div>
     );
@@ -57,9 +59,7 @@ class CategoryTemplate extends React.Component {
       totalCount > 0 ? (
         <PostList postFields={posts.map((post) => post.node.fields)} />
       ) : (
-        <div className={styles.no_post}>
-          指定したカテゴリーの記事はありません。
-        </div>
+        <div className={styles.no_post}>指定した年月の記事はありません。</div>
       );
 
     return (
@@ -75,13 +75,13 @@ class CategoryTemplate extends React.Component {
   }
 }
 
-export default CategoryTemplate;
+export default ArchiveTemplate;
 
 export const pageQuery = graphql`
-  query($category: String) {
+  query($from: Date, $to: Date) {
     filteredRemarkPosts: allMarkdownRemark(
       limit: 1000
-      filter: { fields: { category: { eq: $category } } }
+      filter: { fields: { date: { gte: $from, lt: $to } } }
       sort: { fields: [fields___date], order: DESC }
     ) {
       edges {
@@ -103,7 +103,7 @@ export const pageQuery = graphql`
 
     filteredQiitaPosts: allQiitaPost(
       limit: 1000
-      filter: { fields: { category: { eq: $category } } }
+      filter: { fields: { date: { gte: $from, lt: $to } } }
       sort: { fields: [fields___date], order: DESC }
     ) {
       edges {
