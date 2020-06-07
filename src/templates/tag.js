@@ -8,14 +8,25 @@ import Layout from '../components/layout';
 import Title from '../components/title';
 import PostList from '../components/post-list';
 import styles from './search.module.scss';
-import TagList from '../components/tag-list';
 import Pagination from '../components/pagination';
 
-class TagsTemplate extends React.Component {
+class TagTemplate extends React.Component {
   render() {
-    // マージして降順で並び替え
-    // gatsby-node.jsで2つのノードに共通のfieldsを追加しているため条件分岐なし
-    const allPosts = [
+    // 全記事配列
+    let allPosts = [
+      ...get(this, 'props.data.allMarkdownRemark.edges', []),
+      ...get(this, 'props.data.allQiitaPost.edges', []),
+    ].sort((a, b) => {
+      const aDate = new Date(a.node.fields.date);
+      const bDate = new Date(b.node.fields.date);
+
+      if (aDate < bDate) return 1;
+      if (aDate > bDate) return -1;
+      return 0;
+    });
+
+    // 特定タグ要素でフィルタリングされた記事配列
+    const filteredPosts = [
       ...get(this, 'props.data.filteredRemarkPosts.edges', []),
       ...get(this, 'props.data.filteredQiitaPosts.edges', []),
     ].sort((a, b) => {
@@ -27,10 +38,7 @@ class TagsTemplate extends React.Component {
       return 0;
     });
 
-    // const totalCount = allPosts && allPosts.length ? posts.length : 0;
-    const totalCount = allPosts.length || 0;
-
-    // const targetTag = <Tag value={this.props.pageContext.tag} />
+    const totalCount = filteredPosts.length || 0;
 
     const searchResult = (
       <div className={styles.search_result}>
@@ -44,7 +52,7 @@ class TagsTemplate extends React.Component {
     // Paginationに合わせて記事のフィルタリング
     const { pageNumber, limit } = this.props.pageContext;
     const startIdx = pageNumber * limit;
-    const posts = allPosts.slice(startIdx, startIdx + limit);
+    const posts = filteredPosts.slice(startIdx, startIdx + limit);
 
     const postList =
       totalCount > 0 ? (
@@ -53,26 +61,20 @@ class TagsTemplate extends React.Component {
         <div className={styles.no_post}>指定したタグの記事はありません。</div>
       );
 
-    const allTags = [
-      ...get(this, 'props.data.allRemarkTags.edges'),
-      ...get(this, 'props.data.allQiitaTags.edges'),
-    ];
-
     return (
-      <Layout location={this.props.location}>
+      <Layout location={this.props.location} posts={allPosts}>
         <div>
           <Title tag={this.props.pageContext.tag} />
           {searchResult}
           {postList}
           <Pagination props={this.props} />
-          <TagList posts={allTags} />
         </div>
       </Layout>
     );
   }
 }
 
-export default TagsTemplate;
+export default TagTemplate;
 
 export const pageQuery = graphql`
   query($tag: String) {
@@ -120,22 +122,39 @@ export const pageQuery = graphql`
       }
     }
 
-    allRemarkTags: allMarkdownRemark {
+    allMarkdownRemark(sort: { fields: [fields___date], order: DESC }) {
       edges {
         node {
           fields {
+            slug
+            title
+            excerpt
+            date
+            category
             tags
+            thumbnail
+            src
+            url
           }
         }
       }
     }
-
-    allQiitaTags: allQiitaPost {
+    allQiitaPost(sort: { fields: [fields___date], order: DESC }) {
       edges {
         node {
           fields {
+            slug
+            title
+            excerpt
+            date
+            category
             tags
+            thumbnail
+            src
+            url
           }
+          comments_count
+          likes_count
         }
       }
     }
