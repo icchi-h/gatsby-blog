@@ -30,7 +30,6 @@ import { get } from 'lodash';
 
 import Layout from '../components/layout';
 import PostList from '../components/post-list';
-import TagList from '../components/tag-list';
 import Title from '../components/title';
 import Pagination from '../components/pagination';
 
