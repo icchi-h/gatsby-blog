@@ -14,8 +14,21 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark;
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
 
+    // 全記事配列
+    const allPosts = [
+      ...get(this, 'props.data.allMarkdownRemark.edges', []),
+      ...get(this, 'props.data.allQiitaPost.edges', []),
+    ].sort((a, b) => {
+      const aDate = new Date(a.node.fields.date);
+      const bDate = new Date(b.node.fields.date);
+
+      if (aDate < bDate) return 1;
+      if (aDate > bDate) return -1;
+      return 0;
+    });
+
     return (
-      <Layout location={this.props.location}>
+      <Layout location={this.props.location} posts={allPosts}>
         <Post
           fields={post.fields}
           headings={post.headingsDetail}
@@ -57,6 +70,43 @@ export const pageQuery = graphql`
         category
         tags
         thumbnail
+      }
+    }
+
+    allMarkdownRemark(sort: { fields: [fields___date], order: DESC }) {
+      edges {
+        node {
+          fields {
+            slug
+            title
+            excerpt
+            date
+            category
+            tags
+            thumbnail
+            src
+            url
+          }
+        }
+      }
+    }
+    allQiitaPost(sort: { fields: [fields___date], order: DESC }) {
+      edges {
+        node {
+          fields {
+            slug
+            title
+            excerpt
+            date
+            category
+            tags
+            thumbnail
+            src
+            url
+          }
+          comments_count
+          likes_count
+        }
       }
     }
   }
