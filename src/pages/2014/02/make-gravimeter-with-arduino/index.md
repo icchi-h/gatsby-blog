@@ -1,5 +1,5 @@
 ---
-title: Aruduinoを使った重量計測システムの製作
+title: Aruduinoを使った重量計測システムを作ってみた
 date: 2014-02-15T16:30:00.000Z
 slug: /make-gravimeter-with-arduino
 category: 作ってみた

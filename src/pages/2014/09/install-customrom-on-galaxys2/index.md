@@ -12,7 +12,7 @@ keywords:
   - インストール
   - Galaxy S2
   - kitkat
-thumbnail: 2014/09/install-customrom-for-galaxys2/thumbnail.jpg
+thumbnail: 2014/09/install-customrom-on-galaxys2/thumbnail.jpg
 ---
 
 
