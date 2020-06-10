@@ -15,18 +15,18 @@ keywords:
   - 絵文字
   - スタンプ
   - 大きく
-thumbnail: 2016/12/make-large-stamp-posting-system-for-slack/stamp_on_slack_demo.gif
+thumbnail: 2016/12/make-large-stamp-posting-system-for-slack/after_improvement.jpg
 ---
 
-<hr/>
+<div style="border: 1px solid #999; border-radius: 4px; padding: 8px 16px; margin: 56px 0;">
 
 **追記**
 
 こちらの記事内で利用しているAPI Tokenは旧式(Legacy Token)であり非常に強力な権限を持つものです。現在は新しいタイプのTokenの利用が推奨されています。
 
-セキュリティとして甘い部分もあり、本記事の内容はあくまで参考として読んでいただけると幸いです。
+セキュリティが甘い部分もあり、本記事の内容はあくまで参考として読んでいただけると幸いです。
 
-<hr/>
+</div>
 
 この記事は[『Slack Advent Calendar 2016』](http://qiita.com/advent-calendar/2016/slack)21日目の記事です。
 
