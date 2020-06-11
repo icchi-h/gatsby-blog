@@ -1,8 +1,7 @@
 ---
 title: Arduinoを使ったmicroSD記録のデータロガー(温度、照度)を作ってみた
 date: 2013-04-09T16:32:00.000Z
-slug: /make-thermo-
-illuminometer-with-arduino
+slug: /make-thermo-illuminometer-with-arduino
 category: 作ってみた
 tags:
   - 作ってみた
