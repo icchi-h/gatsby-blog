@@ -15,8 +15,7 @@ keywords:
   - microSD
   - 温度計
   - 照度計
-thumbnail: 2013/04/make-thermo-
-illuminometer-with-arduino/thumbnail.jpg
+thumbnail: 2013/04/make-thermo-illuminometer-with-arduino/thumbnail.jpg
 ---
 
 
