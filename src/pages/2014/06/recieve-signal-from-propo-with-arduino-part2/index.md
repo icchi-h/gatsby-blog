@@ -4,6 +4,8 @@ date: 2014-06-15T09:13:00.000Z
 slug: /recieve-signal-from-propo-with-arduino-part2
 category: 作ってみた
 tags:
+  - 作ってみた
+  - 電子工作
   - 飛行船
   - Arduino
   - モーター
