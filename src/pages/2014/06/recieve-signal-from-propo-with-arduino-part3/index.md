@@ -1,6 +1,6 @@
 ---
 title: 飛行船の制御 その3 - 飛行船操縦システムを作ってみた
-date: 2014-06-15T09:13:00.000Z
+date: 2014-06-21T22:57:00.000Z
 slug: /recieve-signal-from-propo-with-arduino-part3
 category: 作ってみた
 tags:
