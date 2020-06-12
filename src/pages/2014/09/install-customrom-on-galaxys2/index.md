@@ -146,7 +146,7 @@ Android が余っている。放置してあるという方は遊び半分で最
 
 1. Odin 使って、GT-I9100_JB_ClockworkMod-Recovery_6.0.2.9.tar を導入
 2. 上記で導入した CWM を使って、KitKat 対応の CWM を導入
-   - http://forum.xda-developers.com/galaxy-s2/development-derivatives/cwm-clockworkmod-recovery-kit-kat-4-4-t2628412
+   - https://forum.xda-developers.com/galaxy-s2/development-derivatives/cwm-clockworkmod-recovery-kit-kat-4-4-t2628412
 3. カスタム ROM 導入
 
 gadget geeks さん、情報提供ありがとうございました。
