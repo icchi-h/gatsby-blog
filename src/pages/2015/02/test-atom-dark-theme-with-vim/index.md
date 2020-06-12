@@ -1,7 +1,7 @@
 ---
 title: Vimのテーマはatom-darkがいい感じ!
 date: 2015-02-22T09:13:00.000Z
-slug: /src/pages/2015/02/test-atom-dark-theme-with-vim
+slug: /test-atom-dark-theme-with-vim
 category: ソフトウェア
 tags:
   - Vim
