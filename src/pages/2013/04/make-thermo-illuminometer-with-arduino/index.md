@@ -17,37 +17,36 @@ keywords:
 thumbnail: 2013/04/make-thermo-illuminometer-with-arduino/thumbnail.jpg
 ---
 
-
 ## はじめに
 
-父親が小屋の気温や照度のデータが取りたいと言っていたのでデータロガーを作ってみました。 温度と照度を10分間隔でmicroSDにcsv形式で保存する仕様です。
+父親が小屋の気温や照度のデータが取りたいと言っていたのでデータロガーを作ってみました。 温度と照度を 10 分間隔で microSD に csv 形式で保存する仕様です。
 
-今回使うセンサは以下の2つ
+今回使うセンサは以下の 2 つ
 
-* 温度センサ [LM61CIZ](http://akizukidenshi.com/catalog/g/gI-02726/) 下図右
-* 明るさセンサ [TEMT6000](http://www.switch-science.com/products/detail.php?product_id=37) 下図左
+- 温度センサ [LM61CIZ](https://akizukidenshi.com/catalog/g/gI-02726/) 下図右
+- 明るさセンサ [TEMT6000](https://www.switch-science.com/products/detail.php?product_id=37) 下図左
 
 ![](./parts.jpg)
 
-microSDとの接続には秋月で売っている [マイクロＳＤカードスロットＤＩＰ化キット](http://akizukidenshi.com/catalog/g/gK-05488)を使いました。ブレッドボードで使う場合にはピンヘッダをハンダ付けすると便利です。
+microSD との接続には秋月で売っている [マイクロＳＤカードスロットＤＩＰ化キット](https://akizukidenshi.com/catalog/g/gK-05488)を使いました。ブレッドボードで使う場合にはピンヘッダをハンダ付けすると便利です。
 
 ## 接続表
 
 ![](./connection-table.jpg)
 
-まずmicroSDを繋げている時に問題が･･･ arduinoの出力電圧が5Vに対しmicroSDの動作電圧は2.7～3.6V 手元にあった270Ωと510Ωで分圧することで`5*(510/(510+270))≒3.2V`
+まず microSD を繋げている時に問題が･･･ arduino の出力電圧が 5V に対し microSD の動作電圧は 2.7 ～ 3.6V 手元にあった 270Ω と 510Ω で分圧することで`5*(510/(510+270))≒3.2V`
 
 ![](./process1.jpg)
 
-良い感じに減圧出来ました。 最後に2つのセンサを取り付けます。 TEMT6000は上から出力電圧、GND、5V LM61CIZは文字が書いてある面から見て左から5V、出力電圧、GND詳しくは各データシートを参照してください。各端子繋いであげるとこれでハードは出来上がりです。
+良い感じに減圧出来ました。 最後に 2 つのセンサを取り付けます。 TEMT6000 は上から出力電圧、GND、5V LM61CIZ は文字が書いてある面から見て左から 5V、出力電圧、GND 詳しくは各データシートを参照してください。各端子繋いであげるとこれでハードは出来上がりです。
 
 ![](./demo1.jpg)
 
-あとはarduinoにプログラムを書き込むだけ。 今回のプログラムでmicroSD関連は公式のライブラリもあったんですが、公式ライブラリをより使いやすく改良された方がいたので[こちらのサイト](http://tyk-systems.com/DataLogger/DataLogger.html)のものを使わせて頂きました。実際にmicroSDに書き込まれたログデータがこちら
+あとは arduino にプログラムを書き込むだけ。 今回のプログラムで microSD 関連は公式のライブラリもあったんですが、公式ライブラリをより使いやすく改良された方がいたので[こちらのサイト](https://tyk-systems.com/DataLogger/DataLogger.html)のものを使わせて頂きました。実際に microSD に書き込まれたログデータがこちら
 
 ![](./demo2.png)
 
-arduinoに書き込んだスケッチは以下のとおりです。
+arduino に書き込んだスケッチは以下のとおりです。
 
 ```c
 /*
@@ -122,8 +121,8 @@ void loop(){
 }
 ```
 
-今回はmicroSDに書き込むデータロガーですがネットワークと接続してcosmなどのサービスを利用するとスマホと組み合わせたりできて、より面白いような気がします。長期休みも終わり学校が始まったので更新の間隔も広まりそうですが、ちょくちょく何か面白いものを作って行きたいですね。
+今回は microSD に書き込むデータロガーですがネットワークと接続して cosm などのサービスを利用するとスマホと組み合わせたりできて、より面白いような気がします。長期休みも終わり学校が始まったので更新の間隔も広まりそうですが、ちょくちょく何か面白いものを作って行きたいですね。
 
 ## Reference
 
-* <a target="_blank" href="https://www.amazon.co.jp/gp/product/B008GRTSV6/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B008GRTSV6&linkCode=as2&tag=haruyuki04-22&linkId=826cb16dad367b86f5e2b4c8dfc912b9">Arduino Uno Rev3 ATmega328 マイコンボード A000066</a><img src="//ir-jp.amazon-adsystem.com/e/ir?t=haruyuki04-22&l=am2&o=9&a=B008GRTSV6" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+- <a target="_blank" href="https://www.amazon.co.jp/gp/product/B008GRTSV6/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B008GRTSV6&linkCode=as2&tag=haruyuki04-22&linkId=826cb16dad367b86f5e2b4c8dfc912b9">Arduino Uno Rev3 ATmega328 マイコンボード A000066</a><img src="//ir-jp.amazon-adsystem.com/e/ir?t=haruyuki04-22&l=am2&o=9&a=B008GRTSV6" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
