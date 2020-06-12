@@ -2,7 +2,7 @@
 title: おうちハックがしたい
 date: 2016-07-15T12:24:00.000Z
 slug: /ouchi-hack
-category: 雑記
+category: 電子工作
 tags:
   - おうちハック
 keywords:
