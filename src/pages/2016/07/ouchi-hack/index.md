@@ -10,17 +10,16 @@ keywords:
 thumbnail: 2016/07/ouchi-hack/ouchi-hack.png
 ---
 
-
 ![](./ouchi-hack.png)
 
-最近「[おうちハック](http://kadecot.net/ouch-hack/)」という言葉を耳にした.
+最近「[おうちハック](https://kadecot.net/ouch-hack/)」という言葉を耳にした.
 
 > おうちをより便利に使うために、ガジェットやサービスを組み合わせたり、工夫や努力を注ぎ込んだおうちハックすること
 
-* 湯村さんという方が代表として活動しているらしい.
-  * http://yumulog.hatenablog.com/entry/2016/05/28/222056
-* ぼへみあさんの活動内容もすごい
-  * http://bohemia.hatenablog.com/entry/2015/12/01/163521
+- 湯村さんという方が代表として活動しているらしい.
+  - https://yumulog.hatenablog.com/entry/2016/05/28/222056
+- ぼへみあさんの活動内容もすごい
+  - https://bohemia.hatenablog.com/entry/2015/12/01/163521
 
 これらの活動をみた瞬間, 電流が走りました.
 
@@ -38,11 +37,11 @@ thumbnail: 2016/07/ouchi-hack/ouchi-hack.png
 
 今イメージしてるのは家の家電を一括で管理できるユニットです. 上のロボットでもその機能は実装してましたが, 作ってみて思ったのが動く必要ないし,デカくなるし,何より完成度が低かった...
 
-新デバイスの形状イメージはAmazon echoみたいな
+新デバイスの形状イメージは Amazon echo みたいな
 
-![](http://zdnet4.cbsistatic.com/hub/i/r/2015/08/21/7a1efd2e-294c-43a9-a4f4-9ab429644791/resize/770xauto/c1b52235ffb9a5b844f2e72a59de2052/amazon-echo-683x405-d.png)
+![](https://zdnet4.cbsistatic.com/hub/i/r/2015/08/21/7a1efd2e-294c-43a9-a4f4-9ab429644791/resize/770xauto/c1b52235ffb9a5b844f2e72a59de2052/amazon-echo-683x405-d.png)
 
-今回, おうちハックを見ているうちに「[IRKit](http://getirkit.com/)」なる遠隔リモコン操作できるIoTデバイスの存在を知り, しかもこれがオープンソースになってる!
+今回, おうちハックを見ているうちに「[IRKit](https://getirkit.com/)」なる遠隔リモコン操作できる IoT デバイスの存在を知り, しかもこれがオープンソースになってる!
 
 こういったコード等の資産を利用しながらある程度使い続けられるようなものを作りたいですね.
 

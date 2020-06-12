@@ -24,7 +24,7 @@ thumbnail: 2013/03/test-7seg-led-nkr161/thumbnail.jpg
 
 先輩にあたる部品に敬意を表していざ google で検索。
 
-[こちら](http://www.stanley-components.com/jp/description_of_part_number/led_numeric_display.cfm)のメーカー HP によると、この 7 セグの品番 NKR161 は N が 7 セグ、K がカソードコモン、R が赤色を意味してるらしい。
+[こちら](https://www.stanley-components.com/jp/description_of_part_number/led_numeric_display.cfm)のメーカー HP によると、この 7 セグの品番 NKR161 は N が 7 セグ、K がカソードコモン、R が赤色を意味してるらしい。
 
 さっそく、動作するかチェック
 

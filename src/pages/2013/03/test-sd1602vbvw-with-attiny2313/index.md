@@ -56,7 +56,7 @@ PD5:DB7
 
 今回利用させてもらったのはこちら
 
-http://www.vector.co.jp/soft/dos/hardware/se476452.html
+https://www.vector.co.jp/soft/dos/hardware/se476452.html
 
 ダウンロードしたらライブラリフォルダに入っている 7 個のファイルをすべて atmel studio のプロジェクトにドラッグ&ドロップ
 
