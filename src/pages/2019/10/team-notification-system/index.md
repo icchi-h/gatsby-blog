@@ -1,6 +1,7 @@
 ---
 title: チーム向け通知システムを作ってみた
 date: '2019-10-15T02:55:00.000Z'
+category: 作ってみた
 tags:
   - GoogleAppsScript
   - Slack
