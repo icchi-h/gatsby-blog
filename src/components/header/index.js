@@ -58,21 +58,6 @@ export default class Header extends React.Component {
             <Bio />
           </div>
           <Rss />
-          <Fab
-            color="primary"
-            aria-label="current-blog"
-            // className={classes.fab}
-            href={'https://wp.blog.icchi.me'}
-            style={{
-              fontSize: '0.9em',
-              lineHeight: '1.2',
-              position: 'absolute',
-              right: '1em',
-              top: '1em',
-            }}
-          >
-            旧版
-          </Fab>
         </div>
       );
     }
