@@ -25,7 +25,7 @@ const Pagination = ({ props }) => {
 
   let numLinkButton = [];
   const isOmission = numberOfPages > MAX_LINK_NUM; // 要素数省略判定
-  const dispLinkCount = 4;
+  const dispLinkCount = 4; // 先頭・末尾の表示するリンク数
 
   // 要素数が少ない場合はすべて表示
   for (let i = 1; i < numberOfPages + 1; i++) {
