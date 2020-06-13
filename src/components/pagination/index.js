@@ -30,9 +30,9 @@ const Pagination = ({ props }) => {
   // 要素数が少ない場合はすべて表示
   for (let i = 1; i < numberOfPages + 1; i++) {
     // XXX: なぜかpage11以上の場合にbasePathに`pages/[0-9]*`が代入されている
-    let pagePath = basePath
-      ? basePath.replace(/\/page\/[0-9]*/g, '')
-      : basePath + (i !== 1 ? `/page/${i}` : '');
+    let pagePath =
+      (basePath ? basePath.replace(/\/page\/[0-9]*/g, '') : basePath) +
+      (i !== 1 ? `/page/${i}` : '');
     numLinkButton.push(
       // 現在のページの場合はリンク化しない
       i !== humanPageNumber ? (
