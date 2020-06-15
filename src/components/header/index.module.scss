@@ -7,7 +7,7 @@
   padding: 12px;
   position: relative;
   min-height: 30vh;
-  background-color: #333;
+  background-color: $bg_color_dark;
 
   // boi用
   & div {
@@ -44,7 +44,7 @@
       text-align: center;
 
       .blog_title {
-        font-family: $default-font-family;
+        font-family: $default_font_family;
         color: white;
       }
     }
