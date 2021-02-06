@@ -7,7 +7,7 @@
   .content_thumbnail {
     // width: calc((#{$img_height} + 40px) * (16 / 9));
     width: calc(100% * (16 / 9));
-    max-width: 24%;
+    max-width: 20%;
     // height: $img_height;
 
     .content_thumbnail_image {
@@ -23,7 +23,7 @@
     padding: 12px;
 
     .title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: bold;
       margin-bottom: 0.7rem;
       margin-top: 0rem;
