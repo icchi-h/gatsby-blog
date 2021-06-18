@@ -5,7 +5,7 @@
     "rehype-stringify": "^4.0.0",
     "remark-parse": "^6.0.2",
     "remark-rehype": "^3.0.1",
-    "striptags": "^3.1.1",
+    "striptags": "^3.2.0",
     "unified": "^7.0.1"
   }
 }
