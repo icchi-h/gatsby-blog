@@ -91,7 +91,7 @@
     "react-share": "^4.1.0",
     "react-typography": "^0.16.19",
     "remark-html": "^11.0.2",
-    "striptags": "^3.1.1",
+    "striptags": "^3.2.0",
     "typography": "^0.16.19",
     "typography-theme-wordpress-2016": "^0.16.19"
   },
